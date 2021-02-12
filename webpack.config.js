@@ -47,9 +47,6 @@ module.exports = {
       {
         test: /\.(svg|jpg|png)$/i,
         use: ["file-loader"],
-        options: {
-          publicPath: "assets",
-        },
       },
       {
         test: /\.css$/i,

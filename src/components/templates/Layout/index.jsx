@@ -5,10 +5,8 @@ import Header from "../../organisms/Header";
 const Layout = ({ children }) => {
   return (
     <>
-      <Container>
-        <Header />
-        {children}
-      </Container>
+      <Header />
+      {children}
     </>
   );
 };

@@ -9,3 +9,15 @@ body {
 * {
   box-sizing: border-box;
 }
+
+html {
+  --color-text--light-theme: rgb(32, 32, 32);
+  --color-background--light-theme: lightgray;
+  --color-text--dark-theme: lightgray;
+  --color-background--dark-theme: rgb(32, 32, 32);
+  --color-secondary--dark-theme: rgb(41, 41, 41);
+  --color-secondary--light-theme: rgb(197, 197, 197);
+  --color-accent--success: #3db0ca;
+  --color-accent--error: #ed7196;
+  --color-accent: #eed374;
+}
