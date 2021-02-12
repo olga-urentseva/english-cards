@@ -1,3 +1,10 @@
-.HeaderWrapper {
+.Header {
   background-color: var(--color-secondary);
+  border-radius: 0 0 1em 1em;
+  box-shadow: 1px 6px 14px -5px var(--color-shadow);
+}
+
+.HeaderWrapper {
+  display: flex;
+  justify-content: space-between;
 }

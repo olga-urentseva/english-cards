@@ -1,8 +1,9 @@
 export default {
   "color-text": "lightgray",
-  "color-secondary": "rgb(41, 41, 41)",
-  "color-background": "rgb(32, 32, 32)",
+  "color-secondary": "#2E385E",
+  "color-background": "#151636",
   "color-accent--success": "#3db0ca",
   "color-accent--error": "#ed7196",
   "color-accent": "#eed374",
+  "color-shadow": "#41477D",
 };

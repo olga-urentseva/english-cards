@@ -2,15 +2,11 @@
   box-sizing: border-box;
 }
 
-:root {
-  --color-accent--success: #3db0ca;
-  --color-accent--error: #ed7196;
-  --color-accent: #eed374;
-}
-
 body {
+  background-color: var(--color-background);
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
+  height: 100vh;
 }
