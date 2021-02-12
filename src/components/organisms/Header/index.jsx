@@ -1,10 +1,19 @@
+import classNames from "classnames";
 import React from "react";
-import Footer from "../../molecules/Footer";
+import Container from "../../atoms/Container";
+
+import Logo from "../../atoms/Logo";
+
+import classes from "./style.css";
 
 const Header = () => {
   return (
     <header>
-      <Footer />
+      <div className={classNames(classes.HeaderWrapper)}>
+        <Container>
+          <Logo type={Logo.LOGO_TYPES.BIG} />
+        </Container>
+      </div>
     </header>
   );
 };

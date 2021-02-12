@@ -5,17 +5,26 @@ import PropTypes from "prop-types";
 
 import classes from "./style.css";
 
-import LogoDark from "../../../assets/LogoDark.svg";
+import logoDark from "./logoDark.svg";
+import logoLight from "./logoLight.svg";
+
+import { useTheme, Themes } from "../../contexts/ThemeContext";
+
+const logoByTheme = {
+  [Themes.LIGHT]: logoDark,
+  [Themes.DARK]: logoLight,
+};
 
 const Logo = ({ type }) => {
+  const { themeName } = useTheme();
+
   const classType = `Logo--${type}`;
+
   return (
-    <div>
-      <img
-        className={classNames(classes.Logo, classes[classType])}
-        src={LogoDark}
-      />
-    </div>
+    <img
+      className={classNames(classes.Logo, classes[classType])}
+      src={logoByTheme[themeName]}
+    />
   );
 };
 
