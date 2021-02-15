@@ -5,9 +5,12 @@ import PropTypes from "prop-types";
 
 import classes from "./style.css";
 
-const Button = ({ children, onClick, type }) => {
+const Button = ({ children, onClick, btntype, type }) => {
   return (
-    <button className={classNames(classes.Button, classes[`Button--${type}`])}>
+    <button
+      type={type}
+      className={classNames(classes.Button, classes[`Button--${btntype}`])}
+    >
       {children}
     </button>
   );
@@ -21,7 +24,7 @@ export const BUTTON_TYPES = {
 
 Button.propTypes = {
   onClick: PropTypes.func,
-  type: PropTypes.oneOf(Object.values(BUTTON_TYPES)),
+  btntype: PropTypes.oneOf(Object.values(BUTTON_TYPES)),
 };
 
 export default Button;

@@ -39,5 +39,5 @@
   background-color: rgb(195, 195, 195);
 }
 .ToggleButton:checked {
-  background-color: rgb(11, 11, 51);
+  background-color: var(--color-background);
 }

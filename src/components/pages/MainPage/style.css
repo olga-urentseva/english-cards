@@ -9,4 +9,5 @@
 
 .MainText {
   font-size: 2.5em;
+  color: var(--color-text);
 }
