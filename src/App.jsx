@@ -1,11 +1,12 @@
 import React from "react";
+import { Route } from "react-router-dom";
 import ThemeContext from "./components/contexts/ThemeContext";
-import Layout from "./components/templates/Layout";
+import MainPage from "./components/pages/MainPage";
 
 const App = () => {
   return (
     <ThemeContext>
-      <Layout />
+      <Route path="/" exact component={MainPage} />
     </ThemeContext>
   );
 };

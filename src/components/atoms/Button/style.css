@@ -1,0 +1,36 @@
+.Button {
+  display: inline-block;
+  border: none;
+  border-radius: 2em;
+  color: var(--color-text-button);
+  padding: 0.5em 2em;
+  white-space: nowrap;
+  font-size: 1.5em;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.Button:focus,
+.Button:active,
+.Button:hover {
+  filter: brightness(90%);
+}
+
+.Button--success {
+  background-color: var(--color-accent--success);
+  box-shadow: 0em 0.2em 0.5em -0.2em var(--color-accent--success);
+}
+
+.Button--error {
+  background-color: var(--color-accent--error);
+  box-shadow: 0em 0.2em 0.5em -0.2em var(--color-accent--error);
+  -webkit-box-shadow: 0em 0.2em 0.5em -0.2em var(--color-accent--error);
+  -moz-box-shadow: 0em 0.2em 0.5em -0.2em var(--color-accent--error);
+}
+
+.Button--default {
+  background-color: var(--color-accent);
+  box-shadow: 0em 0.2em 0.5em -0.2em var(--color-accent--default);
+  -webkit-box-shadow: 0em 0.2em 0.5em -0.2em var(--color-accent--default);
+  -moz-box-shadow: 0em 0.2em 0.5em -0.2em var(--color-accent--default);
+}

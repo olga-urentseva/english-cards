@@ -1,0 +1,12 @@
+.Hero {
+  max-width: 35em;
+}
+
+.MainWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.MainText {
+  font-size: 2.5em;
+}

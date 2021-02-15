@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header />
-      <div className={classes.BodyWrapper}>{children}</div>
+      <div className={classes.Body}>{children}</div>
     </>
   );
 };
