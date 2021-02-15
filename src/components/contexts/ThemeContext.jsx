@@ -17,11 +17,14 @@ function setCSSVariables(theme) {
 setCSSVariables(themes.light);
 
 const ThemeContext = ({ children }) => {
-  const [themeName, setTheme] = useState(Themes.LIGHT);
+  const [themeName, setTheme] = useState(
+    () => window.localStorage.getItem("theme") || Themes.LIGHT
+  );
   const theme = themes[themeName];
 
   useEffect(() => {
     setCSSVariables(theme);
+    window.localStorage.setItem("theme", themeName);
   }, [themeName]);
 
   return (

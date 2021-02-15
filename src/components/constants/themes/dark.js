@@ -1,5 +1,5 @@
 export default {
-  "color-text": "lightgray",
+  "color-text": "#CDD1FC",
   "color-secondary": "#2E385E",
   "color-background": "#151636",
   "color-accent--success": "#3db0ca",
