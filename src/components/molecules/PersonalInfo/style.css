@@ -1,0 +1,12 @@
+.PersonalCardWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.PersonalText {
+  margin: 0;
+}
+
+.PersonalScore {
+  margin: 0;
+}

@@ -8,6 +8,11 @@
   max-width: 9em;
   box-shadow: 0em 0.1em 0.5em -0.2em var(--color-accent--success);
   color: var(--color-text);
+  transition: all 0.3s;
+}
+
+.Input:hover {
+  filter: brightness(110%);
 }
 
 .Input::placeholder {

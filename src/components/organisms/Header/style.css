@@ -8,4 +8,30 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: -1rem;
 }
+
+.PersonalBlock {
+  margin: 1rem;
+}
+
+.LogoBlock {
+  margin: 1em;
+}
+
+.ServiceBlock {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+}
+
+.HeaderToggleBtn {
+  margin: 1em 0;
+}
+
+@media (max-width: 48em) {
+  .HeaderWrapper {
+    flex-direction: column;
+    align-items: baseline;
+  }
+} ;

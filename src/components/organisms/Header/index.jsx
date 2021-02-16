@@ -3,6 +3,7 @@ import React from "react";
 import Container from "../../atoms/Container";
 
 import Logo from "../../atoms/Logo";
+import LogOutButton from "../../atoms/LogOutButton";
 import ToggleButton from "../../atoms/ToggleThemeButton";
 import { useAuthContext } from "../../contexts/AuthContext";
 import PersonalInfo from "../../molecules/PersonalInfo";
@@ -17,16 +18,13 @@ const Header = () => {
       <div className={classNames(classes.Header)}>
         <Container>
           <div className={classes.HeaderWrapper}>
-            <Logo type={Logo.LOGO_TYPES.BIG} />
-            {authContextValue.userName ? (
-              <PersonalInfo
-                userName={authContextValue.userName}
-                userScore={14}
-              />
-            ) : (
-              ""
-            )}
-            <ToggleButton />
+            <div className={classes.LogoBlock}>
+              <Logo type={Logo.LOGO_TYPES.BIG} />
+            </div>
+            <div className={classes.ServiceBlock}>
+              <LogOutButton />
+              <ToggleButton className={classes.HeaderToggleBtn} />
+            </div>
           </div>
         </Container>
       </div>

@@ -1,12 +1,14 @@
 import React from "react";
+import classNames from "classnames";
 
-const PersonalInfo = ({ userName, userScore }) => {
+import classes from "./style.css";
+
+const PersonalInfo = ({ userName, userScore, className }) => {
   return (
-    <>
-      <h3>
-        {userName}, твой счёт: {userScore}
-      </h3>
-    </>
+    <div className={classNames(classes.PersonalCardWrapper, className)}>
+      <h3 className={classes.PersonalText}>{userName}, твой счёт:</h3>
+      <h1 className={classes.PersonalScore}>{userScore}</h1>
+    </div>
   );
 };
 

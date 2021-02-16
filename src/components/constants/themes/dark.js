@@ -5,7 +5,7 @@ export default {
   "color-accent--success": "#40B8D2",
   "color-accent--error": "#ed7196",
   "color-accent": "#eed374",
-  "color-shadow": "#41477D",
+  "color-shadow": "#5667b0",
   "color-text-button": "#FFFFFF",
   "color-input-text": "#8B94B2",
 };
