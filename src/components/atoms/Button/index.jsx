@@ -5,11 +5,15 @@ import PropTypes from "prop-types";
 
 import classes from "./style.css";
 
-const Button = ({ children, onClick, btntype, type }) => {
+const Button = ({ children, onClick, btntype, type, className }) => {
   return (
     <button
       type={type}
-      className={classNames(classes.Button, classes[`Button--${btntype}`])}
+      className={classNames(
+        classes.Button,
+        classes[`Button--${btntype}`],
+        className
+      )}
     >
       {children}
     </button>

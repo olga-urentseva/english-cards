@@ -11,3 +11,12 @@
   font-size: 2.5em;
   color: var(--color-text);
 }
+
+.FormWrapper {
+  margin: -1rem;
+}
+
+.FormInput,
+.FormButton {
+  margin: 1rem;
+}

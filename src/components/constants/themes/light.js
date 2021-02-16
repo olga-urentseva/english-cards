@@ -7,4 +7,5 @@ export default {
   "color-accent--error": "#ed7196",
   "color-accent": "#eed374",
   "color-text-button": "#FFFFFF",
+  "color-input-text": "#ACAFB8",
 };
