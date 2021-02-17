@@ -5,6 +5,7 @@
   border-radius: 2em;
   font-size: 1.5em;
   padding: 0.5em;
+  padding-left: 1em;
   max-width: 9em;
   box-shadow: 0em 0.1em 0.5em -0.2em var(--color-accent--success);
   color: var(--color-text);
