@@ -6,16 +6,12 @@ import Logo from "../../atoms/Logo";
 import LogOutButton from "../../atoms/LogOutButton";
 import ToggleButton from "../../atoms/ToggleThemeButton";
 
-import { useAuthContext } from "../../contexts/AuthContext";
+import { useAuthContext, logOut } from "../../contexts/AuthContext";
 
 import classes from "./style.css";
 
 const Header = () => {
   const authContextValue = useAuthContext();
-
-  function logOut() {
-    authContextValue.setUserName(null);
-  }
 
   return (
     <header>
@@ -34,7 +30,7 @@ const Header = () => {
                   </h3>
                   <LogOutButton
                     className={classes.HeaderLogOutBtn}
-                    onClick={logOut}
+                    onClick={authContextValue.logOut}
                   />
                 </div>
               ) : (

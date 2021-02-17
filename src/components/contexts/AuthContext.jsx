@@ -7,16 +7,20 @@ const AuthContext = ({ children }) => {
     () => window.localStorage.getItem("userName") || null
   );
 
+  function logOut() {
+    setUserName(null);
+  }
+
   useEffect(() => {
     if (!userName) {
-      return;
+      window.localStorage.removeItem("userName");
     } else {
       window.localStorage.setItem("userName", userName);
     }
   }, [userName]);
 
   return (
-    <Context.Provider value={{ userName, setUserName }}>
+    <Context.Provider value={{ userName, setUserName, logOut }}>
       {children}
     </Context.Provider>
   );
