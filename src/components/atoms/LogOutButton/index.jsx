@@ -2,9 +2,12 @@ import React from "react";
 import classes from "./style.css";
 import classNames from "classnames";
 
-const LogOutButton = ({ onclick, className }) => {
+const LogOutButton = ({ onClick, className }) => {
   return (
-    <button className={classNames(classes.LogOutButton, className)}></button>
+    <button
+      className={classNames(classes.LogOutButton, className)}
+      onClick={onClick}
+    ></button>
   );
 };
 

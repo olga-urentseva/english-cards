@@ -43,6 +43,7 @@
 .HeaderUserName {
   margin: 0;
   margin-right: 1rem;
+  color: var(--color-border);
 }
 
 @media (max-width: 48em) {

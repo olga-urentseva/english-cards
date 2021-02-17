@@ -1,17 +1,21 @@
 import classNames from "classnames";
 import React from "react";
-import Container from "../../atoms/Container";
 
+import Container from "../../atoms/Container";
 import Logo from "../../atoms/Logo";
 import LogOutButton from "../../atoms/LogOutButton";
 import ToggleButton from "../../atoms/ToggleThemeButton";
+
 import { useAuthContext } from "../../contexts/AuthContext";
-import PersonalInfo from "../../molecules/PersonalInfo";
 
 import classes from "./style.css";
 
 const Header = () => {
   const authContextValue = useAuthContext();
+
+  function logOut() {
+    authContextValue.setUserName(null);
+  }
 
   return (
     <header>
@@ -23,12 +27,19 @@ const Header = () => {
             </div>
             <div className={classes.ServiceBlock}>
               <ToggleButton className={classes.HeaderToggleBtn} />
-              <div className={classes.HeaderLogOutBlock}>
-                <h3 className={classes.HeaderUserName}>
-                  {authContextValue.userName}
-                </h3>
-                <LogOutButton className={classes.HeaderLogOutBtn} />
-              </div>
+              {authContextValue.userName ? (
+                <div className={classes.HeaderLogOutBlock}>
+                  <h3 className={classes.HeaderUserName}>
+                    {authContextValue.userName}
+                  </h3>
+                  <LogOutButton
+                    className={classes.HeaderLogOutBtn}
+                    onClick={logOut}
+                  />
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </Container>
