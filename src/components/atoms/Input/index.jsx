@@ -12,6 +12,7 @@ const Input = ({ children, type, onChange, placeholder, className }) => {
       className={classNames(classes.Input, className)}
       placeholder={placeholder}
       required
+      maxLength="15"
     >
       {children}
     </input>

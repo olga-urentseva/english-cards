@@ -8,4 +8,5 @@ export default {
   "color-shadow": "#5667b0",
   "color-text-button": "#FFFFFF",
   "color-input-text": "#8B94B2",
+  "color-border": "#B0B4DB",
 };

@@ -1,15 +1,16 @@
 .ToggleButton {
+  font-size: 0.6rem;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   position: relative;
   display: inline-block;
   width: 4em;
-  height: 2.1em;
+  height: 2.2em;
   margin: 0;
   vertical-align: top;
   background: #ffffff;
-  border: 0.1em solid var(--color-text);
+  border: 0.15em solid var(--color-border);
   border-radius: 2em;
   outline: none;
   cursor: pointer;
@@ -20,7 +21,10 @@
 }
 
 .ToggleButton:hover {
-  filter: brightness(110%);
+  filter: brightness(120%);
+  box-shadow: 0em 0.7em 0.7em -0.2em var(--color-shadow);
+  -webkit-box-shadow: 0em 0.7em 0.7em -0.2em var(--color-shadow);
+  -moz-box-shadow: 0em 0.7em 0.7em -0.2em var(--color-shadow);
 }
 
 .ToggleButton::after {
@@ -33,14 +37,14 @@
   height: 1.5em;
   background-color: rgb(245, 196, 60);
   border-radius: 50%;
-
   transform: translateX(0);
   transition: all 0.3s cubic-bezier(0.2, 0.85, 0.32, 1.2);
 }
 
 .ToggleButton:checked::after {
   transform: translateX(calc(100% + 0.2em));
-  background-color: rgb(195, 195, 195);
+  background-color: var(--color-border);
+  filter: brightness(120%);
 }
 .ToggleButton:checked {
   background-color: var(--color-background);

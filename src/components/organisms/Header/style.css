@@ -8,30 +8,46 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: -1rem;
-}
-
-.PersonalBlock {
-  margin: 1rem;
+  margin: -0.5rem;
+  flex-wrap: wrap;
 }
 
 .LogoBlock {
-  margin: 1em;
+  margin: 0.5em;
 }
 
 .ServiceBlock {
   display: flex;
-  flex-direction: column;
-  margin: 1em;
+  flex-direction: row;
+  align-items: center;
+  margin: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.HeaderLogOutBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 -0.5em;
 }
 
 .HeaderToggleBtn {
-  margin: 1em 0;
+  margin: 0;
+  margin-right: 1.5rem;
+}
+
+.HeaderLogOutBtn {
+  margin: 0 0.5rem;
+  margin-right: 1rem;
+}
+
+.HeaderUserName {
+  margin: 0 0.5rem;
 }
 
 @media (max-width: 48em) {
-  .HeaderWrapper {
-    flex-direction: column;
-    align-items: baseline;
+  .HeaderToggleBtn {
+    margin: 0;
+    margin-right: 1.5rem;
   }
 } ;

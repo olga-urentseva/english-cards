@@ -22,8 +22,13 @@ const Header = () => {
               <Logo type={Logo.LOGO_TYPES.BIG} />
             </div>
             <div className={classes.ServiceBlock}>
-              <LogOutButton />
               <ToggleButton className={classes.HeaderToggleBtn} />
+              <div className={classes.HeaderLogOutBlock}>
+                <h3 className={classes.HeaderUserName}>
+                  {authContextValue.userName}
+                </h3>
+                <LogOutButton className={classes.HeaderLogOutBtn} />
+              </div>
             </div>
           </div>
         </Container>

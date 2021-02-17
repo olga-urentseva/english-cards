@@ -1,11 +1,11 @@
 .LogOutButton {
-  font-size: 1rem;
+  font-size: 0.6rem;
   width: fit-content;
   width: 2em;
   height: 3em;
   padding: 1em;
   background-color: transparent;
-  border: solid 0.2em var(--color-text);
+  border: solid 0.2em var(--color-border);
   border-radius: 0.8em;
   position: relative;
   cursor: pointer;
@@ -18,10 +18,10 @@
 .LogOutButton:focus,
 .LogOutButton:active,
 .LogOutButton:hover {
-  filter: brightness(60%);
-  box-shadow: 0em 0.9em 1em -0.2em var(--color-shadow);
-  -webkit-box-shadow: 0em 0.9em 1em -0.2em var(--color-shadow);
-  -moz-box-shadow: 0em 0.9em 1.5em -0.2em var(--color-shadow);
+  filter: brightness(120%);
+  box-shadow: 0em 0.7em 1em -0.2em var(--color-shadow);
+  -webkit-box-shadow: 0em 1em 0.7em -0.2em var(--color-shadow);
+  -moz-box-shadow: 0em 0.7em 1em -0.2em var(--color-shadow);
 }
 
 .LogOutButton::before {
@@ -29,7 +29,7 @@
   content: "";
   width: 1.5em;
   height: 0.2em;
-  background-color: var(--color-text);
+  background-color: var(--color-border);
   position: absolute;
   transform: translateY(-50%);
   top: 50%;
@@ -41,8 +41,8 @@
   content: "";
   width: 0.5em;
   height: 0.5em;
-  border-right: 0.2em solid var(--color-text);
-  border-top: 0.2em solid var(--color-text);
+  border-right: 0.2em solid var(--color-border);
+  border-top: 0.2em solid var(--color-border);
   position: absolute;
   top: 50%;
   transform-origin: top right;

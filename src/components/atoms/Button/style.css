@@ -13,7 +13,7 @@
 .Button:focus,
 .Button:active,
 .Button:hover {
-  filter: brightness(110%);
+  filter: brightness(120%);
 }
 
 .Button--success {
