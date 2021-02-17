@@ -14,11 +14,13 @@ function setCSSVariables(theme) {
   });
 }
 
-setCSSVariables(themes.light);
+const initialThemeName = window.localStorage.getItem("theme");
+
+setCSSVariables(themes[initialThemeName || "light"]);
 
 const ThemeContext = ({ children }) => {
   const [themeName, setTheme] = useState(
-    () => window.localStorage.getItem("theme") || Themes.LIGHT
+    () => initialThemeName || Themes.LIGHT
   );
   const theme = themes[themeName];
 

@@ -6,7 +6,7 @@ import Logo from "../../atoms/Logo";
 import LogOutButton from "../../atoms/LogOutButton";
 import ToggleButton from "../../atoms/ToggleThemeButton";
 
-import { useAuthContext, logOut } from "../../contexts/AuthContext";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 import classes from "./style.css";
 
