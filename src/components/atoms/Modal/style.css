@@ -1,0 +1,23 @@
+.Modal {
+  position: fixed;
+  z-index: 100;
+  background-color: var(--color-secondary);
+  border: 0.1em solid var(--color-border);
+  border-radius: 2em;
+  box-shadow: 0em 0.5em 0.7em -0.2em var(--color-shadow);
+  -webkit-box-shadow: 0em 0.5em 0.7em -0.2em var(--color-shadow);
+  -moz-box-shadow: 0em 0.5em 0.7em -0.2em var(--color-shadow);
+  padding: 3em;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 20%;
+  max-width: 90%;
+  width: 40em;
+  color: var(--color-text);
+}
+
+@media (max-width: 48em) {
+  .Modal {
+    padding: 2em;
+  }
+}

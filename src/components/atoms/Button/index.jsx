@@ -8,6 +8,7 @@ import classes from "./style.css";
 const Button = ({ children, onClick, btntype, type, className }) => {
   return (
     <button
+      onClick={onClick}
       type={type}
       className={classNames(
         classes.Button,

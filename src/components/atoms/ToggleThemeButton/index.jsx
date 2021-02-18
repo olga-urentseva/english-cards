@@ -1,4 +1,3 @@
-import { set } from "core-js/fn/dict";
 import React from "react";
 import { useTheme, Themes } from "../../contexts/ThemeContext";
 import classNames from "classnames";

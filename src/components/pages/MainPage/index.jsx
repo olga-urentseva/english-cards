@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+
 import Button, { BUTTON_TYPES } from "../../atoms/Button";
 import Container from "../../atoms/Container";
 import Input, { INPUT_TYPES } from "../../atoms/Input";
@@ -11,13 +13,20 @@ const MainPage = () => {
   const authContextValue = useAuthContext();
   const [inputValue, setInputValue] = useState(null);
 
+  const history = useHistory();
+
   function submitForm(e) {
     e.preventDefault();
-    authContextValue.setUserName(inputValue);
+    authContextValue.login(inputValue);
+    history.push("/game");
   }
 
   function handleChange(e) {
     setInputValue(e.target.value);
+  }
+
+  function closeContinueModal() {
+    history.push("/game");
   }
 
   return (

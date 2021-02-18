@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const Context = React.createContext(null);
 
@@ -7,8 +8,12 @@ const AuthContext = ({ children }) => {
     () => window.localStorage.getItem("userName") || null
   );
 
+  const history = useHistory();
+
   function logOut() {
     setUserName(null);
+
+    history.push("/");
   }
 
   useEffect(() => {
@@ -19,8 +24,10 @@ const AuthContext = ({ children }) => {
     }
   }, [userName]);
 
+  const isAuth = userName ? true : false;
+
   return (
-    <Context.Provider value={{ userName, setUserName, logOut }}>
+    <Context.Provider value={{ userName, login: setUserName, logOut, isAuth }}>
       {children}
     </Context.Provider>
   );
