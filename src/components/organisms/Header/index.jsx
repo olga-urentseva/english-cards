@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Container from "../../atoms/Container";
 import Logo from "../../atoms/Logo";
@@ -19,7 +20,9 @@ const Header = () => {
         <Container>
           <div className={classes.HeaderWrapper}>
             <div className={classes.LogoBlock}>
-              <Logo type={Logo.LOGO_TYPES.BIG} />
+              <Link to="/">
+                <Logo type={Logo.LOGO_TYPES.BIG} />
+              </Link>
             </div>
             <div className={classes.ServiceBlock}>
               <ToggleButton className={classes.HeaderToggleBtn} />

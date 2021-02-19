@@ -9,3 +9,8 @@
 .Logo--big {
   width: 10em;
 }
+
+.Logo:hover,
+.Logo:focus {
+  filter: brightness(120%);
+}
