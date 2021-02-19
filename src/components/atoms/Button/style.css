@@ -16,6 +16,11 @@
   filter: brightness(120%);
 }
 
+.Button:active,
+.Button:hover {
+  outline: none;
+}
+
 .Button--success {
   background-color: var(--color-accent--success);
   box-shadow: 0em 0.2em 0.5em -0.2em var(--color-accent--success);

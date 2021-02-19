@@ -24,6 +24,7 @@ const Logo = ({ type }) => {
     <img
       className={classNames(classes.Logo, classes[classType])}
       src={logoByTheme[themeName]}
+      alt="Logo"
     />
   );
 };
