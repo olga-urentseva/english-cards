@@ -18,9 +18,10 @@ const ContinuePage = () => {
       <Container>
         <MainContainer>
           <div className={classes.ContinueBlockWrapper}>
-            <span>
+            <span className={classes.ContinueBlockText}>
               Хочешь продолжить учить английский под именем
-              {` ${authContextValue.userName}`}? Или ты можешь начать заново!
+              <b>{` ${authContextValue.userName}`}</b>? Или ты можешь начать
+              заново!
             </span>
             <div className={classes.ButtonsWrapper}>
               <Button
