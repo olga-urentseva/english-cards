@@ -1,0 +1,9 @@
+.MainContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.MainContainer * {
+  max-width: 40em;
+}

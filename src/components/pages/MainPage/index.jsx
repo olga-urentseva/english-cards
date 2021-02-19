@@ -4,8 +4,10 @@ import { useHistory } from "react-router-dom";
 import Button, { BUTTON_TYPES } from "../../atoms/Button";
 import Container from "../../atoms/Container";
 import Input, { INPUT_TYPES } from "../../atoms/Input";
+import MainContainer from "../../atoms/MainContainer";
 import { useAuthContext } from "../../contexts/AuthContext";
 import Layout from "../../templates/Layout";
+import ContinuePage from "../ContinuePage";
 
 import classes from "./style.css";
 
@@ -25,14 +27,12 @@ const MainPage = () => {
     setInputValue(e.target.value);
   }
 
-  function closeContinueModal() {
-    history.push("/game");
-  }
-
-  return (
+  return authContextValue.isAuth ? (
+    <ContinuePage />
+  ) : (
     <Layout>
       <Container>
-        <div className={classes.MainWrapper}>
+        <MainContainer>
           <div className={classes.Hero}>
             <h2 className={classes.MainText}>
               Привет! Давай учить английский!
@@ -54,7 +54,7 @@ const MainPage = () => {
               </Button>
             </form>
           </div>
-        </div>
+        </MainContainer>
       </Container>
     </Layout>
   );

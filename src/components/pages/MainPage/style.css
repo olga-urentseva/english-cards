@@ -1,5 +1,5 @@
 .Hero {
-  max-width: 35em;
+  margin: -1rem;
 }
 
 .MainWrapper {
@@ -8,12 +8,13 @@
 }
 
 .MainText {
-  font-size: 2.5em;
+  font-size: 2.5rem;
   color: var(--color-text);
+  margin: 1rem;
 }
 
 .FormWrapper {
-  margin: -1rem;
+  margin: 0;
 }
 
 .FormInput,
