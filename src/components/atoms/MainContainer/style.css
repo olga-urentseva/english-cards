@@ -2,8 +2,15 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  margin: 7em 0;
 }
 
 .MainContainer * {
   max-width: 40em;
+}
+
+@media (max-width: 48em) {
+  .MainContainer {
+    margin: 3em 0;
+  }
 }

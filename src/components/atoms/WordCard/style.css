@@ -1,0 +1,18 @@
+.WordCard {
+  height: 15em;
+  padding: 2em;
+  background-color: var(--color-secondary);
+  box-shadow: 0em 0.3em 0.7em -0.2em var(--color-shadow);
+  -webkit-box-shadow: 0em 0.3em 0.7em -0.2em var(--color-shadow);
+  -moz-box-shadow: 0em 0.3em 0.7em -0.2em var(--color-shadow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2em;
+  border: solid 0.05em var(--color-border);
+}
+
+.WordCardText {
+  overflow-wrap: break-word;
+  text-align: center;
+}
