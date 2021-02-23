@@ -11,3 +11,8 @@
 .GameInput {
   margin: 0.5rem 0;
 }
+
+.GameForm {
+  display: flex;
+  flex-direction: column;
+}

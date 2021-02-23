@@ -5,7 +5,7 @@ import classNames from "classnames";
 const WordCard = ({ word, className }) => {
   return (
     <div className={classNames(className, classes.WordCard)}>
-      <h1 className={classes.WordCardText}>Apple</h1>
+      <h1 className={classes.WordCardText}>{word}</h1>
     </div>
   );
 };

@@ -7,14 +7,7 @@ const Modal = ({ children, close, ...otherProps }) => {
     <>
       <Backdrop close={close} />
 
-      <div
-        className={classes.Modal}
-        // style={{
-        //   transform: "translateY(0)" : "translateY(-100vh)",
-        //   opacity: "1" : "0",
-        // }}
-        {...otherProps}
-      >
+      <div className={classes.Modal} {...otherProps}>
         {children}
       </div>
     </>

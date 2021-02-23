@@ -8,9 +8,7 @@ const GamePage = () => {
   return (
     <Layout>
       <Container>
-        <MainContainer>
-          <GameBlock />
-        </MainContainer>
+        <GameBlock />
       </Container>
     </Layout>
   );
