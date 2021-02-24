@@ -19,14 +19,8 @@ export default class Game {
     return this.wordSelector.getWord();
   }
 
-  getWordsList() {
-    return this.list;
-  }
-
-  checkSpell(actualWord, userWord) {
-    const actualW = userWord.toLowerCase();
-    const userW = actualWord.toLowerCase();
-    if (userW === actualW) {
+  checkTranslation(actualWord, userWord) {
+    if (userWord.toLowerCase() === actualWord.translationWord.toLowerCase()) {
       return true;
     } else {
       return false;

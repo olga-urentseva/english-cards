@@ -27,7 +27,7 @@ const GameBlock = () => {
   function submitAnswer(e) {
     e.preventDefault();
 
-    if (gameRef.current.checkSpell(currentWord.translationWord, inputValue)) {
+    if (gameRef.current.checkTranslation(currentWord, inputValue)) {
       setIsCorrectAnswer(true);
     } else {
       setIsCorrectAnswer(false);
