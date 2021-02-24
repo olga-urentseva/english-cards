@@ -4,19 +4,8 @@ import classNames from "classnames";
 
 import classes from "./style.css";
 
-const Input = ({ children, type, onChange, placeholder, className }) => {
-  return (
-    <input
-      type={type}
-      onChange={onChange}
-      className={classNames(classes.Input, className)}
-      placeholder={placeholder}
-      required
-      maxLength="15"
-    >
-      {children}
-    </input>
-  );
+const Input = ({ className, ...rest }) => {
+  return <input className={classNames(classes.Input, className)} {...rest} />;
 };
 
 export const INPUT_TYPES = {

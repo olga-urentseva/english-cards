@@ -1,5 +1,7 @@
-export class Word {
-  constructor(word, translate) {
-    (this.word = word), (this.translate = translate);
+export default class Word {
+  constructor(originalWord, translationWord, wordValue) {
+    (this.originalWord = originalWord),
+      (this.translationWord = translationWord);
+    // (this.wordValue = wordValue)
   }
 }

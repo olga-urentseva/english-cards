@@ -1,24 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Button, { BUTTON_TYPES } from "../../atoms/Button";
 import Input from "../../atoms/Input";
 import MainContainer from "../../atoms/MainContainer";
 import WordCard from "../../atoms/WordCard";
 import ModalAnswer from "../../molecules/ModalAnswer";
 
-import WordSelector from "../../../core/wordSelector.js";
-import wordsObj from "../../../words/words.js";
+import Game from "../../../core/game.js";
 
 import classes from "./style.css";
 
 const GameBlock = () => {
-  const [inputValue, setInputValue] = useState(null);
+  const [inputValue, setInputValue] = useState("");
   const [isCorrectAnswer, setIsCorrectAnswer] = useState(false);
   const [isModalShown, setIsModalShown] = useState(false);
 
-  const wordsSelector = new WordSelector(wordsObj);
+  const gameRef = useRef();
+
+  if (!gameRef.current) {
+    gameRef.current = new Game();
+  }
+
   const [currentWord, setCurrentWord] = useState(() => {
-    return wordsSelector.getWord();
+    return gameRef.current.getRandomWord();
   });
+  console.log(currentWord);
 
   function submitAnswer(e) {
     e.preventDefault();
@@ -32,14 +37,19 @@ const GameBlock = () => {
   function handleChange(e) {
     setInputValue(e.target.value);
   }
+
+  function closeModal() {
+    setIsModalShown(false);
+    setCurrentWord(gameRef.current.getRandomWord());
+    setInputValue("");
+  }
+
   return (
     <>
       {isModalShown && (
         <ModalAnswer
           isCorrect={isCorrectAnswer}
-          close={() => {
-            setIsModalShown(false);
-          }}
+          close={closeModal}
           word={currentWord.originalWord}
         />
       )}
@@ -55,6 +65,8 @@ const GameBlock = () => {
               className={classes.GameInput}
               onChange={handleChange}
               value={inputValue}
+              required
+              maxLength="15"
             />
             <Button
               type="submit"
