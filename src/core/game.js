@@ -22,4 +22,14 @@ export default class Game {
   getWordsList() {
     return this.list;
   }
+
+  checkSpell(actualWord, userWord) {
+    const actualW = userWord.toLowerCase();
+    const userW = actualWord.toLowerCase();
+    if (userW === actualW) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

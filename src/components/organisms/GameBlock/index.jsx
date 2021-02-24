@@ -23,11 +23,11 @@ const GameBlock = () => {
   const [currentWord, setCurrentWord] = useState(() => {
     return gameRef.current.getRandomWord();
   });
-  console.log(currentWord);
 
   function submitAnswer(e) {
     e.preventDefault();
-    if (inputValue === currentWord.translationWord) {
+
+    if (gameRef.current.checkSpell(currentWord.translationWord, inputValue)) {
       setIsCorrectAnswer(true);
     } else {
       setIsCorrectAnswer(false);
