@@ -8,7 +8,7 @@ import classes from "./style.css";
 const ModalAnswer = ({ isCorrect, close, word }) => {
   console.log(isCorrect);
   return (
-    <Modal close={close}>
+    <Modal close={close} heading={isCorrect ? "Верно!" : "Ошибка :("}>
       {isCorrect ? (
         <span className={classes.ModalAnswertext}>Верно!</span>
       ) : (

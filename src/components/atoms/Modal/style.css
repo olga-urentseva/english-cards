@@ -16,8 +16,61 @@
   color: var(--color-text);
 }
 
+.ModalCloseBtnWrapper {
+  position: absolute;
+  width: 2em;
+  height: 2em;
+  background-color: var(--color-accent);
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+}
+.ModalCloseBtn {
+  display: block;
+  width: 2em;
+  height: 2em;
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  margin: 0.5em;
+  overflow: hidden;
+  position: absolute;
+  top: 0.5em;
+  right: 0.5em;
+  transition: all 0.2s;
+}
+.ModalCloseBtn::before {
+  width: 2em;
+  height: 0.2em;
+  display: block;
+  content: "";
+  background-color: var(--color-border);
+  transform: translateY(-50%) rotate(45deg);
+  position: absolute;
+  top: 50%;
+  filter: brightness(90%);
+}
+.ModalCloseBtn::after {
+  width: 2em;
+  height: 0.2em;
+  display: block;
+  content: "";
+  background-color: var(--color-border);
+  transform: translateY(-50%) rotate(-45deg);
+  position: absolute;
+  top: 50%;
+  filter: brightness(90%);
+}
+
+.ModalCloseBtn:focus,
+.ModalCloseBtn:hover {
+  filter: brightness(120%);
+}
+
 @media (max-width: 48em) {
   .Modal {
-    padding: 2em;
+    padding: 3em;
   }
 }

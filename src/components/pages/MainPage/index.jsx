@@ -13,7 +13,7 @@ import classes from "./style.css";
 
 const MainPage = () => {
   const authContextValue = useAuthContext();
-  const [inputValue, setInputValue] = useState(null);
+  const [inputValue, setInputValue] = useState("");
 
   const history = useHistory();
 
