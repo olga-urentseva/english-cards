@@ -1,0 +1,14 @@
+.ScoreWrapper {
+  display: flex;
+  justify-content: center;
+  margin: 0.5em 0;
+}
+
+.ScoreText {
+  font-size: 1.5em;
+}
+
+.Score {
+  display: inline-block;
+  margin: 0;
+}

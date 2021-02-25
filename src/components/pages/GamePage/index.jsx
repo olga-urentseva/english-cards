@@ -1,4 +1,5 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 import Container from "../../atoms/Container";
 import MainContainer from "../../atoms/MainContainer";
 import GameBlock from "../../organisms/GameBlock";

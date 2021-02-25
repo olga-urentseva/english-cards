@@ -7,6 +7,7 @@ export default class Game {
     this.list = [];
     this.loadWords();
     this.wordSelector = new WordSelector(this.list);
+    this.score = 0;
   }
 
   loadWords() {
@@ -19,11 +20,18 @@ export default class Game {
     return this.wordSelector.getWord();
   }
 
-  checkTranslation(actualWord, userWord) {
-    if (userWord.toLowerCase() === actualWord.translationWord.toLowerCase()) {
-      return true;
-    } else {
-      return false;
+  answer(actualWord, userWord) {
+    const result =
+      userWord.toLowerCase() === actualWord.translationWord.toLowerCase();
+
+    if (result) {
+      this.score += 1;
     }
+
+    return result;
+  }
+
+  getScore() {
+    return this.score;
   }
 }
