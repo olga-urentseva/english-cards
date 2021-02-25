@@ -63,7 +63,13 @@ const GameBlock = () => {
             Проверить
           </Button>
         </form>
-        <Button btntype={BUTTON_TYPES.ERROR} className={classes.GameBtn}>
+        <Button
+          btntype={BUTTON_TYPES.ERROR}
+          className={classes.GameBtn}
+          onClick={() => {
+            setCurrentWord(game.getRandomWord());
+          }}
+        >
           Не знаю :(
         </Button>
       </div>
