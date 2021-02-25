@@ -1,33 +1,36 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
+
+import GameSaveManager from "../../../core/gameSaveManager";
+
 import Button, { BUTTON_TYPES } from "../../atoms/Button";
 import Input from "../../atoms/Input";
-import MainContainer from "../../atoms/MainContainer";
+import Score from "../../atoms/Score";
 import WordCard from "../../atoms/WordCard";
-
-import Game from "../../../core/game.js";
+import MainContainer from "../../atoms/MainContainer";
 
 import classes from "./style.css";
-import Score from "../../atoms/Score";
 
 const GameBlock = () => {
   const [inputValue, setInputValue] = useState("");
   const [isCorrectAnswer, setIsCorrectAnswer] = useState(false);
 
-  const gameRef = useRef();
+  const gameRef = useRef(null);
 
   if (!gameRef.current) {
-    gameRef.current = new Game();
+    gameRef.current = GameSaveManager.load();
   }
+  const game = gameRef.current;
 
-  const [currentWord, setCurrentWord] = useState(() => {
-    return gameRef.current.getRandomWord();
-  });
+  const [currentWord, setCurrentWord] = useState(() => game.getRandomWord());
 
   function submitAnswer(e) {
     e.preventDefault();
 
-    setIsCorrectAnswer(gameRef.current.answer(currentWord, inputValue));
-    setCurrentWord(gameRef.current.getRandomWord());
+    const isCorrect = game.answer(currentWord, inputValue);
+    setIsCorrectAnswer(isCorrect);
+    GameSaveManager.save(game);
+
+    setCurrentWord(game.getRandomWord());
     setInputValue("");
   }
 
@@ -38,7 +41,7 @@ const GameBlock = () => {
   return (
     <MainContainer>
       <div className={classes.GameWrapper}>
-        <Score score={gameRef.current.getScore()} />
+        <Score score={game.getScore()} />
         <WordCard
           className={classes.GameCard}
           word={currentWord.originalWord}

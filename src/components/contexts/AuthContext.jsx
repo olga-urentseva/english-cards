@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import GameSaveManager from "../../core/gameSaveManager";
 
 const Context = React.createContext(null);
 
@@ -12,6 +13,7 @@ const AuthContext = ({ children }) => {
 
   function logOut() {
     setUserName(null);
+    GameSaveManager.removeSave();
 
     history.push("/");
   }

@@ -3,11 +3,11 @@ import words from "../words/words.js";
 import Word from "./word.js";
 
 export default class Game {
-  constructor() {
+  constructor(state = null) {
     this.list = [];
     this.loadWords();
     this.wordSelector = new WordSelector(this.list);
-    this.score = 0;
+    this.score = state?.score || 0;
   }
 
   loadWords() {
@@ -27,11 +27,16 @@ export default class Game {
     if (result) {
       this.score += 1;
     }
-
     return result;
   }
 
   getScore() {
     return this.score;
+  }
+
+  getState() {
+    return {
+      score: this.score,
+    };
   }
 }
