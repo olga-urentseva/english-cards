@@ -11,9 +11,7 @@ export default class Game {
   }
 
   loadWords() {
-    for (let i in words) {
-      this.list.push(new Word(i, words[i]));
-    }
+    this.list = words.map((element) => new Word(element[0], element[1]));
   }
 
   getRandomWord() {
