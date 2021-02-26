@@ -3,10 +3,12 @@ import classNames from "classnames";
 
 import classes from "./style.css";
 
-const Backdrop = ({ close, className }) => {
+const Backdrop = ({ close, isShown }) => {
   return (
     <div
-      className={classNames(classes.Backdrop, className)}
+      className={classNames(classes.Backdrop, {
+        [classes.BackdropShown]: isShown,
+      })}
       onClick={close}
     ></div>
   );

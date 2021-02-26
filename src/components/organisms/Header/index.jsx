@@ -1,11 +1,12 @@
 import classNames from "classnames";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import Container from "../../atoms/Container";
 import Logo from "../../atoms/Logo";
 import LogOutButton from "../../atoms/LogOutButton";
 import ToggleButton from "../../atoms/ToggleThemeButton";
+import LogoutModal from "../LogoutModal";
 
 import { useAuthContext } from "../../contexts/AuthContext";
 
@@ -13,9 +14,16 @@ import classes from "./style.css";
 
 const Header = () => {
   const authContextValue = useAuthContext();
+  const [isModalShown, setIsModalShown] = useState(false);
 
   return (
     <header>
+      <LogoutModal
+        isShown={isModalShown}
+        close={() => {
+          setIsModalShown(false);
+        }}
+      />
       <div className={classNames(classes.Header)}>
         <Container>
           <div className={classes.HeaderWrapper}>
@@ -33,7 +41,9 @@ const Header = () => {
                   </h3>
                   <LogOutButton
                     className={classes.HeaderLogOutBtn}
-                    onClick={authContextValue.logOut}
+                    onClick={() => {
+                      setIsModalShown(true);
+                    }}
                   />
                 </div>
               ) : (

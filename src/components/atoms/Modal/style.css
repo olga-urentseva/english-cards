@@ -14,6 +14,12 @@
   max-width: 90%;
   width: 40em;
   color: var(--color-text);
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.1s;
+  transform: translate(-50%, -100vh);
+}
+
+.ModalShown {
+  transform: translate(-50%, 0);
 }
 
 .ModalCloseBtnWrapper {
