@@ -37,4 +37,6 @@ export default class Game {
       score: this.score,
     };
   }
+
+  skip() {}
 }

@@ -38,6 +38,11 @@ const GameBlock = () => {
     setInputValue(e.target.value);
   }
 
+  function handleSkip() {
+    game.skip();
+    setCurrentWord(game.getRandomWord());
+  }
+
   return (
     <MainContainer>
       <div className={classes.GameWrapper}>
@@ -66,9 +71,7 @@ const GameBlock = () => {
         <Button
           btntype={BUTTON_TYPES.ERROR}
           className={classes.GameBtn}
-          onClick={() => {
-            setCurrentWord(game.getRandomWord());
-          }}
+          onClick={handleSkip}
         >
           Не знаю :(
         </Button>
