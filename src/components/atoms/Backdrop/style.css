@@ -7,11 +7,9 @@
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);
   transition: all cubic-bezier(0.075, 0.82, 0.165, 1) 0.2s;
-  transform: translateY(-100vh);
-  opacity: 0;
+  display: none;
 }
 
 .BackdropShown {
-  transform: translateY(0);
-  opacity: 1;
+  display: block;
 }
