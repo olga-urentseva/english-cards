@@ -14,7 +14,6 @@ const AuthContext = ({ children }) => {
   function logOut() {
     setUserName(null);
     GameSaveManager.removeSave();
-
     history.push("/");
   }
 

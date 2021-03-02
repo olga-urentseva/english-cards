@@ -46,6 +46,7 @@ const MainPage = () => {
                 className={classes.FormInput}
                 onChange={handleChange}
                 value={inputValue}
+                maxLength="15"
               />
               <Button
                 type="submit"
