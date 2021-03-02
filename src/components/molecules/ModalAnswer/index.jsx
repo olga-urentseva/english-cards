@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 import classes from "./style.css";
 
 const ModalAnswer = ({ isCorrect, close, word }) => {
-  console.log(isCorrect);
   return (
     <Modal close={close}>
       {isCorrect ? (

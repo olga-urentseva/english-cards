@@ -5,12 +5,7 @@ import classNames from "classnames";
 import classes from "./style.css";
 
 const ToggleButton = ({ className }) => {
-  console.log(
-    document.documentElement.style.getPropertyValue(`--color-background`)
-  );
   const { themeName, setTheme } = useTheme();
-
-  console.log(themeName);
 
   function handleChange(e) {
     const futureValue = e.target.checked;
