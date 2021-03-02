@@ -10,9 +10,22 @@
   align-items: center;
   border-radius: 2em;
   border: solid 0.05em var(--color-border);
+  display: flex;
+  flex-direction: column;
 }
 
 .WordCardText {
   overflow-wrap: break-word;
   text-align: center;
+}
+
+.Translation {
+  margin: 0 0.5em;
+  display: none;
+}
+
+.TranslationShown {
+  display: inline-block;
+  text-align: center;
+  color: var(--color-border);
 }

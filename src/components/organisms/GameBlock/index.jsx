@@ -23,15 +23,27 @@ const GameBlock = () => {
 
   const [currentWord, setCurrentWord] = useState(() => game.getRandomWord());
 
+  const [isShowTranslation, setShownTranslation] = useState(false);
+  function incorrectAnswerHandle() {
+    setShownTranslation(true);
+    setTimeout(() => {
+      setShownTranslation(false);
+      setCurrentWord(game.getRandomWord());
+      setInputValue("");
+    }, 4000);
+  }
+
   function submitAnswer(e) {
     e.preventDefault();
-
     const isCorrect = game.answer(currentWord, inputValue);
     setIsCorrectAnswer(isCorrect);
     GameSaveManager.save(game);
-
-    setCurrentWord(game.getRandomWord());
-    setInputValue("");
+    if (isCorrect) {
+      setCurrentWord(game.getRandomWord());
+      setInputValue("");
+    } else {
+      incorrectAnswerHandle();
+    }
   }
 
   function handleChange(e) {
@@ -40,7 +52,7 @@ const GameBlock = () => {
 
   function handleSkip() {
     game.skip();
-    setCurrentWord(game.getRandomWord());
+    incorrectAnswerHandle();
   }
 
   return (
@@ -48,9 +60,12 @@ const GameBlock = () => {
       <div className={classes.GameWrapper}>
         <Score score={game.getScore()} />
         <WordCard
+          isShowTranslation={isShowTranslation}
+          translation={currentWord.translationWord}
           className={classes.GameCard}
           word={currentWord.originalWord}
         />
+
         <form className={classes.GameForm} onSubmit={submitAnswer}>
           <Input
             placeholder="Перевод"

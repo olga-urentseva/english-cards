@@ -2,10 +2,19 @@ import React from "react";
 import classes from "./style.css";
 import classNames from "classnames";
 
-const WordCard = ({ word, className }) => {
+const WordCard = ({ word, translation, isShowTranslation, className }) => {
   return (
     <div className={classNames(className, classes.WordCard)}>
       <h1 className={classes.WordCardText}>{word}</h1>
+      {isShowTranslation && (
+        <h2
+          className={classNames(classes.Translation, {
+            [classes.TranslationShown]: isShowTranslation,
+          })}
+        >
+          {translation}
+        </h2>
+      )}
     </div>
   );
 };
