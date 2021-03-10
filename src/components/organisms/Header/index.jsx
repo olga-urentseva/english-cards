@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import Container from "../../atoms/Container";
@@ -15,6 +15,20 @@ import classes from "./style.css";
 const Header = () => {
   const authContextValue = useAuthContext();
   const [isModalShown, setIsModalShown] = useState(false);
+
+  useEffect(() => {
+    function handleEscape(e) {
+      if (e.keyCode === 27) {
+        console.log("alala");
+        setIsModalShown(false);
+      }
+    }
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+    };
+  });
 
   return (
     <header>
