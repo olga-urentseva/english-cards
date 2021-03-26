@@ -1,12 +1,12 @@
-import "./global.css";
+import "regenerator-runtime/runtime.js";
 
 import React from "react";
 import ReactDOM from "react-dom";
 
-import "regenerator-runtime/runtime.js";
-
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
+
+import "./global.css";
 
 const root = document.querySelector("#root");
 

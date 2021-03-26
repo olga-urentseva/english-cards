@@ -19,7 +19,6 @@ const Header = () => {
   useEffect(() => {
     function handleEscape(e) {
       if (e.keyCode === 27) {
-        console.log("alala");
         setIsModalShown(false);
       }
     }
@@ -28,7 +27,7 @@ const Header = () => {
     return () => {
       window.removeEventListener("keydown", handleEscape);
     };
-  });
+  }, []);
 
   return (
     <header>

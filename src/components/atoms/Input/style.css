@@ -19,3 +19,7 @@
 .Input::placeholder {
   color: var(--color-input-text);
 }
+
+Input:disabled {
+  filter: grayscale(50%);
+}

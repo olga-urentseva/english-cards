@@ -24,6 +24,7 @@ const GameBlock = () => {
   const [currentWord, setCurrentWord] = useState(() => game.getRandomWord());
 
   const [isShowTranslation, setShownTranslation] = useState(false);
+
   function incorrectAnswerHandle() {
     setShownTranslation(true);
     setTimeout(() => {
@@ -74,11 +75,13 @@ const GameBlock = () => {
             value={inputValue}
             required
             maxLength="15"
+            disabled={isShowTranslation ? true : false}
           />
           <Button
             type="submit"
             btntype={BUTTON_TYPES.SUCCESS}
             className={classes.GameBtn}
+            disabled={isShowTranslation ? true : false}
           >
             Проверить
           </Button>
@@ -87,6 +90,7 @@ const GameBlock = () => {
           btntype={BUTTON_TYPES.ERROR}
           className={classes.GameBtn}
           onClick={handleSkip}
+          disabled={isShowTranslation ? true : false}
         >
           Не знаю :(
         </Button>

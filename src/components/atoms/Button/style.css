@@ -41,3 +41,7 @@
   -webkit-box-shadow: 0em 0.2em 0.5em -0.2em var(--color-accent);
   -moz-box-shadow: 0em 0.2em 0.5em -0.2em var(--color-accent);
 }
+
+.Button:disabled {
+  filter: grayscale(50%);
+}
