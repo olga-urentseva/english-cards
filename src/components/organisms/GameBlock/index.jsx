@@ -23,12 +23,13 @@ const GameBlock = () => {
 
   const [currentWord, setCurrentWord] = useState(() => game.getRandomWord());
 
-  const [isShowTranslation, setShownTranslation] = useState(false);
+  const [isShowTranslation, setIsShownTranslation] = useState(false);
 
   function incorrectAnswerHandle() {
-    setShownTranslation(true);
+    setIsShownTranslation(true);
+
     setTimeout(() => {
-      setShownTranslation(false);
+      setIsShownTranslation(false);
       setCurrentWord(game.getRandomWord());
       setInputValue("");
     }, 4000);
@@ -62,9 +63,13 @@ const GameBlock = () => {
         <Score score={game.getScore()} />
         <WordCard
           isShowTranslation={isShowTranslation}
-          translation={currentWord.translationWord}
+          translation={currentWord ? currentWord.translationWord : ""}
           className={classes.GameCard}
-          word={currentWord.originalWord}
+          word={
+            currentWord
+              ? currentWord.originalWord
+              : "Кажется, у нас закончились слова"
+          }
         />
 
         <form className={classes.GameForm} onSubmit={submitAnswer}>
@@ -75,13 +80,13 @@ const GameBlock = () => {
             value={inputValue}
             required
             maxLength="15"
-            disabled={isShowTranslation ? true : false}
+            disabled={isShowTranslation || !currentWord}
           />
           <Button
             type="submit"
             btntype={BUTTON_TYPES.SUCCESS}
             className={classes.GameBtn}
-            disabled={isShowTranslation ? true : false}
+            disabled={isShowTranslation || !currentWord}
           >
             Проверить
           </Button>
@@ -90,7 +95,7 @@ const GameBlock = () => {
           btntype={BUTTON_TYPES.ERROR}
           className={classes.GameBtn}
           onClick={handleSkip}
-          disabled={isShowTranslation ? true : false}
+          disabled={isShowTranslation || !currentWord}
         >
           Не знаю :(
         </Button>

@@ -15,6 +15,9 @@ export default class Game {
   }
 
   getRandomWord() {
+    if (this.list.length <= 0) {
+      return null;
+    }
     return this.wordSelector.getWord();
   }
 
@@ -23,6 +26,13 @@ export default class Game {
       userWord.toLowerCase() === actualWord.translationWord.toLowerCase();
 
     if (result) {
+      this.list = this.list.filter(
+        (element) =>
+          element.translationWord.toLowerCase() !==
+          actualWord.translationWord.toLowerCase()
+      );
+
+      // полность меняет массив в конструкторе и это не выглядит хорошим решением или так можно?
       this.score += 1;
     }
     return result;
