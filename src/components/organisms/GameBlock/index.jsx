@@ -53,7 +53,7 @@ const GameBlock = () => {
   }
 
   function handleSkip() {
-    game.skip();
+    game.skip(currentWord);
     incorrectAnswerHandle();
   }
 

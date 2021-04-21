@@ -6,7 +6,7 @@ export default class Game {
   constructor(state = null) {
     this.list = [];
     this.loadWords();
-    this.wordSelector = new WordSelector(this.list);
+    this.wordSelector = new WordSelector(this.list, state.wordsWeightList);
     this.score = state?.score || 0;
   }
 
@@ -26,15 +26,12 @@ export default class Game {
       userWord.toLowerCase() === actualWord.translationWord.toLowerCase();
 
     if (result) {
-      this.list = this.list.filter(
-        (element) =>
-          element.translationWord.toLowerCase() !==
-          actualWord.translationWord.toLowerCase()
-      );
-
-      // полность меняет массив в конструкторе и это не выглядит хорошим решением или так можно?
+      this.wordSelector.decreaseWordWeight(actualWord);
       this.score += 1;
+    } else {
+      this.wordSelector.increaseWordWeight(actualWord);
     }
+
     return result;
   }
 
@@ -45,8 +42,11 @@ export default class Game {
   getState() {
     return {
       score: this.score,
+      wordsWeightList: this.wordSelector.getWeightOfWordList(),
     };
   }
 
-  skip() {}
+  skip(actualWord) {
+    this.wordSelector.increaseWordWeight(actualWord);
+  }
 }
