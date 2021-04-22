@@ -15,6 +15,11 @@ const WordCard = ({ word, translation, isShowTranslation, className }) => {
           {translation}
         </h2>
       )}
+      <div
+        className={classNames(classes.Countdown, {
+          [classes.CountdownActive]: isShowTranslation,
+        })}
+      ></div>
     </div>
   );
 };
