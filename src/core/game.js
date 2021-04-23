@@ -6,7 +6,10 @@ export default class Game {
   constructor(state = null) {
     this.list = [];
     this.loadWords();
-    this.wordSelector = new WordSelector(this.list, state.wordsWeightList);
+    this.wordSelector = new WordSelector(
+      this.list,
+      state?.wordsWeightList || null
+    );
     this.score = state?.score || 0;
   }
 
@@ -42,7 +45,7 @@ export default class Game {
   getState() {
     return {
       score: this.score,
-      wordsWeightList: this.wordSelector.getWeightOfWordList(),
+      wordsWeightList: this.wordSelector.weightsOfWords,
     };
   }
 
