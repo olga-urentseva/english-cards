@@ -3,35 +3,6 @@ import GameSaveManager from "./gameSaveManager";
 import Word from "./word";
 
 describe("GameSaveManager", () => {
-  // class LocalStorage {
-  //   constructor() {
-  //     this.items = {};
-  //   }
-
-  //   setItem(key, data) {
-  //     this.items[key] = data;
-  //   }
-
-  //   getItem(key) {
-  //     return this.items[key];
-  //   }
-
-  //   removeItem() {
-  //     delete this.items;
-  //   }
-  // }
-
-  // representation of localStorage. Maybe this way can prevent collisions with different stores,
-  // because this way allows to have different local storages.
-
-  // const localStorage = {
-  //   setItem: () => {},
-  //   getItem: () => {},
-  //   removeItem: () => {},
-  // };
-
-  // beforeAll ?
-
   it("save game", () => {
     const localStorage = {
       setItem: jest.fn(),

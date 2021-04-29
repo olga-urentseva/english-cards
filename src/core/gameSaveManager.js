@@ -5,8 +5,6 @@ export default class GameSaveManager {
     this.store = store;
   }
 
-  // this separation is necessary for unit test
-
   save(game) {
     this.store.setItem("gameState", JSON.stringify(game.getState()));
   }

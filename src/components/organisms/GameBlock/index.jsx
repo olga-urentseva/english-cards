@@ -12,15 +12,19 @@ import classes from "./style.css";
 
 const GameBlock = () => {
   const [inputValue, setInputValue] = useState("");
-  const [isCorrectAnswer, setIsCorrectAnswer] = useState(false);
+
+  const gameSaveManagerRef = useRef(null);
+  if (!gameSaveManagerRef.current) {
+    gameSaveManagerRef.current = new GameSaveManager();
+  }
+  const gameSaveManager = gameSaveManagerRef.current;
 
   const gameRef = useRef(null);
 
-  const GameSaver = new GameSaveManager();
-
   if (!gameRef.current) {
-    gameRef.current = GameSaver.load();
+    gameRef.current = gameSaveManager.load();
   }
+
   const game = gameRef.current;
 
   const [currentWord, setCurrentWord] = useState(() => game.getRandomWord());
@@ -40,8 +44,7 @@ const GameBlock = () => {
   function submitAnswer(e) {
     e.preventDefault();
     const isCorrect = game.answer(currentWord, inputValue);
-    setIsCorrectAnswer(isCorrect);
-    GameSaver.save(game);
+    gameSaveManager.save(game);
     if (isCorrect) {
       setCurrentWord(game.getRandomWord());
       setInputValue("");
