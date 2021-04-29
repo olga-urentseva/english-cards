@@ -35,28 +35,32 @@ describe("WordSelector", () => {
     expect(wordSelector.getWord()).toBe(words[3]);
   });
 
-  it("create a new instance with default value of weights that equal to 1", () => {
+  it("creates a new instance with default value of weights that equal to 1", () => {
     const wordSelector = new WordSelector(words);
 
     expect(wordSelector.weightsOfWords).toEqual([1, 1, 1, 1, 1]);
   });
 
-  it("increase the weight of word", () => {
-    const wordSelector = new WordSelector(words, [1, 1, 1, 1, 1]);
-    wordSelector.increaseWordWeight(words[1]);
+  describe(".increaseWordWeight", () => {
+    it("increases the weight of word", () => {
+      const wordSelector = new WordSelector(words, [1, 1, 1, 1, 1]);
+      wordSelector.increaseWordWeight(words[1]);
 
-    expect(wordSelector.weightsOfWords).toEqual([1, 2, 1, 1, 1]);
+      expect(wordSelector.weightsOfWords).toEqual([1, 2, 1, 1, 1]);
+    });
   });
 
-  it("decrease the weight of word with limit", () => {
-    const wordSelector = new WordSelector(words, [1, 2, 1, 1, 1]);
-    wordSelector.decreaseWordWeight(words[1]);
+  describe(".decreaseWordweight", () => {
+    it("decreases the weight of word with limit", () => {
+      const wordSelector = new WordSelector(words, [1, 2, 1, 1, 1]);
+      wordSelector.decreaseWordWeight(words[1]);
 
-    expect(wordSelector.weightsOfWords).toEqual([1, 1, 1, 1, 1]);
+      expect(wordSelector.weightsOfWords).toEqual([1, 1, 1, 1, 1]);
 
-    // decreasing of the word weight is only possible to 1
+      // decreasing of the word weight is only possible to 1
 
-    wordSelector.decreaseWordWeight(words[1]);
-    expect(wordSelector.weightsOfWords).toEqual([1, 1, 1, 1, 1]);
+      wordSelector.decreaseWordWeight(words[1]);
+      expect(wordSelector.weightsOfWords).toEqual([1, 1, 1, 1, 1]);
+    });
   });
 });

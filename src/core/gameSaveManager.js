@@ -1,17 +1,23 @@
 import Game from "./game";
 
 export default class GameSaveManager {
-  static save(game) {
-    window.localStorage.setItem("gameState", JSON.stringify(game.getState()));
+  constructor(store = window.localStorage) {
+    this.store = store;
   }
 
-  static load() {
-    const gameState = window.localStorage.getItem("gameState");
+  // this separation is necessary for unit test
+
+  save(game) {
+    this.store.setItem("gameState", JSON.stringify(game.getState()));
+  }
+
+  load() {
+    const gameState = this.store.getItem("gameState");
 
     return new Game(gameState ? JSON.parse(gameState) : null);
   }
 
-  static removeSave() {
-    window.localStorage.removeItem("gameState");
+  removeSave() {
+    this.store.removeItem("gameState");
   }
 }

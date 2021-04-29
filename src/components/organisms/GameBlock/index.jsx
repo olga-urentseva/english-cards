@@ -16,8 +16,10 @@ const GameBlock = () => {
 
   const gameRef = useRef(null);
 
+  const GameSaver = new GameSaveManager();
+
   if (!gameRef.current) {
-    gameRef.current = GameSaveManager.load();
+    gameRef.current = GameSaver.load();
   }
   const game = gameRef.current;
 
@@ -39,7 +41,7 @@ const GameBlock = () => {
     e.preventDefault();
     const isCorrect = game.answer(currentWord, inputValue);
     setIsCorrectAnswer(isCorrect);
-    GameSaveManager.save(game);
+    GameSaver.save(game);
     if (isCorrect) {
       setCurrentWord(game.getRandomWord());
       setInputValue("");

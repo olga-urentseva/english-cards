@@ -3,9 +3,8 @@ import words from "../words/words.js";
 import Word from "./word.js";
 
 export default class Game {
-  constructor(state = null) {
-    this.list = [];
-    this.loadWords();
+  constructor(state = null, initialList) {
+    this.list = initialList || this.loadWords();
     this.wordSelector = new WordSelector(
       this.list,
       state?.wordsWeightList || null
@@ -14,7 +13,7 @@ export default class Game {
   }
 
   loadWords() {
-    this.list = words.map((element) => new Word(element[0], element[1]));
+    return words.map((element) => new Word(element[0], element[1]));
   }
 
   getRandomWord() {
