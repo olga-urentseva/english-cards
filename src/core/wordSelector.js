@@ -16,12 +16,6 @@ export default class WordSelector {
 
     const randomNum = this.randomFn() * weightsSum;
 
-    console.log("sum of words weights " + weightsSum);
-
-    console.log(
-      "this is random num between 0 and sum of weights: " + randomNum
-    );
-
     let acc = 0;
 
     const foundIndex = this.weightsOfWords.findIndex((weight) => {
@@ -31,9 +25,6 @@ export default class WordSelector {
       }
     });
 
-    console.log(this.words[foundIndex]);
-
-    console.log("founded word" + foundIndex);
     return this.words[foundIndex];
   }
 
