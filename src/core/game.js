@@ -27,7 +27,9 @@ export default class Game {
     // const regExp = new RegExp(" ", "g");
     // const userWordToCompare = userWord.toLowerCase().replace(regExp, "");
 
-    const result = userWord.trim() === actualWord.translationWord.toLowerCase();
+    const result =
+      userWord.toLowerCase().trim() ===
+      actualWord.translationWord.toLowerCase();
 
     if (result) {
       this.wordSelector.decreaseWordWeight(actualWord);
