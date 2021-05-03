@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import GameSaveManager from "../../core/gameSaveManager";
 
@@ -11,9 +11,15 @@ const AuthContext = ({ children }) => {
 
   const history = useHistory();
 
+  const gameSaveManagerRef = useRef(null);
+  if (!gameSaveManagerRef.current) {
+    gameSaveManagerRef.current = new GameSaveManager();
+  }
+  const gameSaveManager = gameSaveManagerRef.current;
+
   function logOut() {
     setUserName(null);
-    GameSaveManager.removeSave();
+    gameSaveManager.removeSave();
     history.push("/");
   }
 
