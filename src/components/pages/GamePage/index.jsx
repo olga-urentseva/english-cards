@@ -10,7 +10,8 @@ const GamePage = () => {
   const authContextValue = useAuthContext();
 
   if (!authContextValue.isAuth) {
-    return <MainPage />;
+    <Redirect to="/" />;
+    // return <MainPage />;
   }
   return (
     <Layout>
