@@ -20,11 +20,9 @@ const GameBlock = () => {
   const gameSaveManager = gameSaveManagerRef.current;
 
   const gameRef = useRef(null);
-
   if (!gameRef.current) {
     gameRef.current = gameSaveManager.load();
   }
-
   const game = gameRef.current;
 
   const [currentWord, setCurrentWord] = useState(() => game.getRandomWord());
@@ -79,6 +77,7 @@ const GameBlock = () => {
 
         <form className={classes.GameForm} onSubmit={submitAnswer}>
           <Input
+            id="answer"
             placeholder="Перевод"
             className={classes.GameInput}
             onChange={handleChange}
