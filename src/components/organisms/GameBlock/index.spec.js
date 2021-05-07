@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import Game from "../../../core/game";
@@ -83,11 +83,15 @@ describe("GameBlock", () => {
         );
         expect(screen.getByText(/тест/i)).toBeInTheDocument();
 
-        jest.advanceTimersByTime(1000);
+        act(() => {
+          jest.advanceTimersByTime(1000);
+        });
 
         expect(game.getRandomWord).not.toHaveBeenCalled();
 
-        jest.advanceTimersByTime(3000);
+        act(() => {
+          jest.advanceTimersByTime(3000);
+        });
 
         expect(game.getRandomWord).toHaveBeenCalled();
 
@@ -109,12 +113,16 @@ describe("GameBlock", () => {
       expect(game.skip).toHaveBeenCalled();
       expect(screen.getByText(/тест/i)).toBeInTheDocument();
 
-      jest.advanceTimersByTime(1000);
+      act(() => {
+        jest.advanceTimersByTime(1000);
+      });
 
       expect(game.getRandomWord).not.toHaveBeenCalled();
       game.getRandomWord.mockImplementationOnce(() => new Word("demo", "демо"));
 
-      jest.advanceTimersByTime(3000);
+      act(() => {
+        jest.advanceTimersByTime(3000);
+      });
 
       expect(game.getRandomWord).toHaveBeenCalled();
 
