@@ -1,9 +1,33 @@
 export default class WordSelector {
-  constructor(words, weightsOfWords) {
+  constructor(words, initialWeightsOfWords = []) {
     this.words = words;
-    this.weightsOfWords = weightsOfWords ? weightsOfWords : words.map(() => 1);
+    this.initialWeightsOfWords = initialWeightsOfWords;
     this.randomFn = Math.random;
   }
+
+  get weightsOfWords() {
+    // return (this._weightsOfWords ||= initialWeightsOfWords
+    //   ? initialWeightsOfWords
+    //   : words.map(() => 1));
+
+    const diff = this.words.length - this.initialWeightsOfWords.length;
+    const deficit = (Math.abs(diff) + diff) / 2;
+    const result = [
+      ...this.initialWeightsOfWords.slice(0, this.words.length),
+      ...Array(deficit).fill(1),
+    ];
+
+    Object.defineProperty(this, "weightsOfWords", {
+      value: result,
+      writable: false,
+      configurable: false,
+      enumerable: false,
+    });
+
+    return result;
+  }
+
+  // check the length of the words weight list in the state
 
   getWeightsOfWordsSum() {
     return this.weightsOfWords.reduce((prev, cur) => {

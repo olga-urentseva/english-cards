@@ -1,3 +1,5 @@
+// !!!!!!!!!!!!!! ADD NEW WORDS ONLY IN THE END OF THE LIST !!!!!!!!!!!!!!
+
 const words = [
   ["apple", "яблоко"],
   ["fruit", "фрукт"],
