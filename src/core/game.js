@@ -25,13 +25,15 @@ export default class Game {
 
   answer(actualWord, userWord) {
     const variantsOfTranslation = actualWord.translationWord
+      .toLowerCase()
       .split(",")
-      .map((el) => el.trim().toLowerCase());
-    console.log(variantsOfTranslation);
+      .map((el) => el.trim());
 
-    const result = variantsOfTranslation.includes(
-      userWord.toLowerCase().trim()
-    );
+    const variationsOfUserAnswer = userWord.toLowerCase().split(",");
+
+    const result = variantsOfTranslation.some((word) => {
+      return variationsOfUserAnswer.includes(word.trim());
+    });
 
     if (result) {
       this.wordSelector.decreaseWordWeight(actualWord);
