@@ -5,7 +5,7 @@ import GameSaveManager from "../../../core/gameSaveManager";
 import Button, { BUTTON_TYPES } from "../../atoms/Button";
 import Input from "../../atoms/Input";
 import Score from "../../atoms/Score";
-import WordCard from "../../atoms/WordCard";
+import WordCard from "./WordCard";
 import MainContainer from "../../atoms/MainContainer";
 
 import classes from "./style.css";
