@@ -1,6 +1,6 @@
 export default class Word {
-  constructor(originalWord, translationWord) {
+  constructor(originalWord, translations) {
     this.originalWord = originalWord;
-    this.translationWord = translationWord;
+    this.translations = translations;
   }
 }

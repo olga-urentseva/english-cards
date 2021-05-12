@@ -6,15 +6,12 @@ describe("game", () => {
     it("loads words by yourself when creating a game", () => {
       const game = new Game();
       expect(game.loadWords()).toBeDefined();
-
-      // ?
-      // expect(game.loadWords().length).toBeGreaterThan(0);
     });
 
     it("loads words based on initial value of words list", () => {
       const game = new Game(null, [
-        new Word("test", "тест"),
-        new Word("testing", "тестирование"),
+        new Word("test", ["тест"]),
+        new Word("testing", ["тестирование"]),
       ]);
 
       expect(game.list.length).toBe(2);
@@ -24,8 +21,8 @@ describe("game", () => {
   describe(".getRandomWord", () => {
     it("gives a random word from a list with two values", () => {
       const game = new Game(null, [
-        new Word("test", "тест"),
-        new Word("testing", "тестирование"),
+        new Word("test", ["тест"]),
+        new Word("testing", ["тестирование"]),
       ]);
       expect(game.getRandomWord()).toBeDefined();
     });
@@ -37,7 +34,7 @@ describe("game", () => {
   });
 
   describe(".answer", () => {
-    const testWord = new Word("test", "тест");
+    const testWord = new Word("test", ["тест"]);
     const game = new Game(null, [testWord]);
     it("returns true if word is correct", () => {
       expect(game.answer(testWord, "тест")).toBeTruthy();

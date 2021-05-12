@@ -24,14 +24,13 @@ export default class Game {
   }
 
   answer(actualWord, userWord) {
-    const variantsOfTranslation = actualWord.translationWord
-      .toLowerCase()
-      .split(",")
-      .map((el) => el.trim());
+    // const variantsOfTranslation = actualWord.translations.map((word) =>
+    //   word.trim().toLowerCase()
+    // );
 
     const variationsOfUserAnswer = userWord.toLowerCase().split(",");
 
-    const result = variantsOfTranslation.some((word) => {
+    const result = actualWord.translations.some((word) => {
       return variationsOfUserAnswer.includes(word.trim());
     });
 

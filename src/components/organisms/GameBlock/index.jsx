@@ -66,7 +66,7 @@ const GameBlock = () => {
         <Score score={game.getScore()} />
         <WordCard
           isShowTranslation={isShowTranslation}
-          translation={currentWord ? currentWord.translationWord : ""}
+          translation={currentWord ? currentWord.translations : ""}
           className={classes.GameCard}
           word={
             currentWord

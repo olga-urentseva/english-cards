@@ -12,7 +12,7 @@ const WordCard = ({ word, translation, isShowTranslation, className }) => {
             [classes.TranslationShown]: isShowTranslation,
           })}
         >
-          {translation}
+          {translation.join(", ")}
         </h2>
       )}
       <div
