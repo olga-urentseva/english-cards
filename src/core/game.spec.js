@@ -40,6 +40,16 @@ describe("game", () => {
       expect(game.answer(testWord, "тест")).toBeTruthy();
     });
 
+    it("returns true if one of the two user words is correct", () => {
+      expect(game.answer(testWord, "тест, тестирование")).toBeTruthy();
+    });
+
+    it("returns true if person enter one of some variations of translation", () => {
+      expect(
+        game.answer(new Word("test", ["тест", "тестинг"]), "тестинг")
+      ).toBeTruthy();
+    });
+
     it("increase the score if word correct", () => {
       const game = new Game(null, [testWord]);
       game.answer(testWord, "тест");
