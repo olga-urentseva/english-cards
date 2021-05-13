@@ -24,14 +24,10 @@ export default class Game {
   }
 
   answer(actualWord, userWord) {
-    // const variantsOfTranslation = actualWord.translations.map((word) =>
-    //   word.trim().toLowerCase()
-    // );
-
-    const variationsOfUserAnswer = userWord.toLowerCase().split(",");
+    const variationsOfUserAnswer = userWord.trim().toLowerCase().split(",");
 
     const result = actualWord.translations.some((word) => {
-      return variationsOfUserAnswer.includes(word.trim());
+      return variationsOfUserAnswer.includes(word);
     });
 
     if (result) {

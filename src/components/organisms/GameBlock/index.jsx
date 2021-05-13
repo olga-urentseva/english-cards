@@ -6,7 +6,7 @@ import Button, { BUTTON_TYPES } from "../../atoms/Button";
 import Input from "../../atoms/Input";
 import Score from "../../atoms/Score";
 import WordCard from "./WordCard";
-import MainContainer from "../../atoms/MainContainer";
+import CentralContainer from "../../atoms/CentralContainer";
 
 import classes from "./style.css";
 
@@ -61,12 +61,12 @@ const GameBlock = () => {
   }
 
   return (
-    <MainContainer>
+    <CentralContainer>
       <div className={classes.GameWrapper}>
         <Score score={game.getScore()} />
         <WordCard
           isShowTranslation={isShowTranslation}
-          translation={currentWord ? currentWord.translations : ""}
+          translations={currentWord ? currentWord.translations : []}
           className={classes.GameCard}
           word={
             currentWord
@@ -104,7 +104,7 @@ const GameBlock = () => {
           Не знаю :(
         </Button>
       </div>
-    </MainContainer>
+    </CentralContainer>
   );
 };
 

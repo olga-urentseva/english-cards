@@ -11,6 +11,7 @@ import LogoutModal from "../LogoutModal";
 import { useAuthContext } from "../../contexts/AuthContext";
 
 import classes from "./style.css";
+import DictionaryLinkButton from "../../atoms/DictionaryLinkButton";
 
 const Header = () => {
   const authContextValue = useAuthContext();
@@ -48,17 +49,20 @@ const Header = () => {
             <div className={classes.ServiceBlock}>
               <ToggleButton className={classes.HeaderToggleBtn} />
               {authContextValue.userName ? (
-                <div className={classes.HeaderLogOutBlock}>
-                  <h3 className={classes.HeaderUserName}>
-                    {authContextValue.userName}
-                  </h3>
-                  <LogOutButton
-                    className={classes.HeaderLogOutBtn}
-                    onClick={() => {
-                      setIsModalShown(true);
-                    }}
-                  />
-                </div>
+                <>
+                  <DictionaryLinkButton />
+                  <div className={classes.HeaderLogOutBlock}>
+                    <h3 className={classes.HeaderUserName}>
+                      {authContextValue.userName}
+                    </h3>
+                    <LogOutButton
+                      className={classes.HeaderLogOutBtn}
+                      onClick={() => {
+                        setIsModalShown(true);
+                      }}
+                    />
+                  </div>
+                </>
               ) : (
                 ""
               )}

@@ -11,7 +11,7 @@ jest.mock("../../../core/gameSaveManager");
 jest.useFakeTimers();
 
 describe("GameBlock", () => {
-  const currentWord = new Word("test", "тест");
+  const currentWord = new Word("test", ["тест"]);
   const game = new Game({ score: 99 }, [currentWord]);
   jest.spyOn(game, "answer");
   jest.spyOn(game, "skip");
@@ -47,7 +47,7 @@ describe("GameBlock", () => {
       game.getRandomWord.mockClear();
 
       game.getRandomWord.mockImplementationOnce(() => {
-        newWord = new Word("demo", "демо");
+        newWord = new Word("demo", ["демо"]);
         return newWord;
       });
     });
@@ -118,7 +118,9 @@ describe("GameBlock", () => {
       });
 
       expect(game.getRandomWord).not.toHaveBeenCalled();
-      game.getRandomWord.mockImplementationOnce(() => new Word("demo", "демо"));
+      game.getRandomWord.mockImplementationOnce(
+        () => new Word("demo", ["демо"])
+      );
 
       act(() => {
         jest.advanceTimersByTime(3000);

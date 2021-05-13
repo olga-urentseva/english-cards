@@ -1,0 +1,13 @@
+.DictionaryIcon {
+  fill: var(--color-border);
+  filter: brightness(90%) drop-shadow(0 0.7em 0.25em var(--color-shadow));
+  transition: filter 0.3s;
+  margin-top: 0.2em;
+}
+
+.DictionaryIcon:focus,
+.DictionaryIcon:active,
+.DictionaryIcon:hover {
+  filter: brightness(100%) drop-shadow(0 0.7em 0.25em var(--color-shadow))
+    brightness(130%);
+}

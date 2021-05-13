@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import Button, { BUTTON_TYPES } from "../../atoms/Button";
 import Container from "../../atoms/Container";
 import Input, { INPUT_TYPES } from "../../atoms/Input";
-import MainContainer from "../../atoms/MainContainer";
+import CentralContainer from "../../atoms/CentralContainer";
 import { useAuthContext } from "../../contexts/AuthContext";
 import Layout from "../../templates/Layout";
 import ContinuePage from "../ContinuePage";
@@ -34,7 +34,7 @@ const MainPage = () => {
   return (
     <Layout>
       <Container>
-        <MainContainer>
+        <CentralContainer>
           <div className={classes.Hero}>
             <h2 className={classes.MainText}>
               Привет! Давай учить английский!
@@ -57,7 +57,7 @@ const MainPage = () => {
               </Button>
             </form>
           </div>
-        </MainContainer>
+        </CentralContainer>
       </Container>
     </Layout>
   );

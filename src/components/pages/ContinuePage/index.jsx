@@ -7,7 +7,7 @@ import Button, { BUTTON_TYPES } from "../../atoms/Button";
 import { useAuthContext } from "../../contexts/AuthContext";
 
 import classes from "./style.css";
-import MainContainer from "../../atoms/MainContainer";
+import CentralContainer from "../../atoms/CentralContainer";
 
 const ContinuePage = () => {
   const authContextValue = useAuthContext();
@@ -16,7 +16,7 @@ const ContinuePage = () => {
   return (
     <Layout>
       <Container>
-        <MainContainer>
+        <CentralContainer>
           <div className={classes.ContinueBlockWrapper}>
             <span className={classes.ContinueBlockText}>
               Хочешь продолжить учить английский под именем
@@ -44,7 +44,7 @@ const ContinuePage = () => {
               </Button>
             </div>
           </div>
-        </MainContainer>
+        </CentralContainer>
       </Container>
     </Layout>
   );

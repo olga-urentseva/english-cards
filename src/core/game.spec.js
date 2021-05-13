@@ -37,7 +37,7 @@ describe("game", () => {
     const testWord = new Word("test", ["тест"]);
     const game = new Game(null, [testWord]);
     it("returns true if word is correct", () => {
-      expect(game.answer(testWord, "тест")).toBeTruthy();
+      expect(game.answer(testWord, " тест ")).toBeTruthy();
     });
 
     it("returns true if one of the two user words is correct", () => {
