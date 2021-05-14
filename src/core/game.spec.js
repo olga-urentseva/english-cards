@@ -46,7 +46,7 @@ describe("game", () => {
 
     it("returns true if person enter one of some variations of translation", () => {
       expect(
-        game.answer(new Word("test", ["тест", "тестинг"]), "тестинг")
+        game.answer(new Word("clap", ["хлопать", "хлопок"]), "хлопать")
       ).toBeTruthy();
     });
 
