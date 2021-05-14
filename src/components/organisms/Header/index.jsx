@@ -50,7 +50,9 @@ const Header = () => {
               <ToggleButton className={classes.HeaderToggleBtn} />
               {authContextValue.userName ? (
                 <>
-                  <DictionaryLinkButton />
+                  <DictionaryLinkButton
+                    className={classes.HeaderDictionaryBlock}
+                  />
                   <div className={classes.HeaderLogOutBlock}>
                     <h3 className={classes.HeaderUserName}>
                       {authContextValue.userName}

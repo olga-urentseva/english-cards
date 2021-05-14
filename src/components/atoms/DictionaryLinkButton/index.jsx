@@ -5,9 +5,9 @@ import classes from "./style.css";
 import DictionaryIcon from "./DictionaryIcon";
 import { Link } from "react-router-dom";
 
-const DictionaryLinkButton = () => {
+const DictionaryLinkButton = ({ className }) => {
   return (
-    <Link to="/dictionary" className={classes.DictionaryLink}>
+    <Link to="/dictionary" className={`${classes.DictionaryLink} ${className}`}>
       <DictionaryIcon />
     </Link>
   );

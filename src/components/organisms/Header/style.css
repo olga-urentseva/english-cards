@@ -45,3 +45,7 @@
   margin-right: 1rem;
   color: var(--color-border);
 }
+
+.HeaderDictionaryBlock {
+  margin: 0 1em;
+}
