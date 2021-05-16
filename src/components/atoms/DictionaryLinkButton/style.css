@@ -1,4 +1,11 @@
 .DictionaryLink {
   width: 2.3em;
   display: inline-block;
+  transition: filter 0.3s;
+}
+
+.DictionaryLink:focus,
+.DictionaryLink:active,
+.DictionaryLink:hover {
+  filter: brightness(120%);
 }

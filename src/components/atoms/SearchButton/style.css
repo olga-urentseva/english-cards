@@ -1,0 +1,16 @@
+.SearchButton {
+  display: block;
+  width: 3em;
+  height: 3em;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  transition: filter 0.3s;
+}
+
+.SearchButton:focus,
+.SearchButton:active,
+.SearchButton:hover {
+  filter: brightness(120%);
+}

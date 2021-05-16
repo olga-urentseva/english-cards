@@ -1,0 +1,5 @@
+.SearchIcon {
+  width: auto;
+  fill: var(--color-input-text);
+  display: block;
+}
