@@ -4,12 +4,13 @@ import CentralContainer from "../../atoms/CentralContainer";
 import Layout from "../../templates/Layout";
 import Input, { INPUT_TYPES } from "../../atoms/Input";
 import SearchButton from "../../atoms/SearchButton";
+import DictionaryItem from "../../atoms/DictionaryItem";
 
 import words from "../../../words/words";
 
 import classes from "./style.css";
 
-const LibraryPage = () => {
+const DictionaryPage = () => {
   const [inputValue, setInputValue] = useState("");
 
   const searchWord = (e) => {
@@ -23,18 +24,11 @@ const LibraryPage = () => {
 
   const dictionaryItems = words.map((word) => {
     return (
-      <div className={classes.DictionaryItem}>
-        <h3 className={classes.DictionaryItemOriginalWord}>{word[0]}</h3>
-        <div className={classes.DictionaryItemtTranslationsWrapper}>
-          {word[1].map((wordTranslation) => {
-            return (
-              <h3 className={classes.DictionaryItemTranslationWord}>
-                {wordTranslation}
-              </h3>
-            );
-          })}
-        </div>
-      </div>
+      <DictionaryItem
+        originalWord={word[0]}
+        translations={word[1]}
+        id={word[0]}
+      />
     );
   });
 
@@ -68,4 +62,4 @@ const LibraryPage = () => {
   );
 };
 
-export default LibraryPage;
+export default DictionaryPage;

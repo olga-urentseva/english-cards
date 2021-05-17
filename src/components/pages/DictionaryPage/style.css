@@ -30,28 +30,10 @@
   box-shadow: 1px 6px 14px -5px var(--color-shadow);
 }
 
-.DictionaryItem {
-  display: flex;
-  flex-direction: row;
-  margin: 0.5rem -0.5rem;
-  align-items: baseline;
-  justify-content: space-between;
-  border-bottom: solid 0.1rem var(--color-accent--success);
-}
-
 .DictionaryPage {
   display: flex;
   flex-direction: column;
   width: 100%;
   align-items: center;
   margin: -1rem;
-}
-
-.DictionaryItemOriginalWord,
-.DictionaryItemtTranslationsWrapper {
-  margin: 0.5rem;
-}
-
-.DictionaryItemTranslationWord {
-  text-align: end;
 }
