@@ -4,6 +4,9 @@
   margin: 0.5rem -0.5rem;
   align-items: baseline;
   justify-content: space-between;
+}
+
+.DictionaryItem:not(:last-child) {
   border-bottom: solid 0.1rem var(--color-accent--success);
 }
 
