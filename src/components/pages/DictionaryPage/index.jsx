@@ -1,15 +1,23 @@
 import React, { useMemo, useState } from "react";
+import { Redirect } from "react-router";
+
 import Container from "../../atoms/Container";
 import CentralContainer from "../../atoms/CentralContainer";
 import Layout from "../../templates/Layout";
 import Input, { INPUT_TYPES } from "../../atoms/Input";
 import DictionaryItem from "../../atoms/DictionaryItem";
+import { useAuthContext } from "../../contexts/AuthContext";
 
 import words from "../../../words/words";
 
 import classes from "./style.css";
 
 const DictionaryPage = () => {
+  const authContextValue = useAuthContext();
+
+  if (!authContextValue.isAuth) {
+    return <Redirect to="/" />;
+  }
   const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = (e) => {
