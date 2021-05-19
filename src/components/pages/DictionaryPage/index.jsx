@@ -3,7 +3,6 @@ import Container from "../../atoms/Container";
 import CentralContainer from "../../atoms/CentralContainer";
 import Layout from "../../templates/Layout";
 import Input, { INPUT_TYPES } from "../../atoms/Input";
-import SearchButton from "../../atoms/SearchButton";
 import DictionaryItem from "../../atoms/DictionaryItem";
 
 import words from "../../../words/words";
@@ -12,27 +11,6 @@ import classes from "./style.css";
 
 const DictionaryPage = () => {
   const [inputValue, setInputValue] = useState("");
-
-  // const searchWord = (e) => {
-  //   e.preventDefault();
-  //   console.log(inputValue);
-
-  //   const searchedWord = words.find((word) => {
-  //     return (
-  //       word[0] === inputValue ||
-  //       word[1].find((translation) => translation === inputValue)
-  //     );
-  //   });
-  //   console.log(searchedWord);
-
-  //   if (searchedWord) {
-  //     setIsWordFinded(true);
-  //     setSearchedWord(searchedWord);
-  //   } else {
-  //     setSearchedWord("");
-  //     setIsWordFinded(false);
-  //   }
-  // };
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -55,6 +33,7 @@ const DictionaryPage = () => {
         originalWord={word[0]}
         translations={word[1]}
         key={word[0]}
+        accentSymbols={inputValue.includes("") ? inputValue : null}
       />
     );
   });
@@ -76,17 +55,13 @@ const DictionaryPage = () => {
                 value={inputValue}
                 onChange={handleInputChange}
               />
-              {/* <SearchButton
-                type="submit"
-                className={classes.DictionaryInputSearchButton}
-              /> */}
             </form>
             <div className={classes.DictionaryItemsWrapper}>
               {currentWords.length > 0 ? (
                 dictionaryItems
               ) : (
                 <h3 className={classes.WordNotFounded}>
-                  Искомое слово не найдено, но у нас есть другие:
+                  Искомое слово не найдено
                 </h3>
               )}
             </div>

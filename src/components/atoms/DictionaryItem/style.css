@@ -18,3 +18,7 @@
 .DictionaryItemTranslationWord {
   text-align: end;
 }
+
+.AccentWord {
+  border-bottom: solid 0.2em var(--color-accent);
+}
