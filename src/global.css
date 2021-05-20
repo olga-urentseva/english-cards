@@ -2,13 +2,17 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   background-color: var(--color-background);
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
-  min-height: 100vh;
+  height: 100%;
 }
 
 h1,
@@ -21,3 +25,9 @@ h4 {
 span {
   color: var(--color-text);
 }
+/* 
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+} */

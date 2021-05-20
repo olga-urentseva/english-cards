@@ -31,14 +31,14 @@ const Header = () => {
   }, []);
 
   return (
-    <header>
+    <header className={classes.Header}>
       <LogoutModal
         isShown={isModalShown}
         close={() => {
           setIsModalShown(false);
         }}
       />
-      <div className={classNames(classes.Header)}>
+      <div className={classNames(classes.Header__Wrapper)}>
         <Container>
           <div className={classes.HeaderWrapper}>
             <div className={classes.LogoBlock}>

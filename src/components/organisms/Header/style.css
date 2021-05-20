@@ -1,7 +1,11 @@
 .Header {
+  flex: 1 0 auto;
+}
+
+.Header__Wrapper {
   background-color: var(--color-secondary);
   border-radius: 0 0 1em 1em;
-  box-shadow: 1px 6px 14px -5px var(--color-shadow);
+  box-shadow: 0.1em 0.2em 1em -0.3em var(--color-shadow);
 }
 
 .HeaderWrapper {

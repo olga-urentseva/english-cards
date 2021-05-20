@@ -1,11 +1,15 @@
 import React from "react";
+import Footer from "../../organisms/Footer";
 import Header from "../../organisms/Header";
+
+import classes from "./style.css";
 
 const Layout = ({ children }) => {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <main className={classes.Main}>{children}</main>
+      <Footer />
     </>
   );
 };
