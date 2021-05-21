@@ -11,14 +11,14 @@ const Footer = () => {
         <div className={classes.FooterWrapper}>
           <div className={classes.FooterLinkColumn}>
             <Link to="/about" className={classes.FooterLink}>
-              About
+              О проекте
             </Link>
             <a
               href="https://github.com/olga-urentseva"
               target="_blank"
               className={classes.FooterLink}
             >
-              Author's GitHub
+              GitHub автора
             </a>
           </div>
 

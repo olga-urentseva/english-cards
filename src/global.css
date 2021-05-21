@@ -22,7 +22,8 @@ h4 {
   color: var(--color-text);
 }
 
-span {
+span,
+p {
   color: var(--color-text);
 }
 /* 

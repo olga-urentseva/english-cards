@@ -1,0 +1,19 @@
+.AboutPageWrapper {
+  font-size: 1.2em;
+}
+
+.AboutPageLink {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-size: 1em;
+  transition: all 0.3s;
+  margin: 0.5em 0.5em;
+  margin: 0 0.2em;
+}
+
+.AboutPageLink:focus,
+.AboutPageLink:active,
+.AboutPageLink:hover {
+  filter: brightness(120%);
+  text-shadow: 0em 0.2em 0.3em var(--color-shadow);
+}

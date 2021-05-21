@@ -1,7 +1,3 @@
-.Header {
-  flex: 1 0 auto;
-}
-
 .Header__Wrapper {
   background-color: var(--color-secondary);
   border-radius: 0 0 1em 1em;
