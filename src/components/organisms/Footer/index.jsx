@@ -13,9 +13,11 @@ const Footer = () => {
             <Link to="/about" className={classes.FooterLink}>
               О проекте
             </Link>
+
             <a
               href="https://github.com/olga-urentseva"
               target="_blank"
+              rel="noreferrer"
               className={classes.FooterLink}
             >
               GitHub автора

@@ -15,9 +15,6 @@ import classes from "./style.css";
 const DictionaryPage = () => {
   const authContextValue = useAuthContext();
 
-  if (!authContextValue.isAuth) {
-    return <Redirect to="/" />;
-  }
   const [inputValue, setInputValue] = useState("");
 
   const handleInputChange = (e) => {
@@ -30,8 +27,10 @@ const DictionaryPage = () => {
     }
     return words.filter(
       (word) =>
-        word[0].includes(inputValue) ||
-        word[1].some((translation) => translation.includes(inputValue))
+        word[0].includes(inputValue.toLocaleLowerCase()) ||
+        word[1].some((translation) =>
+          translation.includes(inputValue.toLocaleLowerCase())
+        )
     );
   }, [inputValue]);
 
@@ -41,12 +40,14 @@ const DictionaryPage = () => {
         originalWord={word[0]}
         translations={word[1]}
         key={word[0]}
-        accentSymbols={inputValue.includes("") ? inputValue : null}
+        accentSymbols={inputValue ? inputValue.toLocaleLowerCase() : null}
       />
     );
   });
 
-  // create every render, it's not well
+  if (!authContextValue.isAuth) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <Layout>

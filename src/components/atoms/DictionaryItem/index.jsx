@@ -14,7 +14,9 @@ const DictionaryItem = ({ originalWord, translations, accentSymbols }) => {
             i === 0
               ? part
               : [
-                  <span className={classes.AccentWord}>{accentSymbols}</span>,
+                  <span className={classes.AccentWord} key={i}>
+                    {accentSymbols}
+                  </span>,
                   part,
                 ]
           )
@@ -35,7 +37,7 @@ const DictionaryItem = ({ originalWord, translations, accentSymbols }) => {
                   i === 0
                     ? part
                     : [
-                        <span className={classes.AccentWord}>
+                        <span className={classes.AccentWord} key={i}>
                           {accentSymbols}
                         </span>,
                         part,
