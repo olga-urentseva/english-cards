@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import GameSaveManager from "../../core/gameSaveManager";
 
-const Context = React.createContext(null);
+export const Context = React.createContext(null);
 
 const AuthContext = ({ children }) => {
   const [userName, setUserName] = useState(

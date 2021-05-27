@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import * as themes from "../constants/themes";
+import * as themes from "../../constants/themes";
 
-const Context = React.createContext(null);
+export const Context = React.createContext(null);
 
 export const Themes = {
   LIGHT: "light",

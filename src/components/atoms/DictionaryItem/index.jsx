@@ -6,7 +6,7 @@ import classNames from "classnames";
 
 const DictionaryItem = ({ originalWord, translations, accentSymbols }) => {
   return (
-    <div className={classes.DictionaryItem}>
+    <div className={classes.DictionaryItem} role="dictionaryItem">
       <h3 className={classNames(classes.DictionaryItemOriginalWord)}>
         {originalWord
           .split(accentSymbols)
@@ -24,7 +24,7 @@ const DictionaryItem = ({ originalWord, translations, accentSymbols }) => {
             <React.Fragment key={i}>{part}</React.Fragment>
           ))}
       </h3>
-      <div className={classes.DictionaryItemtTranslationsWrapper}>
+      <div className={classes.DictionaryItemTranslationsWrapper}>
         {translations.map((wordTranslation) => {
           return (
             <h3
