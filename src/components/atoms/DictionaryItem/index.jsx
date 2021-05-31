@@ -6,7 +6,7 @@ import classNames from "classnames";
 
 const DictionaryItem = ({ originalWord, translations, accentSymbols }) => {
   return (
-    <div className={classes.DictionaryItem} role="dictionaryItem">
+    <div className={classes.DictionaryItem}>
       <h3 className={classNames(classes.DictionaryItemOriginalWord)}>
         {originalWord
           .split(accentSymbols)
