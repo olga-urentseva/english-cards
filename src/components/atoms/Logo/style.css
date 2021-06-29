@@ -4,10 +4,12 @@
 
 .Logo--small {
   width: 6em;
+  height: auto;
 }
 
 .Logo--big {
   width: 10em;
+  height: auto;
 }
 
 .Logo:hover,

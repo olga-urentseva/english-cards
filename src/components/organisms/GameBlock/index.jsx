@@ -25,7 +25,7 @@ const GameBlock = () => {
   }
   const game = gameRef.current;
 
-  const [currentWord, setCurrentWord] = useState(() => game.getRandomWord());
+  const [currentWord, setCurrentWord] = useState();
 
   const [isShowTranslation, setIsShownTranslation] = useState(false);
 

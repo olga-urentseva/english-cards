@@ -50,6 +50,23 @@ describe("DictionaryPage", () => {
         })
       ).toBeInTheDocument();
     });
+
+    it("allows to searc a word ignoring case", () => {
+      render(<DictionaryPage />);
+
+      userEvent.type(screen.getByRole("textbox"), "ЯбЛ");
+      expect(
+        screen.getByText((content, node) => {
+          const hasText = (node) => node.textContent === "яблоко";
+          const nodeHasText = hasText(node);
+          const childrenDontHaveText = Array.from(node.children).every(
+            (child) => !hasText(child)
+          );
+
+          return nodeHasText && childrenDontHaveText;
+        })
+      ).toBeInTheDocument();
+    });
   });
 
   it("does not show words other than input", () => {

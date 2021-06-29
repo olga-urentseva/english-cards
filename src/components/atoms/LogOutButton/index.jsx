@@ -7,6 +7,7 @@ const LogOutButton = ({ onClick, className }) => {
     <button
       className={classNames(classes.LogOutButton, className)}
       onClick={onClick}
+      name="logout"
     ></button>
   );
 };
