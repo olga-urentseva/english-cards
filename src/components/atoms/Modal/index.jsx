@@ -13,7 +13,11 @@ const Modal = ({ heading, children, close, isShown, ...otherProps }) => {
         className={classNames(classes.Modal, { [classes.ModalShown]: isShown })}
         {...otherProps}
       >
-        <button className={classes.ModalCloseBtn} onClick={close} />
+        <button
+          className={classes.ModalCloseBtn}
+          onClick={close}
+          name="close"
+        />
         <div className={classes.ModalContent}>{children}</div>
       </div>
     </>
