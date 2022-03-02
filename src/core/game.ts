@@ -2,12 +2,17 @@ import WordSelector from "./wordSelector";
 import words from "../words/words";
 import Word from "./word";
 
+type State = {
+  wordsWeightList: number[];
+  score: number;
+}
+
 export default class Game {
   list: Word[];
   wordSelector: WordSelector;
   score: number;
 
-  constructor(state = null, initialList?) {
+  constructor(state: State | null = null, initialList?: Word[] | undefined) {
     this.list = initialList || this.loadWords();
     this.wordSelector = new WordSelector(this.list, state?.wordsWeightList);
     this.score = state?.score || 0;
@@ -27,7 +32,7 @@ export default class Game {
     return this.wordSelector.getWord();
   }
 
-  answer(actualWord, userWord) {
+  answer(actualWord: Word, userWord: string) {
     const variationsOfUserAnswer = userWord.trim().toLowerCase().split(",");
 
     const result = actualWord.translations.some((word) => {
@@ -55,7 +60,7 @@ export default class Game {
     };
   }
 
-  skip(actualWord) {
+  skip(actualWord: Word) {
     this.wordSelector.increaseWordWeight(actualWord);
   }
 }
