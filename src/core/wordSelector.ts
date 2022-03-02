@@ -6,7 +6,7 @@ export default class WordSelector {
   randomFn: () => number;
 
 
-  constructor(words, initialWeightsOfWords = []) {
+  constructor(words: Word[], initialWeightsOfWords: number[] = []) {
     this.words = words;
     this.initialWeightsOfWords = initialWeightsOfWords;
     this.randomFn = Math.random;
@@ -59,12 +59,12 @@ export default class WordSelector {
     return this.words[foundIndex];
   }
 
-  increaseWordWeight(word) {
+  increaseWordWeight(word: Word) {
     const wordIndex = this.words.indexOf(word);
     this.weightsOfWords[wordIndex] += 1;
   }
 
-  decreaseWordWeight(word) {
+  decreaseWordWeight(word: Word) {
     const wordIndex = this.words.indexOf(word);
     if (this.weightsOfWords[wordIndex] > 1) {
       this.weightsOfWords[wordIndex] -= 1;

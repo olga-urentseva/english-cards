@@ -8,7 +8,7 @@ export default class GameSaveManager {
     this.store = store;
   }
 
-  save(game) {
+  save(game: Game) {
     this.store.setItem("gameState", JSON.stringify(game.getState()));
   }
 
