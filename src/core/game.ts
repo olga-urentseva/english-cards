@@ -1,9 +1,13 @@
 import WordSelector from "./wordSelector";
-import words from "../words/words.js";
-import Word from "./word.js";
+import words from "../words/words";
+import Word from "./word";
 
 export default class Game {
-  constructor(state = null, initialList) {
+  list: Word[];
+  wordSelector: WordSelector;
+  score: number;
+
+  constructor(state = null, initialList?) {
     this.list = initialList || this.loadWords();
     this.wordSelector = new WordSelector(this.list, state?.wordsWeightList);
     this.score = state?.score || 0;

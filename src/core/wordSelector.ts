@@ -1,4 +1,11 @@
+import Word from "./word";
+
 export default class WordSelector {
+  words: Word[]
+  initialWeightsOfWords: number[];
+  randomFn: () => number;
+
+
   constructor(words, initialWeightsOfWords = []) {
     this.words = words;
     this.initialWeightsOfWords = initialWeightsOfWords;

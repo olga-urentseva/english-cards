@@ -1,6 +1,6 @@
 // !!!!!!!!!!!!!! ADD NEW WORDS ONLY IN THE END OF THE LIST !!!!!!!!!!!!!!
 
-const words = [
+const words: [string, string[]][] = [
   ["apple", ["яблоко", "яблочко", "яблоня", "яблочный", "чепуха", "лесть"]],
   ["fruit", ["фрукт", "плод", "фруктовый", "плодоносить"]],
   [

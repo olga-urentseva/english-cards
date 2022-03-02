@@ -1,6 +1,9 @@
 import Game from "./game";
 
 export default class GameSaveManager {
+
+  store: Storage;
+
   constructor(store = window.localStorage) {
     this.store = store;
   }
@@ -12,7 +15,7 @@ export default class GameSaveManager {
   load() {
     const gameState = this.store.getItem("gameState");
 
-    return new Game(gameState ? JSON.parse(gameState) : null);
+    return new Game(gameState ? JSON.parse(gameState) : null, );
   }
 
   removeSave() {
