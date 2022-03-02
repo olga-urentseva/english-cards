@@ -15,7 +15,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
   },
   resolve: {
-    extensions: [".mjs", ".js", ".jsx", ".json"],
+    extensions: [".mjs", ".js", ".jsx", ".json", ".ts"],
   },
 
   plugins: [
@@ -41,7 +41,7 @@ module.exports = {
         use: ["pug-loader"],
       },
       {
-        test: /\.jsx?$/i,
+        test: /\.jsx?$|tsx?$/i,
         use: ["babel-loader"],
       },
       {
