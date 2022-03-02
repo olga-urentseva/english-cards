@@ -10,7 +10,7 @@ const Button = ({ children, onClick, btntype, type, className, disabled }) => {
     <button
       onClick={onClick}
       type={type}
-      disabled={disabled ? true : false}
+      disabled={!!disabled}
       className={classNames(
         classes.Button,
         classes[`Button--${btntype}`],
