@@ -4,6 +4,7 @@ import { Redirect } from "react-router";
 import Container from "../../atoms/Container";
 import CentralContainer from "../../atoms/CentralContainer";
 import Layout from "../../templates/Layout";
+import SwitchButton from "../../atoms/SwitchButton";
 import Input, { INPUT_TYPES } from "../../atoms/Input";
 import DictionaryItem from "../../atoms/DictionaryItem";
 import { useAuthContext } from "../../contexts/AuthContext";
@@ -16,6 +17,7 @@ const DictionaryPage = () => {
   const authContextValue = useAuthContext();
 
   const [inputValue, setInputValue] = useState("");
+  const [isAllWordsDictionary, setIsAllWordsDictionary] = useState(true);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -45,6 +47,10 @@ const DictionaryPage = () => {
     );
   });
 
+  const switchDictionary = () => {
+    setIsAllWordsDictionary(!isAllWordsDictionary);
+  };
+
   if (!authContextValue.isAuth) {
     return <Redirect to="/" />;
   }
@@ -54,6 +60,21 @@ const DictionaryPage = () => {
       <Container>
         <CentralContainer>
           <div className={classes.DictionaryPage}>
+            <div className={classes.ButtonsWrapper}>
+              <SwitchButton
+                onClick={switchDictionary}
+                isActive={isAllWordsDictionary}
+              >
+                Все слова
+              </SwitchButton>
+              <SwitchButton
+                onClick={switchDictionary}
+                isActive={!isAllWordsDictionary}
+              >
+                Незнакомые
+              </SwitchButton>
+            </div>
+
             <form className={classes.SearchForm}>
               <Input
                 id="dictionary-search"
