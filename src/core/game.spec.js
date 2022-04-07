@@ -50,7 +50,7 @@ describe("game", () => {
       ).toBeTruthy();
     });
 
-    it("increase the score if word correct", () => {
+    it("decrease the score if word correct", () => {
       const game = new Game(null, [testWord]);
       game.answer(testWord, "тест");
       expect(game.getScore()).toEqual(1);
