@@ -12,8 +12,12 @@ import { useAuthContext } from "../../contexts/AuthContext";
 import words from "../../../words/words";
 
 import classes from "./style.css";
+import Dictionary from "../../../core/dictionary";
 
 const DictionaryPage = () => {
+  const dictionary = new Dictionary();
+  dictionary.getUnknownWords();
+
   const authContextValue = useAuthContext();
 
   const [inputValue, setInputValue] = useState("");
@@ -25,22 +29,17 @@ const DictionaryPage = () => {
 
   const currentWords = useMemo(() => {
     if (inputValue === "") {
-      return words;
+      return dictionary.getAllWords();
     }
-    return words.filter(
-      (word) =>
-        word[0].includes(inputValue.toLocaleLowerCase()) ||
-        word[1].some((translation) =>
-          translation.includes(inputValue.toLocaleLowerCase())
-        )
-    );
+    return dictionary.searchWord(inputValue);
   }, [inputValue]);
 
-  const dictionaryItems = currentWords.map((word) => {
+  const dictionaryItems = Object.entries(currentWords).map((word) => {
+    console.log(word);
     return (
       <DictionaryItem
         originalWord={word[0]}
-        translations={word[1]}
+        translations={word[1].translations}
         key={word[0]}
         accentSymbols={inputValue ? inputValue.toLocaleLowerCase() : null}
       />

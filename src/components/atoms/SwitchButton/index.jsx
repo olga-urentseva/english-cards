@@ -9,7 +9,6 @@ const SwitchButton = ({ isActive, ...rest }) => {
       className={classNames(classes.SwitchButton, {
         [classes.SwitchButtonActive]: isActive,
       })}
-      isActive={isActive}
       {...rest}
     ></button>
   );

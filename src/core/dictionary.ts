@@ -1,3 +1,4 @@
+import { string } from "yup";
 import words from "../words/words";
 
 export default class Dictionary {
@@ -5,7 +6,6 @@ export default class Dictionary {
 
   constructor(store = window.localStorage) {
     this.store = store;
-    console.log(store);
   }
 
   getAllWords() {
@@ -41,5 +41,15 @@ export default class Dictionary {
 
     return unknownWords;
     
+  }
+
+  searchWord(inputValue: string) {
+    words.filter(
+      (word) =>
+        word[0].includes(inputValue.toLocaleLowerCase()) ||
+        word[1].some((translation) =>
+          translation.includes(inputValue.toLocaleLowerCase())
+        )
+    );
   }
 }
