@@ -1,3 +1,4 @@
+import { boolean } from "yup";
 import words from "../words/words";
 import Word from "./word";
 
@@ -16,27 +17,28 @@ export default class Dictionary {
 
   /** This method returns an unknown words (words that weight is more than 1). */
   /** Weight if the words we get from the gameState. */
-  getUnknownWords() {
+  getUnknownWords(): Word[] {
     const gameState = this.store.getItem("gameState");
+    const allWords = this.getAllWords();
     if (gameState === null) {
-      return this.getAllWords();
+      return allWords;
     }
 
     const wordsScore = JSON.parse(gameState).wordsWeightList;
 
-    const unknownWords = words.filter((word, index) => {
+    return allWords.filter((word, index) => {
       if (wordsScore[index] > 1) {
-        return new Word(word[0], word[1]);
+        return new Word(word.originalWord, word.translations);
       }
       return;
     });
-
-    return unknownWords;
   }
 
-  searchWord(inputValue: string) {
-    const allWords = this.getAllWords();
-    return allWords.filter(
+  searchWord(inputValue: string, isAllWords: boolean) {
+    const searchebleWords = isAllWords
+      ? this.getAllWords()
+      : this.getUnknownWords();
+    return searchebleWords.filter(
       (word) =>
         word.originalWord.includes(inputValue.toLocaleLowerCase()) ||
         word.translations.some((translation) =>

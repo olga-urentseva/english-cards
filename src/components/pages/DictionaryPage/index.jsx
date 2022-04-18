@@ -16,7 +16,6 @@ import Dictionary from "../../../core/dictionary";
 
 const DictionaryPage = () => {
   const dictionary = new Dictionary();
-  dictionary.getUnknownWords();
 
   const authContextValue = useAuthContext();
 
@@ -29,10 +28,13 @@ const DictionaryPage = () => {
 
   const currentWords = useMemo(() => {
     if (inputValue === "") {
-      return dictionary.getAllWords();
+      if (isAllWordsDictionary) {
+        return dictionary.getAllWords();
+      }
+      return dictionary.getUnknownWords();
     }
-    return dictionary.searchWord(inputValue);
-  }, [inputValue]);
+    return dictionary.searchWord(inputValue, isAllWordsDictionary);
+  }, [inputValue, isAllWordsDictionary]);
 
   const dictionaryItems = currentWords.map((word, index) => {
     return (
