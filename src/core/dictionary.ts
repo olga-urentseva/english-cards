@@ -1,5 +1,5 @@
-import { string } from "yup";
 import words from "../words/words";
+import Word from "./word";
 
 export default class Dictionary {
   store: Storage;
@@ -9,45 +9,37 @@ export default class Dictionary {
   }
 
   getAllWords() {
-    const allWorlds = words.reduce((acc, cur) => {
-      return {...acc, [cur[0]]: {translations: [cur[1]]}}
-    }, {});
-
-    return allWorlds;
+    return words.map((word) => {
+      return new Word(word[0], word[1]);
+    });
   }
-
 
   /** This method returns an unknown words (words that weight is more than 1). */
   /** Weight if the words we get from the gameState. */
   getUnknownWords() {
     const gameState = this.store.getItem("gameState");
     if (gameState === null) {
-      return words;
+      return this.getAllWords();
     }
-    
+
     const wordsScore = JSON.parse(gameState).wordsWeightList;
 
-    const allWords = new Map();
-    words.forEach((item, index) => {
-      allWords.set(item[0], {translations: item[1], weight: wordsScore[index]})
+    const unknownWords = words.filter((word, index) => {
+      if (wordsScore[index] > 1) {
+        return new Word(word[0], word[1]);
+      }
+      return;
     });
 
-    const unknownWords = words.reduce((acc, cur, index) => {
-      if (wordsScore[index] > 1) {
-        return {...acc, [cur[0]]: {translations: cur[1]}}
-      }
-      return acc;
-    }, {})
-
     return unknownWords;
-    
   }
 
   searchWord(inputValue: string) {
-    words.filter(
+    const allWords = this.getAllWords();
+    return allWords.filter(
       (word) =>
-        word[0].includes(inputValue.toLocaleLowerCase()) ||
-        word[1].some((translation) =>
+        word.originalWord.includes(inputValue.toLocaleLowerCase()) ||
+        word.translations.some((translation) =>
           translation.includes(inputValue.toLocaleLowerCase())
         )
     );

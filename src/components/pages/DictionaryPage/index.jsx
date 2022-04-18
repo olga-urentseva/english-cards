@@ -34,13 +34,12 @@ const DictionaryPage = () => {
     return dictionary.searchWord(inputValue);
   }, [inputValue]);
 
-  const dictionaryItems = Object.entries(currentWords).map((word) => {
-    console.log(word);
+  const dictionaryItems = currentWords.map((word, index) => {
     return (
       <DictionaryItem
-        originalWord={word[0]}
-        translations={word[1].translations}
-        key={word[0]}
+        originalWord={word.originalWord}
+        translations={word.translations}
+        key={index}
         accentSymbols={inputValue ? inputValue.toLocaleLowerCase() : null}
       />
     );
