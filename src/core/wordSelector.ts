@@ -68,7 +68,9 @@ export default class WordSelector {
 
   increaseWordWeight(word: Word) {
     const wordIndex = this.dictionary.getAllWords().indexOf(word);
+    console.log(wordIndex);
     this.weightsOfWords[wordIndex] += 1;
+    console.log(wordIndex);
   }
 
   decreaseWordWeight(word: Word) {

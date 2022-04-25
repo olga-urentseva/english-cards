@@ -50,5 +50,6 @@ export default class Game {
 
   skip(actualWord: Word) {
     this.wordSelector.increaseWordWeight(actualWord);
+    console.log(this.getState());
   }
 }

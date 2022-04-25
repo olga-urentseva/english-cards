@@ -1,18 +1,31 @@
-import { boolean } from "yup";
+import { string } from "../../node_modules/yup/lib/index";
 import words from "../words/words";
 import Word from "./word";
 
+function memoizable(
+  target: any,
+  methodName: string,
+  descriptor: PropertyDescriptor
+) {
+  const originalMethod = descriptor.value;
+  let memoizedValue;
+
+  descriptor.value = function (...args: any[]) {
+    return (memoizedValue ||= originalMethod.apply(this, args));
+  };
+}
+
 export default class Dictionary {
   store: Storage;
+  memoizedAllWords: Word[];
 
   constructor(store = window.localStorage) {
     this.store = store;
   }
 
+  @memoizable
   getAllWords() {
-    return words.map((word) => {
-      return new Word(word[0], word[1]);
-    });
+    return words.map((word) => new Word(word[0], word[1]));
   }
 
   /** This method returns an unknown words (words that weight is more than 1). */

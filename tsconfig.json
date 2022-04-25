@@ -1,14 +1,11 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "declaration": true,
+    "target": "esnext",
     "noImplicitAny": true,
-    "experimentalDecorators": true,
-    "sourceMap": true,
-    "listFiles": true,
-    "newLine": "LF",
-    "noEmitOnError": true
-  }
+    "noEmit": true,
+    "noUncheckedIndexedAccess": true,
+    "experimentalDecorators": true
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }
