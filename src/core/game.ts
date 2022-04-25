@@ -2,6 +2,11 @@ import WordSelector from "./wordSelector";
 import Word from "./word";
 import Dictionary from "./dictionary";
 
+type State = {
+  wordsWeightList: number[];
+  score: number;
+};
+
 export default class Game {
   wordSelector: WordSelector;
   score: number;
