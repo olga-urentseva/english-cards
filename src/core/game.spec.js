@@ -2,22 +2,6 @@ import Game from "./game";
 import Word from "./word";
 
 describe("game", () => {
-  describe(".loadWords", () => {
-    it("loads words by yourself when creating a game", () => {
-      const game = new Game();
-      expect(game.loadWords()).toBeDefined();
-    });
-
-    it("loads words based on initial value of words list", () => {
-      const game = new Game(null, [
-        new Word("test", ["тест"]),
-        new Word("testing", ["тестирование"]),
-      ]);
-
-      expect(game.list.length).toBe(2);
-    });
-  });
-
   describe(".getRandomWord", () => {
     it("gives a random word from a list with two values", () => {
       const game = new Game(null, [
@@ -25,11 +9,6 @@ describe("game", () => {
         new Word("testing", ["тестирование"]),
       ]);
       expect(game.getRandomWord()).toBeDefined();
-    });
-
-    it("does not give a randow word if the list is empty", () => {
-      const game = new Game(null, []);
-      expect(game.getRandomWord()).toBe(null);
     });
   });
 
