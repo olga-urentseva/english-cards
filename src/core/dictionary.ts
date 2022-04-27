@@ -1,5 +1,4 @@
-import { string } from "../../node_modules/yup/lib/index";
-import words from "../words/words";
+import allWords from "../words/words";
 import Word from "./word";
 
 function memoizable(
@@ -18,14 +17,16 @@ function memoizable(
 export default class Dictionary {
   store: Storage;
   memoizedAllWords: Word[];
+  words: [string, string[]][];
 
-  constructor(store = window.localStorage) {
+  constructor(store = window.localStorage, words = allWords) {
     this.store = store;
+    this.words = words;
   }
 
   @memoizable
   getAllWords() {
-    return words.map((word) => new Word(word[0], word[1]));
+    return this.words.map((word) => new Word(word[0], word[1]));
   }
 
   /** This method returns an unknown words (words that weight is more than 1). */
@@ -34,7 +35,7 @@ export default class Dictionary {
     const gameState = this.store.getItem("gameState");
     const allWords = this.getAllWords();
     if (gameState === null) {
-      return allWords;
+      return [];
     }
 
     const wordsScore = JSON.parse(gameState).wordsWeightList;
