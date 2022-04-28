@@ -1,9 +1,10 @@
+import Dictionary from "./dictionary";
 import Game from "./game";
 
 export default class GameSaveManager {
   store: Storage;
 
-  constructor(store = window.localStorage) {
+  constructor(store = window.localStorage, dictionary?: Dictionary) {
     this.store = store;
   }
 

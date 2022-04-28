@@ -12,12 +12,10 @@ export default class Game {
   score: number;
 
   constructor(
-    state: { wordsWeightList: number[]; score: number } | null = null
+    state: { wordsWeightList: number[]; score: number } | null = null,
+    dictionary: Dictionary = new Dictionary()
   ) {
-    this.wordSelector = new WordSelector(
-      new Dictionary(),
-      state?.wordsWeightList
-    );
+    this.wordSelector = new WordSelector(dictionary, state?.wordsWeightList);
     this.score = state?.score || 0;
   }
 

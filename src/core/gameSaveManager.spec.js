@@ -1,3 +1,4 @@
+import Dictionary from "./dictionary";
 import Game from "./game";
 import GameSaveManager from "./gameSaveManager";
 import Word from "./word";
@@ -9,15 +10,22 @@ describe("GameSaveManager", () => {
       getItem: jest.fn(),
       removeItem: jest.fn(),
     };
-    let gameSaver = new GameSaveManager(localStorage);
-    const game = new Game({ score: 100 }, [new Word("test", "тест")]);
+    const mockedState = {
+      wordsWeightList: [1],
+      score: 100,
+    };
+
+    const word = new Word("test", ["тест"]);
+    const dictionary = new Dictionary(localStorage, [word]);
+    const game = new Game(mockedState, dictionary);
+    let gameSaver = new GameSaveManager(localStorage, dictionary);
 
     gameSaver.save(game);
 
     expect(localStorage.setItem.mock.calls[0][0]).toBe("gameState");
-    expect(JSON.parse(localStorage.setItem.mock.calls[0][1])).toEqual({
-      score: 100,
-      wordsWeightList: [1],
-    });
+
+    expect(JSON.parse(localStorage.setItem.mock.calls[0][1])).toEqual(
+      mockedState
+    );
   });
 });
