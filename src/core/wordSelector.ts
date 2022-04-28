@@ -1,26 +1,27 @@
+import Dictionary from "./dictionary";
 import Word from "./word";
 
 export default class WordSelector {
-  words: Word[]
+  dictionary: Dictionary;
   initialWeightsOfWords: number[];
   randomFn: () => number;
 
-
-  constructor(words: Word[], initialWeightsOfWords: number[] = []) {
-    this.words = words;
+  constructor(
+    dictionary: Dictionary,
+    initialWeightsOfWords: number[] | [] = []
+  ) {
+    this.dictionary = dictionary;
     this.initialWeightsOfWords = initialWeightsOfWords;
     this.randomFn = Math.random;
   }
 
   get weightsOfWords() {
-    // return (this._weightsOfWords ||= initialWeightsOfWords
-    //   ? initialWeightsOfWords
-    //   : words.map(() => 1));
+    const allWords = this.dictionary.getAllWords();
 
-    const diff = this.words.length - this.initialWeightsOfWords.length;
+    const diff = allWords.length - this.initialWeightsOfWords.length;
     const deficit = (Math.abs(diff) + diff) / 2;
     const result = [
-      ...this.initialWeightsOfWords.slice(0, this.words.length),
+      ...this.initialWeightsOfWords.slice(0, allWords.length),
       ...Array(deficit).fill(1),
     ];
 
@@ -43,6 +44,12 @@ export default class WordSelector {
   }
 
   getWord() {
+    const allWords = this.dictionary.getAllWords();
+
+    if (allWords.length === 0) {
+      return null;
+    }
+
     const weightsSum = this.getWeightsOfWordsSum();
 
     const randomNum = this.randomFn() * weightsSum;
@@ -56,16 +63,16 @@ export default class WordSelector {
       }
     });
 
-    return this.words[foundIndex];
+    return allWords[foundIndex];
   }
 
   increaseWordWeight(word: Word) {
-    const wordIndex = this.words.indexOf(word);
+    const wordIndex = this.dictionary.getAllWords().indexOf(word);
     this.weightsOfWords[wordIndex] += 1;
   }
 
   decreaseWordWeight(word: Word) {
-    const wordIndex = this.words.indexOf(word);
+    const wordIndex = this.dictionary.getAllWords().indexOf(word);
     if (this.weightsOfWords[wordIndex] > 1) {
       this.weightsOfWords[wordIndex] -= 1;
     }

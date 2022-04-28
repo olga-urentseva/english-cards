@@ -6,13 +6,16 @@ import Game from "../../../core/game";
 import GameSaveManager from "../../../core/gameSaveManager";
 import GameBlock from "./index";
 import Word from "../../../core/word";
+import Dictionary from "../../../core/dictionary";
 
 jest.mock("../../../core/gameSaveManager");
 jest.useFakeTimers();
 
 describe("GameBlock", () => {
-  const currentWord = new Word("test", ["тест"]);
-  const game = new Game({ score: 99 }, [currentWord]);
+  const mockedWords = [["test", ["тест"]]];
+  const dictionary = new Dictionary(null, mockedWords);
+  const game = new Game({ score: 99, wordsWeightList: [1] }, dictionary);
+
   jest.spyOn(game, "answer");
   jest.spyOn(game, "skip");
   jest.spyOn(game, "getRandomWord");
@@ -53,6 +56,7 @@ describe("GameBlock", () => {
     });
 
     describe("correctly", () => {
+      const expectedWord = dictionary.getAllWords()[0];
       beforeEach(() => {
         userEvent.type(screen.getByRole("textbox"), correctUserAnswer);
         userEvent.click(screen.getByRole("button", { name: /проверить/i }));
@@ -60,7 +64,7 @@ describe("GameBlock", () => {
 
       it("handles correct answer", () => {
         expect(game.answer).toHaveBeenCalledWith(
-          currentWord,
+          expectedWord,
           correctUserAnswer
         );
         expect(game.getRandomWord).toHaveBeenCalled();
@@ -71,6 +75,7 @@ describe("GameBlock", () => {
     });
 
     describe("incorrectly", () => {
+      const expectedWord = dictionary.getAllWords()[0];
       beforeEach(() => {
         userEvent.type(screen.getByRole("textbox"), incorrectUserAnswer);
         userEvent.click(screen.getByRole("button", { name: /проверить/i }));
@@ -78,7 +83,7 @@ describe("GameBlock", () => {
 
       it("handles incorrect answer", () => {
         expect(game.answer).toHaveBeenCalledWith(
-          currentWord,
+          expectedWord,
           incorrectUserAnswer
         );
         expect(screen.getByText(/тест/i)).toBeInTheDocument();

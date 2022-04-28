@@ -1,47 +1,27 @@
+import Dictionary from "./dictionary";
 import Game from "./game";
 import Word from "./word";
 
 describe("game", () => {
-  describe(".loadWords", () => {
-    it("loads words by yourself when creating a game", () => {
-      const game = new Game();
-      expect(game.loadWords()).toBeDefined();
-    });
-
-    it("loads words based on initial value of words list", () => {
-      const game = new Game(null, [
-        new Word("test", ["тест"]),
-        new Word("testing", ["тестирование"]),
-      ]);
-
-      expect(game.list.length).toBe(2);
-    });
-  });
-
+  const mockedWords = [["test", ["тест"]]];
   describe(".getRandomWord", () => {
     it("gives a random word from a list with two values", () => {
-      const game = new Game(null, [
-        new Word("test", ["тест"]),
-        new Word("testing", ["тестирование"]),
-      ]);
+      const dictionary = new Dictionary(null, mockedWords);
+      const game = new Game(null, dictionary);
       expect(game.getRandomWord()).toBeDefined();
-    });
-
-    it("does not give a randow word if the list is empty", () => {
-      const game = new Game(null, []);
-      expect(game.getRandomWord()).toBe(null);
     });
   });
 
   describe(".answer", () => {
-    const testWord = new Word("test", ["тест"]);
-    const game = new Game(null, [testWord]);
+    const dictionary = new Dictionary(null, mockedWords);
+    const expectedWord = new Word(mockedWords[0][0], mockedWords[0][1]);
+    const game = new Game(null, dictionary);
     it("returns true if word is correct", () => {
-      expect(game.answer(testWord, " тест ")).toBeTruthy();
+      expect(game.answer(expectedWord, " тест ")).toBeTruthy();
     });
 
     it("returns true if one of the two user words is correct", () => {
-      expect(game.answer(testWord, "тест, тестирование")).toBeTruthy();
+      expect(game.answer(expectedWord, "тест, тестирование")).toBeTruthy();
     });
 
     it("returns true if person enter one of some variations of translation", () => {
@@ -50,14 +30,19 @@ describe("game", () => {
       ).toBeTruthy();
     });
 
-    it("increase the score if word correct", () => {
-      const game = new Game(null, [testWord]);
-      game.answer(testWord, "тест");
+    it("decrease the score if word correct", () => {
+      const dictionary = new Dictionary(null, mockedWords);
+      const game = new Game(null, dictionary);
+      const actualWord = new Word(mockedWords[0][0], mockedWords[0][1]);
+      game.answer(actualWord, "тест");
       expect(game.getScore()).toEqual(1);
     });
 
     it("returns false if word is incorrect", () => {
-      expect(game.answer(testWord, "не тест")).toBeFalsy();
+      const dictionary = new Dictionary(null, mockedWords);
+      const game = new Game(null, dictionary);
+      const actualWord = new Word(mockedWords[0][0], mockedWords[0][1]);
+      expect(game.answer(actualWord, "не тест")).toBeFalsy();
     });
   });
 

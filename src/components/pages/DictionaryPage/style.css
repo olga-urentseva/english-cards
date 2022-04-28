@@ -8,6 +8,12 @@
   right: 1.5rem;
 }
 
+.ButtonsWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .SearchForm {
   display: flex;
   flex-direction: row;

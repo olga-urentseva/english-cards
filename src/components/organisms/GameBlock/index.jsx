@@ -58,6 +58,7 @@ const GameBlock = () => {
   function handleSkip() {
     game.skip(currentWord);
     incorrectAnswerHandle();
+    gameSaveManager.save(game);
   }
 
   return (

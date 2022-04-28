@@ -1,34 +1,25 @@
 import WordSelector from "./wordSelector";
-import words from "../words/words";
 import Word from "./word";
+import Dictionary from "./dictionary";
 
 type State = {
   wordsWeightList: number[];
   score: number;
-}
+};
 
 export default class Game {
-  list: Word[];
   wordSelector: WordSelector;
   score: number;
 
-  constructor(state: State | null = null, initialList?: Word[] | undefined) {
-    this.list = initialList || this.loadWords();
-    this.wordSelector = new WordSelector(this.list, state?.wordsWeightList);
+  constructor(
+    state: { wordsWeightList: number[]; score: number } | null = null,
+    dictionary: Dictionary = new Dictionary()
+  ) {
+    this.wordSelector = new WordSelector(dictionary, state?.wordsWeightList);
     this.score = state?.score || 0;
   }
 
-  loadWords() {
-    return words.map((element) => new Word(element[0], element[1]));
-
-    // state has length of words list
-    // if length is bigger so new words has an 1 weight
-  }
-
   getRandomWord() {
-    if (this.list.length === 0) {
-      return null;
-    }
     return this.wordSelector.getWord();
   }
 

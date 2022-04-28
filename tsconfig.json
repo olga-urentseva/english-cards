@@ -1,12 +1,11 @@
 {
   "compilerOptions": {
-    "target": "ES2015",
-    "module": "commonjs",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "target": "esnext",
+    "noImplicitAny": true,
+    "noEmit": true,
+    "noUncheckedIndexedAccess": true,
+    "experimentalDecorators": true
   },
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "Recommended"
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }

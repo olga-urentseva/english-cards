@@ -1,0 +1,17 @@
+.SwitchButton {
+  display: inline-block;
+  background-color: transparent;
+  border: none;
+  color: var(--color-shadow);
+  border-bottom: 0.1em solid var(--color-shadow);
+  border-radius: 0;
+  white-space: nowrap;
+  font-size: 1.5em;
+}
+
+.SwitchButtonActive {
+  background-color: transparent;
+  color: var(--color-text-button);
+  border-bottom: 0.1em solid var(--color-text-button);
+  border-radius: 0;
+}
