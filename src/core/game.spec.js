@@ -48,14 +48,16 @@ describe("game", () => {
 
   describe(".getScore", () => {
     it("returns the score", () => {
-      const game = new Game();
+      const dictionary = new Dictionary(null, mockedWords);
+      const game = new Game(null, dictionary);
       expect(game.getScore()).toBeGreaterThanOrEqual(0);
     });
   });
 
   describe(".getState", () => {
     it("returns the state of the game", () => {
-      const game = new Game();
+      const dictionary = new Dictionary(null, mockedWords);
+      const game = new Game(null, dictionary);
       expect(game.getState()).toEqual({
         score: expect.any(Number),
         wordsWeightList: expect.any(Array),

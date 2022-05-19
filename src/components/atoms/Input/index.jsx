@@ -4,13 +4,12 @@ import classNames from "classnames";
 
 import classes from "./style.css";
 
-const Input = ({ className, disabled, id, ...rest }) => {
+const Input = ({ className, id, ...rest }) => {
   return (
     <>
       <label htmlFor={id} />
       <input
         id={id}
-        disabled={disabled ? true : false}
         className={classNames(classes.Input, className)}
         {...rest}
       />
@@ -18,14 +17,9 @@ const Input = ({ className, disabled, id, ...rest }) => {
   );
 };
 
-export const INPUT_TYPES = {
-  TEXT: "text",
-};
-
 Input.propTypes = {
-  type: PropTypes.oneOf(Object.values(INPUT_TYPES)),
-  onChange: PropTypes.func,
-  id: PropTypes.string,
+  className: PropTypes.string,
+  id: PropTypes.string.isRequired,
 };
 
 export default Input;

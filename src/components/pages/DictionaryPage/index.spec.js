@@ -6,6 +6,8 @@ import words from "../../../words/words";
 import DictionaryPage from "./index";
 
 describe("DictionaryPage", () => {
+  const user = userEvent.setup();
+
   it("allows to see the words", () => {
     render(<DictionaryPage />);
     words.forEach(([originalWord, translations]) => {
@@ -17,9 +19,9 @@ describe("DictionaryPage", () => {
   });
 
   describe("allows user to search the word", () => {
-    it("allows to search by the original word", () => {
+    it("allows to search by the original word", async () => {
       render(<DictionaryPage />);
-      userEvent.type(screen.getByRole("textbox"), "app");
+      await user.type(screen.getByRole("textbox"), "app");
 
       expect(
         screen.getByText((content, node) => {
@@ -34,9 +36,9 @@ describe("DictionaryPage", () => {
       ).toBeInTheDocument();
     });
 
-    it("allows to search by word translation", () => {
+    it("allows to search by word translation", async () => {
       render(<DictionaryPage />);
-      userEvent.type(screen.getByRole("textbox"), "ябл");
+      await user.type(screen.getByRole("textbox"), "ябл");
 
       expect(
         screen.getByText((content, node) => {
@@ -51,10 +53,10 @@ describe("DictionaryPage", () => {
       ).toBeInTheDocument();
     });
 
-    it("allows to searc a word ignoring case", () => {
+    it("allows to searc a word ignoring case", async () => {
       render(<DictionaryPage />);
 
-      userEvent.type(screen.getByRole("textbox"), "ЯбЛ");
+      await user.type(screen.getByRole("textbox"), "ЯбЛ");
       expect(
         screen.getByText((content, node) => {
           const hasText = (node) => node.textContent === "яблоко";
@@ -69,9 +71,9 @@ describe("DictionaryPage", () => {
     });
   });
 
-  it("does not show words other than input", () => {
+  it("does not show words other than input", async () => {
     render(<DictionaryPage />);
-    userEvent.type(screen.getByRole("textbox"), "start");
+    await user.type(screen.getByRole("textbox"), "start");
 
     const showingItems = screen.queryAllByText((content, node) => {
       const hasText = (node) => node.textContent === "start";

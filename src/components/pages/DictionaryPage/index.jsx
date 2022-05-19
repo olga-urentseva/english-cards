@@ -1,15 +1,13 @@
 import React, { useMemo, useState } from "react";
-import { Redirect } from "react-router";
+import { Navigate } from "react-router-dom";
 
 import Container from "../../atoms/Container";
 import CentralContainer from "../../atoms/CentralContainer";
 import Layout from "../../templates/Layout";
 import SwitchButton from "../../atoms/SwitchButton";
-import Input, { INPUT_TYPES } from "../../atoms/Input";
+import Input from "../../atoms/Input";
 import DictionaryItem from "../../atoms/DictionaryItem";
 import { useAuthContext } from "../../contexts/AuthContext";
-
-import words from "../../../words/words";
 
 import classes from "./style.css";
 import Dictionary from "../../../core/dictionary";
@@ -52,7 +50,7 @@ const DictionaryPage = () => {
   };
 
   if (!authContextValue.isAuth) {
-    return <Redirect to="/" />;
+    return <Navigate to="/" />;
   }
 
   return (
@@ -80,7 +78,7 @@ const DictionaryPage = () => {
                 id="dictionary-search"
                 placeholder="Поиск слова"
                 className={classes.DictionaryInputSearchInput}
-                type={INPUT_TYPES.TEXT}
+                type="text"
                 maxLength="17"
                 value={inputValue}
                 onChange={handleInputChange}

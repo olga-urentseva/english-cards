@@ -4,4 +4,5 @@ module.exports = {
     "\\.css$": "identity-obj-proxy",
     "\\.svg$": "<rootDir>/src/__mocks__/fileMock.js",
   },
+  testEnvironment: "jsdom",
 };

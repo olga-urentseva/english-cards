@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import Container from "../../atoms/Container";
 import { useAuthContext } from "../../contexts/AuthContext";
 import GameBlock from "../../organisms/GameBlock";
@@ -9,7 +9,7 @@ const GamePage = () => {
   const authContextValue = useAuthContext();
 
   if (!authContextValue.isAuth) {
-    return <Redirect to="/" />;
+    return <Navigate to="/" />;
   }
   return (
     <Layout>

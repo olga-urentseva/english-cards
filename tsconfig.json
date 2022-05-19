@@ -4,7 +4,8 @@
     "noImplicitAny": true,
     "noEmit": true,
     "noUncheckedIndexedAccess": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "moduleResolution": "node"
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
