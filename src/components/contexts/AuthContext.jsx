@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import GameSaveManager from "../../core/gameSaveManager";
 
 export const Context = React.createContext(null);
@@ -9,7 +9,7 @@ const AuthContext = ({ children }) => {
     () => window.localStorage.getItem("userName") || null
   );
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const gameSaveManagerRef = useRef(null);
   if (!gameSaveManagerRef.current) {
@@ -20,7 +20,7 @@ const AuthContext = ({ children }) => {
   function logOut() {
     setUserName(null);
     gameSaveManager.removeSave();
-    history.push("/");
+    navigate("/");
   }
 
   useEffect(() => {

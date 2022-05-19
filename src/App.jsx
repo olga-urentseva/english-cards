@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import AuthContext from "./components/contexts/AuthContext";
 import ThemeContext from "./components/contexts/ThemeContext";
 import MainPage from "./components/pages/MainPage";
@@ -11,10 +11,12 @@ const App = () => {
   return (
     <ThemeContext>
       <AuthContext>
-        <Route path="/" exact component={MainPage} />
-        <Route path="/game" exact component={GamePage} />
-        <Route path="/dictionary" exact component={DictionaryPage} />
-        <Route path="/about" exact component={AboutPage} />
+        <Routes>
+          <Route path="/" exact element={<MainPage />} />
+          <Route path="/game" exact element={<GamePage />} />
+          <Route path="/dictionary" exact element={<DictionaryPage />} />
+          <Route path="/about" exact element={<AboutPage />} />
+        </Routes>
       </AuthContext>
     </ThemeContext>
   );

@@ -13,6 +13,7 @@ export default class GameSaveManager {
   }
 
   load() {
+    console.log(this.store);
     const gameState = this.store.getItem("gameState");
 
     return new Game(gameState ? JSON.parse(gameState) : null);

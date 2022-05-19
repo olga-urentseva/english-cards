@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Button, { BUTTON_TYPES } from "../../atoms/Button";
 import Container from "../../atoms/Container";
-import Input, { INPUT_TYPES } from "../../atoms/Input";
+import Input from "../../atoms/Input";
 import CentralContainer from "../../atoms/CentralContainer";
 import { useAuthContext } from "../../contexts/AuthContext";
 import Layout from "../../templates/Layout";
@@ -15,12 +15,12 @@ const MainPage = () => {
   const authContextValue = useAuthContext();
   const [inputValue, setInputValue] = useState("");
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   function submitForm(e) {
     e.preventDefault();
     authContextValue.login(inputValue);
-    history.push("/game");
+    navigate("/game");
   }
 
   function handleChange(e) {
@@ -41,7 +41,8 @@ const MainPage = () => {
             </h2>
             <form onSubmit={submitForm} className={classes.FormWrapper}>
               <Input
-                type={INPUT_TYPES.TEXT}
+                id="name"
+                type="text"
                 placeholder="Имя"
                 className={classes.FormInput}
                 onChange={handleChange}

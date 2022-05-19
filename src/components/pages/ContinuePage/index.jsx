@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Layout from "../../templates/Layout";
 import Container from "../../atoms/Container";
@@ -11,7 +11,7 @@ import CentralContainer from "../../atoms/CentralContainer";
 
 const ContinuePage = () => {
   const authContextValue = useAuthContext();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <Layout>
@@ -28,7 +28,7 @@ const ContinuePage = () => {
                 className={classes.ContinuePageButton}
                 btntype={BUTTON_TYPES.SUCCESS}
                 onClick={() => {
-                  history.push("/game");
+                  navigate("/game");
                 }}
               >
                 Продолжить

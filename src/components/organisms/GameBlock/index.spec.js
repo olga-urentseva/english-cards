@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, act } from "@testing-library/react";
+import { render, screen, act, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import Game from "../../../core/game";
@@ -13,16 +13,20 @@ jest.useFakeTimers();
 
 describe("GameBlock", () => {
   const mockedWords = [["test", ["тест"]]];
-  const dictionary = new Dictionary(null, mockedWords);
-  const game = new Game({ score: 99, wordsWeightList: [1] }, dictionary);
-
-  jest.spyOn(game, "answer");
-  jest.spyOn(game, "skip");
-  jest.spyOn(game, "getRandomWord");
-  GameSaveManager.prototype.load.mockImplementation(() => game);
-  const a = new GameSaveManager();
+  let dictionary;
+  let game;
+  let user;
 
   beforeEach(() => {
+    user = userEvent.setup({
+      advanceTimers: jest.advanceTimersByTime,
+    });
+    dictionary = new Dictionary(null, mockedWords);
+    game = new Game({ score: 99, wordsWeightList: [1] }, dictionary);
+    jest.spyOn(game, "answer");
+    jest.spyOn(game, "skip");
+    jest.spyOn(game, "getRandomWord");
+    GameSaveManager.prototype.load.mockImplementation(() => game);
     game.answer.mockClear();
     game.skip.mockClear();
     game.getRandomWord.mockClear();
@@ -30,7 +34,6 @@ describe("GameBlock", () => {
 
   it("shows the score", () => {
     render(<GameBlock />);
-
     expect(screen.queryByText("99")).toBeInTheDocument();
   });
 
@@ -48,7 +51,6 @@ describe("GameBlock", () => {
     beforeEach(() => {
       render(<GameBlock />);
       game.getRandomWord.mockClear();
-
       game.getRandomWord.mockImplementationOnce(() => {
         newWord = new Word("demo", ["демо"]);
         return newWord;
@@ -56,13 +58,13 @@ describe("GameBlock", () => {
     });
 
     describe("correctly", () => {
+      dictionary = new Dictionary(null, mockedWords);
       const expectedWord = dictionary.getAllWords()[0];
-      beforeEach(() => {
-        userEvent.type(screen.getByRole("textbox"), correctUserAnswer);
-        userEvent.click(screen.getByRole("button", { name: /проверить/i }));
-      });
 
-      it("handles correct answer", () => {
+      it("handles correct answer", async () => {
+        await user.type(screen.getByRole("textbox"), correctUserAnswer);
+        fireEvent.click(screen.getByRole("button", { name: /проверить/i }));
+
         expect(game.answer).toHaveBeenCalledWith(
           expectedWord,
           correctUserAnswer
@@ -76,12 +78,11 @@ describe("GameBlock", () => {
 
     describe("incorrectly", () => {
       const expectedWord = dictionary.getAllWords()[0];
-      beforeEach(() => {
-        userEvent.type(screen.getByRole("textbox"), incorrectUserAnswer);
-        userEvent.click(screen.getByRole("button", { name: /проверить/i }));
-      });
 
-      it("handles incorrect answer", () => {
+      it("handles incorrect answer", async () => {
+        await user.type(screen.getByRole("textbox"), incorrectUserAnswer);
+        await user.click(screen.getByRole("button", { name: /проверить/i }));
+
         expect(game.answer).toHaveBeenCalledWith(
           expectedWord,
           incorrectUserAnswer
@@ -107,14 +108,14 @@ describe("GameBlock", () => {
   });
 
   describe("when user skip", () => {
-    beforeEach(() => {
+    beforeEach(async () => {
       render(<GameBlock />);
       game.getRandomWord.mockClear();
 
-      userEvent.click(screen.getByRole("button", { name: /не знаю/i }));
+      await user.click(screen.getByRole("button", { name: /не знаю/i }));
     });
 
-    it("handles skip", () => {
+    it("handles skip", async () => {
       expect(game.skip).toHaveBeenCalled();
       expect(screen.getByText(/тест/i)).toBeInTheDocument();
 
