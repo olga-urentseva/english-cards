@@ -3,7 +3,12 @@ import classNames from "classnames";
 
 import classes from "./style.css";
 
-const Backdrop = ({ close, isShown }) => {
+type BackdropProps = {
+  close: (e: React.MouseEvent) => void;
+  isShown: boolean;
+};
+
+const Backdrop = ({ close, isShown }: BackdropProps) => {
   return (
     <div
       className={classNames(classes.Backdrop, {

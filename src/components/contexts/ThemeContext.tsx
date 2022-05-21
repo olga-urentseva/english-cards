@@ -1,26 +1,35 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { ReactElement, useContext, useEffect, useState } from "react";
 import * as themes from "../../constants/themes";
 
-export const Context = React.createContext(null);
+type Theme = typeof themes[keyof typeof themes];
+type ThemeName = typeof ThemeNames[keyof typeof ThemeNames];
 
-export const Themes = {
-  LIGHT: "light",
-  DARK: "dark",
+type ContextType = {
+  theme: Theme;
+  themeName: ThemeName;
+  setTheme: (themeName: ThemeName) => void;
 };
 
-function setCSSVariables(theme) {
+export const Context = React.createContext<ContextType>(null);
+
+export const ThemeNames = {
+  LIGHT: "light",
+  DARK: "dark",
+} as const;
+
+function setCSSVariables(theme: Theme) {
   Object.entries(theme).forEach(([name, value]) => {
     document.documentElement.style.setProperty(`--${name}`, value);
   });
 }
 
-const initialThemeName = window.localStorage.getItem("theme");
+const initialThemeName = window.localStorage.getItem("theme") as ThemeName;
 
-setCSSVariables(themes[initialThemeName || "light"]);
+setCSSVariables(themes[initialThemeName || ThemeNames.LIGHT]);
 
-const ThemeContext = ({ children }) => {
+const ThemeContext = ({ children }: { children: ReactElement }) => {
   const [themeName, setTheme] = useState(
-    () => initialThemeName || Themes.LIGHT
+    () => initialThemeName || ThemeNames.LIGHT
   );
   const theme = themes[themeName];
 
@@ -36,7 +45,7 @@ const ThemeContext = ({ children }) => {
   );
 };
 
-ThemeContext.Themes = Themes;
+ThemeContext.Themes = ThemeNames;
 
 export function useTheme() {
   const contextValue = useContext(Context);

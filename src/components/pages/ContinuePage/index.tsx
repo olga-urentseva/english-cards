@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import Layout from "../../templates/Layout";
 import Container from "../../atoms/Container";
-import Button, { BUTTON_TYPES } from "../../atoms/Button";
+import Button from "../../atoms/Button";
 import { useAuthContext } from "../../contexts/AuthContext";
 
 import classes from "./style.css";
@@ -26,7 +26,7 @@ const ContinuePage = () => {
             <div className={classes.ButtonsWrapper}>
               <Button
                 className={classes.ContinuePageButton}
-                btntype={BUTTON_TYPES.SUCCESS}
+                btntype="success"
                 onClick={() => {
                   navigate("/game");
                 }}
@@ -35,7 +35,7 @@ const ContinuePage = () => {
               </Button>
               <Button
                 className={classes.ContinuePageButton}
-                btntype={BUTTON_TYPES.DEFAULT}
+                btntype="default"
                 onClick={() => {
                   authContextValue.logOut();
                 }}

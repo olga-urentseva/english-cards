@@ -9,4 +9,4 @@ export default {
   "color-text-button": "#FFFFFF",
   "color-input-text": "#ACAFB8",
   "color-border": "#525252",
-};
+} as const;

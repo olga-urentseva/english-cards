@@ -4,7 +4,9 @@ import classNames from "classnames";
 
 import classes from "./style.css";
 
-const Input = ({ className, id, ...rest }) => {
+type Props = JSX.IntrinsicElements["input"];
+
+const Input = ({ className, id, ...rest }: Props) => {
   return (
     <>
       <label htmlFor={id} />

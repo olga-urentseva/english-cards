@@ -1,8 +1,8 @@
-import React from "react";
+import React, { ReactElement } from "react";
 
 import classes from "./style.css";
 
-const Container = ({ children }) => {
+const Container = ({ children }: { children: ReactElement }) => {
   return <div className={classes.Container}>{children}</div>;
 };
 

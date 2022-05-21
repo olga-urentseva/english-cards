@@ -8,14 +8,14 @@ import classes from "./style.css";
 import logoDark from "./logoDark.svg";
 import logoLight from "./logoLight.svg";
 
-import { useTheme, Themes } from "../../contexts/ThemeContext";
+import { useTheme, ThemeNames } from "../../contexts/ThemeContext";
 
 const logoByTheme = {
-  [Themes.LIGHT]: logoDark,
-  [Themes.DARK]: logoLight,
+  [ThemeNames.LIGHT]: logoDark,
+  [ThemeNames.DARK]: logoLight,
 };
 
-const Logo = ({ type }) => {
+const Logo = ({ type }: { type: "small" | "big" }) => {
   const { themeName } = useTheme();
 
   const classType = `Logo--${type}`;

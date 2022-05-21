@@ -5,8 +5,10 @@
     "noEmit": true,
     "noUncheckedIndexedAccess": true,
     "experimentalDecorators": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "src/declarations.d.ts"],
   "exclude": ["node_modules"]
 }

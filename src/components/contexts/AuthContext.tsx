@@ -1,10 +1,16 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useState,
+  useRef,
+  ReactElement,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import GameSaveManager from "../../core/gameSaveManager";
 
 export const Context = React.createContext(null);
 
-const AuthContext = ({ children }) => {
+const AuthContext = ({ children }: { children: ReactElement }) => {
   const [userName, setUserName] = useState(
     () => window.localStorage.getItem("userName") || null
   );

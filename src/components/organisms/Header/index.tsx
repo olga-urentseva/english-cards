@@ -18,8 +18,8 @@ const Header = () => {
   const [isModalShown, setIsModalShown] = useState(false);
 
   useEffect(() => {
-    function handleEscape(e) {
-      if (e.keyCode === 27) {
+    function handleEscape(e: KeyboardEvent) {
+      if (e.key === "Esc") {
         setIsModalShown(false);
       }
     }
@@ -43,7 +43,7 @@ const Header = () => {
           <div className={classes.HeaderWrapper}>
             <div className={classes.LogoBlock}>
               <Link to="/">
-                <Logo type={Logo.LOGO_TYPES.BIG} />
+                <Logo type="big" />
               </Link>
             </div>
             <div className={classes.ServiceBlock}>

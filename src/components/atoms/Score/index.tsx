@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./style.css";
 
-const Score = ({ score }) => {
+const Score = ({ score }: { score: number }) => {
   return (
     <div className={classes.ScoreWrapper}>
       <span className={classes.ScoreText}>

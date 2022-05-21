@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 
 import GameSaveManager from "../../../core/gameSaveManager";
 
-import Button, { BUTTON_TYPES } from "../../atoms/Button";
+import Button from "../../atoms/Button";
 import Input from "../../atoms/Input";
 import Score from "../../atoms/Score";
 import WordCard from "./WordCard";
@@ -13,7 +13,7 @@ import classes from "./style.css";
 const GameBlock = () => {
   const [inputValue, setInputValue] = useState("");
 
-  const gameSaveManagerRef = useRef(null);
+  const gameSaveManagerRef = useRef<GameSaveManager>(null);
   if (!gameSaveManagerRef.current) {
     gameSaveManagerRef.current = new GameSaveManager();
   }
@@ -39,7 +39,7 @@ const GameBlock = () => {
     }, 4000);
   }
 
-  function submitAnswer(e) {
+  function submitAnswer(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const isCorrect = game.answer(currentWord, inputValue);
     gameSaveManager.save(game);
@@ -51,7 +51,7 @@ const GameBlock = () => {
     }
   }
 
-  function handleChange(e) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setInputValue(e.target.value);
   }
 
@@ -84,12 +84,12 @@ const GameBlock = () => {
             onChange={handleChange}
             value={inputValue}
             required
-            maxLength="15"
+            maxLength={15}
             disabled={isShowTranslation || !currentWord}
           />
           <Button
             type="submit"
-            btntype={BUTTON_TYPES.SUCCESS}
+            btntype="success"
             className={classes.GameBtn}
             disabled={isShowTranslation || !currentWord}
           >
@@ -97,12 +97,12 @@ const GameBlock = () => {
           </Button>
         </form>
         <Button
-          btntype={BUTTON_TYPES.ERROR}
+          btntype="error"
           className={classes.GameBtn}
           onClick={handleSkip}
           disabled={isShowTranslation || !currentWord}
         >
-          Не знаю :(
+          {"Не знаю :("}
         </Button>
       </div>
     </CentralContainer>

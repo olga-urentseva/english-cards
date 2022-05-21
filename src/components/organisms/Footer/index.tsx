@@ -25,7 +25,7 @@ const Footer = () => {
           </div>
 
           <span className={classes.FooterAuthorTitle}>
-            English Cards by Olga Urentseva — 2021
+            English Cards by Olga Urentseva — 2022
           </span>
         </div>
       </Container>

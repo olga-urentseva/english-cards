@@ -1,8 +1,13 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import classes from "./style.css";
 import classNames from "classnames";
 
-const LogOutButton = ({ onClick, className }) => {
+type LogOutButtonProps = {
+  onClick: MouseEventHandler<HTMLButtonElement>;
+  className: string;
+};
+
+const LogOutButton = ({ onClick, className }: LogOutButtonProps) => {
   return (
     <button
       className={classNames(classes.LogOutButton, className)}

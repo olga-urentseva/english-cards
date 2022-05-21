@@ -20,7 +20,7 @@ const DictionaryPage = () => {
   const [inputValue, setInputValue] = useState("");
   const [isAllWordsDictionary, setIsAllWordsDictionary] = useState(true);
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
@@ -79,7 +79,7 @@ const DictionaryPage = () => {
                 placeholder="Поиск слова"
                 className={classes.DictionaryInputSearchInput}
                 type="text"
-                maxLength="17"
+                maxLength={17}
                 value={inputValue}
                 onChange={handleInputChange}
               />

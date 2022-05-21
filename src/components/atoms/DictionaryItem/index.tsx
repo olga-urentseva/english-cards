@@ -4,7 +4,17 @@ import PropTypes from "prop-types";
 import classes from "./style.css";
 import classNames from "classnames";
 
-const DictionaryItem = ({ originalWord, translations, accentSymbols }) => {
+type DictionaryItemProps = {
+  originalWord: string;
+  translations: string[];
+  accentSymbols: string;
+};
+
+const DictionaryItem = ({
+  originalWord,
+  translations,
+  accentSymbols,
+}: DictionaryItemProps) => {
   return (
     <div className={classes.DictionaryItem}>
       <h3 className={classNames(classes.DictionaryItemOriginalWord)}>

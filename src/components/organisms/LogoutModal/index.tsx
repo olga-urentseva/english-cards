@@ -1,11 +1,11 @@
 import React from "react";
-import Modal from "../../atoms/Modal";
-import Button, { BUTTON_TYPES } from "../../atoms/Button";
+import Modal, { ModalProps } from "../../atoms/Modal";
+import Button from "../../atoms/Button";
 
 import classes from "./style.css";
 import { useAuthContext } from "../../contexts/AuthContext";
 
-const LogoutModal = ({ close, isShown }) => {
+const LogoutModal = ({ close, isShown }: ModalProps) => {
   const authContextValue = useAuthContext();
 
   function logoutHandle() {
@@ -19,13 +19,13 @@ const LogoutModal = ({ close, isShown }) => {
         <Button
           onClick={logoutHandle}
           className={classes.ContinueModalBtn}
-          btntype={BUTTON_TYPES.SUCCESS}
+          btntype="success"
         >
           Да
         </Button>
         <Button
           className={classes.ContinueModalBtn}
-          btntype={BUTTON_TYPES.ERROR}
+          btntype="error"
           onClick={close}
         >
           Нет

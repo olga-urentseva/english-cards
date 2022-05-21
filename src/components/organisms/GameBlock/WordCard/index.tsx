@@ -2,7 +2,19 @@ import React from "react";
 import classes from "./style.css";
 import classNames from "classnames";
 
-const WordCard = ({ word, translations, isShowTranslation, className }) => {
+type WordCardProps = {
+  word: string;
+  translations: string[];
+  isShowTranslation: boolean;
+  className: string;
+};
+
+const WordCard = ({
+  word,
+  translations,
+  isShowTranslation,
+  className,
+}: WordCardProps) => {
   return (
     <div className={classNames(className, classes.WordCard)}>
       <h1 className={classes.WordCardText}>{word}</h1>

@@ -1,10 +1,16 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import Backdrop from "../Backdrop";
 import classes from "./style.css";
 
 import classNames from "classnames";
 
-const Modal = ({ heading, children, close, isShown, ...otherProps }) => {
+export type ModalProps = {
+  children?: ReactElement | ReactElement[];
+  close: (e: React.MouseEvent) => void;
+  isShown: boolean;
+};
+
+const Modal = ({ children, close, isShown, ...otherProps }: ModalProps) => {
   return (
     <>
       <Backdrop close={close} isShown={isShown} />

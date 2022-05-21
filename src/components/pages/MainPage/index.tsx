@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Button, { BUTTON_TYPES } from "../../atoms/Button";
+import Button from "../../atoms/Button";
 import Container from "../../atoms/Container";
 import Input from "../../atoms/Input";
 import CentralContainer from "../../atoms/CentralContainer";
@@ -17,13 +17,13 @@ const MainPage = () => {
 
   const navigate = useNavigate();
 
-  function submitForm(e) {
+  function submitForm(e: React.FormEvent) {
     e.preventDefault();
     authContextValue.login(inputValue);
     navigate("/game");
   }
 
-  function handleChange(e) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
     setInputValue(e.target.value);
   }
 
@@ -47,11 +47,11 @@ const MainPage = () => {
                 className={classes.FormInput}
                 onChange={handleChange}
                 value={inputValue}
-                maxLength="15"
+                maxLength={15}
               />
               <Button
                 type="submit"
-                btntype={BUTTON_TYPES.SUCCESS}
+                btntype="success"
                 className={classes.FormButton}
               >
                 Начать!
