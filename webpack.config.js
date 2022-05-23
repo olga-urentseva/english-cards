@@ -8,14 +8,14 @@ module.exports = {
   mode: "development",
 
   entry: {
-    main: "./index.jsx",
+    main: "./index.tsx",
   },
   output: {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, "dist"),
   },
   resolve: {
-    extensions: [".mjs", ".js", ".jsx", ".json", ".ts"],
+    extensions: [".mjs", ".js", ".jsx", ".json", ".ts", ".tsx"],
   },
 
   plugins: [
