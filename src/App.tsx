@@ -12,10 +12,10 @@ const App = () => {
     <ThemeContext>
       <AuthContext>
         <Routes>
-          <Route path="/" exact element={<MainPage />} />
-          <Route path="/game" exact element={<GamePage />} />
-          <Route path="/dictionary" exact element={<DictionaryPage />} />
-          <Route path="/about" exact element={<AboutPage />} />
+          <Route path="/" element={<MainPage />} />
+          <Route path="/game" element={<GamePage />} />
+          <Route path="/dictionary" element={<DictionaryPage />} />
+          <Route path="/about" element={<AboutPage />} />
         </Routes>
       </AuthContext>
     </ThemeContext>

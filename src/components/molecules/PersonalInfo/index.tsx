@@ -3,7 +3,17 @@ import classNames from "classnames";
 
 import classes from "./style.css";
 
-const PersonalInfo = ({ userName, userScore, className }) => {
+type PersonalInfoProps = {
+  userName: string | number;
+  userScore: number;
+  className: string;
+};
+
+const PersonalInfo = ({
+  userName,
+  userScore,
+  className,
+}: PersonalInfoProps) => {
   return (
     <div className={classNames(classes.PersonalCardWrapper, className)}>
       <h3 className={classes.PersonalText}>{userName}, твой счёт:</h3>

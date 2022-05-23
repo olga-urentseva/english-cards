@@ -4,7 +4,7 @@ import SearchIcon from "./SearchIcon";
 
 import classes from "./style.css";
 
-const SearchButton = ({ type, className }) => {
+const SearchButton = ({ type, className }: JSX.IntrinsicElements["button"]) => {
   return (
     <button
       type={type}

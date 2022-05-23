@@ -7,7 +7,7 @@ import classNames from "classnames";
 export type ModalProps = {
   children?: ReactElement | ReactElement[];
   close: (e: React.MouseEvent) => void;
-  isShown: boolean;
+  isShown?: boolean;
 };
 
 const Modal = ({ children, close, isShown, ...otherProps }: ModalProps) => {
