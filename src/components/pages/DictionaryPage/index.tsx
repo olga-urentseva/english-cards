@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useRef } from "react";
 import { Navigate } from "react-router-dom";
 
 import Container from "../../atoms/Container";
@@ -13,7 +13,13 @@ import classes from "./style.css";
 import Dictionary from "../../../core/dictionary";
 
 const DictionaryPage = () => {
-  const dictionary = new Dictionary();
+  const dictionaryRef = useRef<Dictionary>(null);
+
+  if (!dictionaryRef.current) {
+    dictionaryRef.current = new Dictionary();
+  }
+
+  const dictionary = dictionaryRef.current;
 
   const authContextValue = useAuthContext();
 
