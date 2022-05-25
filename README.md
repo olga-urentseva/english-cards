@@ -1,1 +1,1 @@
-English card is an app for studying English
+English card is an app for studying English 📝
