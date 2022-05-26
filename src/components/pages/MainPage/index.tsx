@@ -20,7 +20,7 @@ const MainPage = () => {
   function submitForm(e: React.FormEvent) {
     e.preventDefault();
     authContextValue.login(inputValue);
-    navigate("/game");
+    navigate("/languages");
   }
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {

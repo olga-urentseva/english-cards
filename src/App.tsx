@@ -6,6 +6,7 @@ import MainPage from "./components/pages/MainPage";
 import GamePage from "./components/pages/GamePage";
 import DictionaryPage from "./components/pages/DictionaryPage";
 import AboutPage from "./components/pages/AboutPage";
+import LanguageSelectionPage from "./components/pages/LanguageSelectionPage";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/game" element={<GamePage />} />
           <Route path="/dictionary" element={<DictionaryPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/languages" element={<LanguageSelectionPage />} />
         </Routes>
       </AuthContext>
     </ThemeContext>

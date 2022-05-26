@@ -1,0 +1,11 @@
+.ButtonsWrapper {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+}
+
+.FormElementsWrapper {
+  display: flex;
+  gap: 1em;
+  flex-wrap: wrap;
+}

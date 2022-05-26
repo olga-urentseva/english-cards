@@ -10,7 +10,7 @@ type ButtonProps = {
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   btntype: "default" | "error" | "success";
   type?: "submit";
-  className: "string";
+  className?: "string";
   disabled?: boolean;
 };
 
