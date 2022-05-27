@@ -56,7 +56,7 @@ const LanguageSelectionPage = () => {
                   type="file"
                   accept="application/JSON"
                   id="file"
-                  labelText="Мы распознаём только JSON в формате ['word', ['слово', 'словечко' ]]"
+                  labelText="Мы распознаём только JSON в формате [['word', ['слово', 'словечко' ]]]"
                   onChange={handleUploadFile}
                 />
                 <Button
