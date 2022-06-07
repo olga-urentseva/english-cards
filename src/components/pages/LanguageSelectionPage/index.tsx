@@ -1,21 +1,23 @@
 import * as React from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import Layout from "../../templates/Layout";
 import Container from "../../atoms/Container";
 import Button from "../../atoms/Button";
+import Modal from "../../atoms/Modal";
+import Input from "../../atoms/Input";
 import CentralContainer from "../../atoms/CentralContainer";
 
 import { useAuthContext } from "../../contexts/AuthContext";
-import { Navigate, useNavigate } from "react-router-dom";
+
+import UserDictionaryParser from "../../../core/UserDictionaryParser";
 
 import classes from "./style.css";
-import Modal from "../../atoms/Modal";
-import Input from "../../atoms/Input";
 
 const LanguageSelectionPage = () => {
   const authContextValue = useAuthContext();
   const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const [selectedFile, setSelectedFile] = React.useState<string | File>("");
+  const [isFileValid, setIsFileValid] = React.useState<boolean>(null);
 
   const navigate = useNavigate();
 
@@ -28,9 +30,22 @@ const LanguageSelectionPage = () => {
     setIsModalOpen(true);
   };
 
-  const handleUploadFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedFile(e.target.files[0]);
-    console.log(e.target.files[0]);
+  const handleUploadFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      console.log(e.target.files[0]);
+      const parser = new UserDictionaryParser(e.target.files[0]);
+      const dictionary = await parser.getDictionary();
+      dictionary.saveToBD();
+      setIsFileValid(true);
+    } catch (err) {
+      console.log(err);
+
+      setIsFileValid(false);
+    }
+  };
+
+  const startGameWithPersonalWords = () => {
+    navigate("/game");
   };
 
   if (!authContextValue.isAuth) {
@@ -46,11 +61,12 @@ const LanguageSelectionPage = () => {
               setIsModalOpen(false);
             }}
           >
-            <form
-              onSubmit={() => {
-                console.log("lala");
-              }}
-            >
+            {isFileValid === false && (
+              <p className={classes.ErrorMessage}>
+                Файл не соотстветсвует ожиданиям
+              </p>
+            )}
+            <form onSubmit={startGameWithPersonalWords}>
               <div className={classes.FormElementsWrapper}>
                 <Input
                   type="file"
@@ -59,13 +75,15 @@ const LanguageSelectionPage = () => {
                   labelText="Мы распознаём только JSON в формате [['word', ['слово', 'словечко' ]]]"
                   onChange={handleUploadFile}
                 />
-                <Button
-                  type="submit"
-                  btntype="success"
-                  disabled={!selectedFile}
-                >
-                  Изучать слова
-                </Button>
+                {isFileValid === true ? (
+                  <Button
+                    type="submit"
+                    btntype="success"
+                    disabled={!isFileValid}
+                  >
+                    Изучать слова
+                  </Button>
+                ) : null}
               </div>
             </form>
           </Modal>

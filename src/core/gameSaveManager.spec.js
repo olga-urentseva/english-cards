@@ -20,7 +20,7 @@ describe("GameSaveManager", () => {
   beforeEach(() => {
     dictionary = new Dictionary(localStorage, [word]);
     game = new Game(mockedState, dictionary);
-    gameSaver = new GameSaveManager(localStorage, dictionary);
+    gameSaver = new GameSaveManager(localStorage);
   });
   describe(".save", () => {
     it("saves game", () => {

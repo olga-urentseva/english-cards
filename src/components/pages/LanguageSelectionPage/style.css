@@ -9,3 +9,7 @@
   gap: 1em;
   flex-wrap: wrap;
 }
+
+.ErrorMessage {
+  color: var(--color-accent--error);
+}

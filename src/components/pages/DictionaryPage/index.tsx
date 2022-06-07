@@ -27,6 +27,7 @@ const DictionaryPage = () => {
   const [isAllWordsDictionary, setIsAllWordsDictionary] = useState(true);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     setInputValue(e.target.value);
   };
 
