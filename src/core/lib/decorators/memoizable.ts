@@ -4,10 +4,10 @@ function memoizable(
   descriptor: PropertyDescriptor
 ) {
   const originalMethod = descriptor.value;
-  let memoizedValue;
+  const sym = Symbol();
 
   descriptor.value = function (...args: any[]) {
-    return (memoizedValue ||= originalMethod.apply(this, args));
+    return (this[sym] ||= originalMethod.apply(this, args));
   };
 }
 

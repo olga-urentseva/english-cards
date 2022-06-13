@@ -32,14 +32,12 @@ const LanguageSelectionPage = () => {
 
   const handleUploadFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     try {
-      console.log(e.target.files[0]);
       const parser = new UserDictionaryParser(e.target.files[0]);
       const dictionary = await parser.getDictionary();
       dictionary.saveToBD();
       setIsFileValid(true);
     } catch (err) {
       console.log(err);
-
       setIsFileValid(false);
     }
   };

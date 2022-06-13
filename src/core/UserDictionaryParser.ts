@@ -39,15 +39,12 @@ class UserDictionaryParser {
       const reader = new FileReader();
 
       reader.addEventListener("load", (event) => {
-        console.log("gh");
-
         resolve(event.target.result as string);
       });
 
       reader.addEventListener("error", () => {
         reject();
       });
-      console.log(this.file);
 
       reader.readAsText(this.file);
     });

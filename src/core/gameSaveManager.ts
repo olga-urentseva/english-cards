@@ -1,4 +1,6 @@
 import Game from "./game";
+import GameState from "./GameState";
+import Dictionary from "./dictionary";
 
 export default class GameSaveManager {
   private store: Storage = window.localStorage;
@@ -8,16 +10,19 @@ export default class GameSaveManager {
   }
 
   save(game: Game) {
-    this.store.setItem("gameState", JSON.stringify(game.getState()));
+    this.store.setItem("gameState", game.state.toString());
   }
 
   load() {
-    const gameState = this.store.getItem("gameState");
-    return new Game(gameState ? JSON.parse(gameState) : null);
+    const dictionary = new Dictionary();
+    const gameState = GameState.fromString(
+      this.store.getItem("gameState"),
+      dictionary
+    );
+    return new Game(gameState, dictionary);
   }
 
   removeSave() {
-    // fix this
     this.store.removeItem("userWords");
     this.store.removeItem("gameState");
   }
