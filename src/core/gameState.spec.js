@@ -15,7 +15,7 @@ describe(".GameState", () => {
       expect(
         answer.includes(mockedScore + "") &&
           answer.includes(mockedWordsWeightList + "")
-      );
+      ).toBeTruthy();
     });
   });
 
