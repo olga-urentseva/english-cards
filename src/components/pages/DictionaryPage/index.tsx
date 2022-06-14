@@ -33,8 +33,6 @@ const DictionaryPage = () => {
     setInputValue(e.target.value);
   };
 
-  // console.log(window.localStorage.getItem("gameState"));
-
   const searchWord = (inputValue: string, isAllWords: boolean) => {
     const searchebleWords = isAllWords
       ? dictionary.getAllWords()

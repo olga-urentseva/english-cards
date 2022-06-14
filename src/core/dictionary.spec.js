@@ -1,5 +1,6 @@
 import Dictionary from "./dictionary";
 import Word from "./word";
+import GameState from "./GameState";
 
 describe("Dictionary", () => {
   const mockedStoredWords = [
@@ -35,23 +36,30 @@ describe("Dictionary", () => {
     it("returns an empty array if there are no unknown words", () => {
       localStorage.getItem.mockReturnValue(null);
       const dictionary = new Dictionary(localStorage, mockedStoredWords);
-      expect(dictionary.getUnknownWords()).toEqual([]);
+      const gameState = new GameState(0, [1, 1]);
+      expect(dictionary.getUnknownWords(gameState)).toEqual([]);
     });
     it("returns unknown word, a word that weight is more than 1", () => {
       localStorage.getItem.mockReturnValue('{ "wordsWeightList": [1, 2] }');
       const dictionary = new Dictionary(localStorage, mockedStoredWords);
-      expect(dictionary.getUnknownWords()).toHaveLength(1);
-    });
-  });
-
-  describe(".searchWord", () => {
-    it("search words", () => {
-      const dictionary = new Dictionary(localStorage, mockedStoredWords);
-      const expectedWord = new Word(
+      const gameState = new GameState(0, [2, 1]);
+      const expectedValue = new Word(
         mockedStoredWords[0][0],
         mockedStoredWords[0][1]
       );
-      expect(dictionary.searchWord("те", true)).toEqual([expectedWord]);
+      expect(dictionary.getUnknownWords(gameState)).toHaveLength(1);
+      expect(dictionary.getUnknownWords(gameState)).toEqual([expectedValue]);
     });
   });
+
+  // describe(".searchWord", () => {
+  //   it("search words", () => {
+  //     const dictionary = new Dictionary(localStorage, mockedStoredWords);
+  //     const expectedWord = new Word(
+  //       mockedStoredWords[0][0],
+  //       mockedStoredWords[0][1]
+  //     );
+  //     expect(dictionary.searchWord("те", true)).toEqual([expectedWord]);
+  //   });
+  // });
 });
