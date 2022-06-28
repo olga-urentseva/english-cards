@@ -1,0 +1,27 @@
+
+.ButtonLink {
+    display: inline-block;
+    border: none;
+    border-radius: 2em;
+    color: var(--color-text-button);
+    padding: 0.5em 2em;
+    font-size: 1.5em;
+    transition: all 0.3s;
+    cursor: pointer;
+    background-color: var(--color-accent--success);
+    box-shadow: 0em 0.2em 0.5em -0.2em var(--color-accent--success);
+    -webkit-box-shadow: 0em 0.2em 0.5em -0.2em var(--color-accent--success);
+    -moz-box-shadow: 0em 0.2em 0.5em -0.2em var(--color-accent--success);
+    text-decoration: none;
+}
+
+.ButtonLink:focus,
+.ButtonLink:active,
+.ButtonLink:hover {
+    filter: brightness(120%);
+}
+
+.ButtonLink:active,
+.ButtonLink:hover {
+    outline: none;
+}

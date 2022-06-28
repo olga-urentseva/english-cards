@@ -13,6 +13,7 @@ import { useAuthContext } from "../../contexts/AuthContext";
 import UserDictionaryParser from "../../../core/UserDictionaryParser";
 
 import classes from "./style.css";
+import ButtonLink from "../../atoms/ButtonLink";
 
 const LanguageSelectionPage = () => {
   const authContextValue = useAuthContext();
@@ -21,10 +22,10 @@ const LanguageSelectionPage = () => {
 
   const navigate = useNavigate();
 
-  const handleOurDictionaryButton = (e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault();
-    navigate("/game");
-  };
+  // const handleOurDictionaryButton = (e: React.MouseEvent<HTMLElement>) => {
+  //   e.preventDefault();
+  //   navigate("/game");
+  // };
 
   const handlePersonalWordsButton = () => {
     setIsModalOpen(true);
@@ -73,15 +74,10 @@ const LanguageSelectionPage = () => {
                   labelText="Мы распознаём только JSON в формате [['word', ['слово', 'словечко' ]]]"
                   onChange={handleUploadFile}
                 />
-                {isFileValid === true ? (
-                  <Button
-                    type="submit"
-                    btntype="success"
-                    disabled={!isFileValid}
-                  >
-                    Изучать слова
-                  </Button>
-                ) : null}
+
+                <Button type="submit" btntype="success" disabled={!isFileValid}>
+                  Изучать слова
+                </Button>
               </div>
             </form>
           </Modal>
@@ -92,12 +88,10 @@ const LanguageSelectionPage = () => {
               из нашего словаря.
             </h4>
             <div className={classes.ButtonsWrapper}>
-              <Button btntype="default" onClick={handlePersonalWordsButton}>
+              <Button btntype="success" onClick={handlePersonalWordsButton}>
                 Cвои слова
               </Button>
-              <Button btntype="default" onClick={handleOurDictionaryButton}>
-                Английские
-              </Button>
+              <ButtonLink href="/game">Английские</ButtonLink>
             </div>
           </div>
         </CentralContainer>

@@ -51,16 +51,7 @@ class UserDictionaryParser {
   }
 
   private async getRawFileContent(): Promise<JSONValue> {
-    const fileContent = await this.readFile();
-    let answer;
-    try {
-      answer = JSON.parse(fileContent);
-    } catch (e) {
-      console.log(e);
-      return;
-    }
-
-    return answer;
+    return JSON.parse(await this.readFile());
   }
 }
 
