@@ -72,7 +72,7 @@ describe("GameBlock", () => {
         expect(game.getRandomWord).toHaveBeenCalled();
         expect(screen.getByText(/demo/i)).toBeInTheDocument();
         expect(screen.queryByText(/демо/i)).not.toBeInTheDocument();
-        expect(screen.getByText(game.score)).toBeInTheDocument();
+        expect(screen.getByText("100")).toBeInTheDocument();
       });
     });
 

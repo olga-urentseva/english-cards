@@ -11,6 +11,8 @@ import { useAuthContext } from "../../contexts/AuthContext";
 
 import classes from "./style.css";
 import Dictionary from "../../../core/dictionary";
+import GameState from "../../../core/GameState";
+import Word from "../../../core/word";
 
 const DictionaryPage = () => {
   const dictionaryRef = useRef<Dictionary>(null);
@@ -27,7 +29,26 @@ const DictionaryPage = () => {
   const [isAllWordsDictionary, setIsAllWordsDictionary] = useState(true);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     setInputValue(e.target.value);
+  };
+
+  const searchWord = (inputValue: string, isAllWords: boolean) => {
+    const searchebleWords = isAllWords
+      ? dictionary.getAllWords()
+      : dictionary.getUnknownWords(
+          GameState.fromString(
+            window.localStorage.getItem("gameState"),
+            dictionary
+          )
+        );
+    return searchebleWords.filter(
+      (word: Word) =>
+        word.originalWord.includes(inputValue.toLocaleLowerCase()) ||
+        word.translations.some((translation) =>
+          translation.includes(inputValue.toLocaleLowerCase())
+        )
+    );
   };
 
   const currentWords = useMemo(() => {
@@ -35,9 +56,14 @@ const DictionaryPage = () => {
       if (isAllWordsDictionary) {
         return dictionary.getAllWords();
       }
-      return dictionary.getUnknownWords();
+      return dictionary.getUnknownWords(
+        GameState.fromString(
+          window.localStorage.getItem("gameState"),
+          dictionary
+        )
+      );
     }
-    return dictionary.searchWord(inputValue, isAllWordsDictionary);
+    return searchWord(inputValue, isAllWordsDictionary);
   }, [inputValue, isAllWordsDictionary]);
 
   const dictionaryItems = currentWords.map((word, index) => {

@@ -1,8 +1,6 @@
 import React from "react";
 import classNames from "classnames";
 
-import PropTypes from "prop-types";
-
 import classes from "./style.css";
 
 type ButtonProps = {
@@ -10,7 +8,7 @@ type ButtonProps = {
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   btntype: "default" | "error" | "success";
   type?: "submit";
-  className: "string";
+  className?: "string";
   disabled?: boolean;
 };
 
@@ -37,16 +35,5 @@ const Button = ({
     </button>
   );
 };
-
-// export const BUTTON_TYPES = {
-//   DEFAULT: "default",
-//   ERROR: "error",
-//   SUCCESS: "success",
-// };
-
-// Button.propTypes = {
-//   onClick: PropTypes.func,
-//   btntype: PropTypes.oneOf(Object.values(BUTTON_TYPES)),
-// };
 
 export default Button;

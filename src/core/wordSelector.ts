@@ -1,44 +1,20 @@
 import Dictionary from "./dictionary";
 import Word from "./word";
+import GameState from "./GameState";
 
 export default class WordSelector {
   dictionary: Dictionary;
-  initialWeightsOfWords: number[];
   randomFn: () => number;
+  gameState: GameState;
 
-  constructor(
-    dictionary: Dictionary,
-    initialWeightsOfWords: number[] | [] = []
-  ) {
+  constructor(gameState: GameState, dictionary: Dictionary) {
+    this.gameState = gameState;
     this.dictionary = dictionary;
-    this.initialWeightsOfWords = initialWeightsOfWords;
     this.randomFn = Math.random;
   }
 
-  get weightsOfWords() {
-    const allWords = this.dictionary.getAllWords();
-
-    const diff = allWords.length - this.initialWeightsOfWords.length;
-    const deficit = (Math.abs(diff) + diff) / 2;
-    const result = [
-      ...this.initialWeightsOfWords.slice(0, allWords.length),
-      ...Array(deficit).fill(1),
-    ];
-
-    Object.defineProperty(this, "weightsOfWords", {
-      value: result,
-      writable: false,
-      configurable: false,
-      enumerable: false,
-    });
-
-    return result;
-  }
-
-  // check the length of the words weight list in the state
-
   getWeightsOfWordsSum() {
-    return this.weightsOfWords.reduce((prev, cur) => {
+    return this.gameState.wordsWeightList.reduce((prev, cur) => {
       return cur + prev;
     }, 0);
   }
@@ -56,7 +32,7 @@ export default class WordSelector {
 
     let acc = 0;
 
-    const foundIndex = this.weightsOfWords.findIndex((weight) => {
+    const foundIndex = this.gameState.wordsWeightList.findIndex((weight) => {
       acc += weight;
       if (randomNum < acc) {
         return true;
@@ -68,13 +44,13 @@ export default class WordSelector {
 
   increaseWordWeight(word: Word) {
     const wordIndex = this.dictionary.getAllWords().indexOf(word);
-    this.weightsOfWords[wordIndex] += 1;
+    this.gameState.wordsWeightList[wordIndex] += 1;
   }
 
   decreaseWordWeight(word: Word) {
     const wordIndex = this.dictionary.getAllWords().indexOf(word);
-    if (this.weightsOfWords[wordIndex] > 1) {
-      this.weightsOfWords[wordIndex] -= 1;
+    if (this.gameState.wordsWeightList[wordIndex] > 1) {
+      this.gameState.wordsWeightList[wordIndex] -= 1;
     }
   }
 }

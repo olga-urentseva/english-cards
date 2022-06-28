@@ -1,24 +1,29 @@
-import Dictionary from "./dictionary";
 import Game from "./game";
+import GameState from "./GameState";
+import Dictionary from "./dictionary";
 
 export default class GameSaveManager {
-  store: Storage;
+  private store: Storage = window.localStorage;
 
-  constructor(store = window.localStorage, dictionary?: Dictionary) {
+  constructor(store: Storage = window.localStorage) {
     this.store = store;
   }
 
   save(game: Game) {
-    this.store.setItem("gameState", JSON.stringify(game.getState()));
+    this.store.setItem("gameState", game.state.toString());
   }
 
   load() {
-    const gameState = this.store.getItem("gameState");
-
-    return new Game(gameState ? JSON.parse(gameState) : null);
+    const dictionary = new Dictionary();
+    const gameState = GameState.fromString(
+      this.store.getItem("gameState"),
+      dictionary
+    );
+    return new Game(gameState, dictionary);
   }
 
   removeSave() {
+    this.store.removeItem("userWords");
     this.store.removeItem("gameState");
   }
 }

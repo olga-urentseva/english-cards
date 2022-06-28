@@ -1,22 +1,17 @@
 import WordSelector from "./wordSelector";
 import Word from "./word";
 import Dictionary from "./dictionary";
-
-type State = {
-  wordsWeightList: number[];
-  score: number;
-};
+import GameState from "./GameState";
 
 export default class Game {
   wordSelector: WordSelector;
-  score: number;
+  state: GameState;
+  dictionary: Dictionary;
 
-  constructor(
-    state: { wordsWeightList: number[]; score: number } | null = null,
-    dictionary: Dictionary = new Dictionary()
-  ) {
-    this.wordSelector = new WordSelector(dictionary, state?.wordsWeightList);
-    this.score = state?.score || 0;
+  constructor(state: GameState, dictionary: Dictionary) {
+    this.dictionary = dictionary;
+    this.state = state;
+    this.wordSelector = new WordSelector(state, dictionary);
   }
 
   getRandomWord() {
@@ -32,7 +27,7 @@ export default class Game {
 
     if (result) {
       this.wordSelector.decreaseWordWeight(actualWord);
-      this.score += 1;
+      this.state.score += 1;
     } else {
       this.wordSelector.increaseWordWeight(actualWord);
     }
@@ -41,14 +36,7 @@ export default class Game {
   }
 
   getScore() {
-    return this.score;
-  }
-
-  getState() {
-    return {
-      score: this.score,
-      wordsWeightList: this.wordSelector.weightsOfWords,
-    };
+    return this.state.score;
   }
 
   skip(actualWord: Word) {

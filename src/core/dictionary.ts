@@ -1,27 +1,16 @@
-import allWords from "../words/words";
+import memoizable from "./lib/decorators/memoizable";
 import Word from "./word";
 
-function memoizable(
-  target: any,
-  methodName: string,
-  descriptor: PropertyDescriptor
-) {
-  const originalMethod = descriptor.value;
-  let memoizedValue;
-
-  descriptor.value = function (...args: any[]) {
-    return (memoizedValue ||= originalMethod.apply(this, args));
-  };
-}
+import allWords from "../words/words";
+import GameState from "./GameState";
 
 export default class Dictionary {
   store: Storage;
-  memoizedAllWords: Word[];
   words: [string, string[]][];
 
-  constructor(store = window.localStorage, words = allWords) {
+  constructor(store = window.localStorage, words?: [string, string[]][]) {
     this.store = store;
-    this.words = words;
+    this.words = words || this.getWordsFromDB() || allWords;
   }
 
   @memoizable
@@ -31,16 +20,12 @@ export default class Dictionary {
 
   /** This method returns an unknown words (words that weight is more than 1). */
   /** Weight if the words we get from the gameState. */
-  getUnknownWords(): Word[] {
-    const gameState = this.store.getItem("gameState");
+  getUnknownWords(gameState: GameState): Word[] {
     const allWords = this.getAllWords();
-    if (gameState === null) {
-      return [];
-    }
 
-    const wordsScore = JSON.parse(gameState).wordsWeightList;
+    const wordsScore = gameState.wordsWeightList;
 
-    return allWords.filter((word, index) => {
+    return allWords.filter((word: Word, index: number) => {
       if (wordsScore[index] > 1) {
         return new Word(word.originalWord, word.translations);
       }
@@ -48,16 +33,16 @@ export default class Dictionary {
     });
   }
 
-  searchWord(inputValue: string, isAllWords: boolean) {
-    const searchebleWords = isAllWords
-      ? this.getAllWords()
-      : this.getUnknownWords();
-    return searchebleWords.filter(
-      (word) =>
-        word.originalWord.includes(inputValue.toLocaleLowerCase()) ||
-        word.translations.some((translation) =>
-          translation.includes(inputValue.toLocaleLowerCase())
-        )
-    );
+  saveToBD() {
+    this.store.setItem("userWords", JSON.stringify(this.words));
+  }
+
+  resetWordsInDB() {
+    this.store.removeItem("userWords");
+  }
+
+  getWordsFromDB() {
+    const userWordsRawString = this.store.getItem("userWords");
+    return userWordsRawString && JSON.parse(userWordsRawString);
   }
 }

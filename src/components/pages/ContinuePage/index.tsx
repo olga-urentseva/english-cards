@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 import Layout from "../../templates/Layout";
 import Container from "../../atoms/Container";
@@ -8,10 +7,10 @@ import { useAuthContext } from "../../contexts/AuthContext";
 
 import classes from "./style.css";
 import CentralContainer from "../../atoms/CentralContainer";
+import ButtonLink from "../../atoms/ButtonLink";
 
 const ContinuePage = () => {
   const authContextValue = useAuthContext();
-  const navigate = useNavigate();
 
   return (
     <Layout>
@@ -24,15 +23,7 @@ const ContinuePage = () => {
               заново!
             </span>
             <div className={classes.ButtonsWrapper}>
-              <Button
-                className={classes.ContinuePageButton}
-                btntype="success"
-                onClick={() => {
-                  navigate("/game");
-                }}
-              >
-                Продолжить
-              </Button>
+              <ButtonLink href="/game">Продолжить</ButtonLink>
               <Button
                 className={classes.ContinuePageButton}
                 btntype="default"
