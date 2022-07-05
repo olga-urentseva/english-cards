@@ -1,7 +1,6 @@
 import Dictionary from "./dictionary";
 import Game from "./game";
-import GameSaveManager from "./gameSaveManager";
-import Word from "./word";
+import AppManager from "./AppManager";
 import GameState from "./GameState";
 
 describe("GameSaveManager", () => {
@@ -10,15 +9,15 @@ describe("GameSaveManager", () => {
     getItem: jest.fn(),
     removeItem: jest.fn(),
   };
-  const word = new Word("test", ["тест"]);
+  const word = `["test", ["тест"]]`;
   let dictionary;
   let game;
-  let gameSaver;
+  let appManager;
   beforeEach(() => {
-    dictionary = new Dictionary(localStorage, [word]);
+    dictionary = new Dictionary(localStorage, [JSON.parse(word)]);
     const gameState = new GameState(100, [1]);
     game = new Game(gameState, dictionary);
-    gameSaver = new GameSaveManager(localStorage);
+    appManager = new AppManager(localStorage, dictionary);
   });
   describe(".save", () => {
     it("saves game", () => {
@@ -26,7 +25,7 @@ describe("GameSaveManager", () => {
         wordsWeightList: [1],
         score: 100,
       };
-      gameSaver.save(game);
+      appManager.saveGame(game);
       expect(localStorage.setItem.mock.calls[0][0]).toBe("gameState");
       expect(JSON.parse(localStorage.setItem.mock.calls[0][1])).toEqual(
         expectedValue
@@ -36,16 +35,29 @@ describe("GameSaveManager", () => {
 
   describe(".load", () => {
     it("loads game", () => {
-      const loadedGame = gameSaver.load();
+      const loadedGame = appManager.loadGame();
       expect(loadedGame).toBeInstanceOf(Game);
     });
   });
 
   describe(".removeSave", () => {
     it("removes current game from Storage", () => {
-      gameSaver.removeSave();
-      expect(localStorage.removeItem.mock.calls[0][0]).toBe("userWords");
-      expect(localStorage.removeItem.mock.calls[1][0]).toBe("gameState");
+      dictionary.resetWordsInDB = jest.fn();
+      appManager.removeGameSave();
+
+      expect(dictionary.resetWordsInDB).toHaveBeenCalled();
+      expect(localStorage.removeItem.mock.calls[0][0]).toBe("gameState");
+    });
+  });
+
+  describe(".setDictionary", () => {
+    it("remove old dictionary and set the new one", () => {
+      appManager.removeGameSave = jest.fn();
+      const newDictionary = new Dictionary();
+      appManager.setDictionary(newDictionary);
+
+      expect(appManager.removeGameSave).toHaveBeenCalled();
+      expect(appManager.dictionary).toBe(newDictionary);
     });
   });
 });

@@ -1,14 +1,15 @@
 import React from "react";
-import { render, screen, act, fireEvent } from "@testing-library/react";
+import { screen, act, fireEvent } from "@testing-library/react";
+import { render } from "../../../../test-utils";
 import userEvent from "@testing-library/user-event";
 
 import Game from "../../../core/game";
-import GameSaveManager from "../../../core/gameSaveManager";
+import AppManager from "../../../core/AppManager";
 import GameBlock from "./index";
 import Word from "../../../core/word";
 import Dictionary from "../../../core/dictionary";
 
-jest.mock("../../../core/gameSaveManager");
+jest.mock("../../../core/AppManager");
 jest.useFakeTimers();
 
 describe("GameBlock", () => {
@@ -26,7 +27,7 @@ describe("GameBlock", () => {
     jest.spyOn(game, "answer");
     jest.spyOn(game, "skip");
     jest.spyOn(game, "getRandomWord");
-    GameSaveManager.prototype.load.mockImplementation(() => game);
+    AppManager.prototype.loadGame.mockImplementation(() => game);
     game.answer.mockClear();
     game.skip.mockClear();
     game.getRandomWord.mockClear();
