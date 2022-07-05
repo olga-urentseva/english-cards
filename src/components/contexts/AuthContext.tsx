@@ -1,12 +1,6 @@
-import React, {
-  useContext,
-  useEffect,
-  useState,
-  useRef,
-  ReactElement,
-} from "react";
+import React, { useContext, useEffect, useState, ReactElement } from "react";
 import { useNavigate } from "react-router-dom";
-import GameSaveManager from "../../core/gameSaveManager";
+import { useAppManager } from "./AppManagerContext";
 
 export const Context = React.createContext(null);
 
@@ -16,16 +10,11 @@ const AuthContext = ({ children }: { children: ReactElement }) => {
   );
 
   const navigate = useNavigate();
-
-  const gameSaveManagerRef = useRef(null);
-  if (!gameSaveManagerRef.current) {
-    gameSaveManagerRef.current = new GameSaveManager();
-  }
-  const gameSaveManager = gameSaveManagerRef.current;
+  const appManager = useAppManager();
 
   function logOut() {
     setUserName(null);
-    gameSaveManager.removeSave();
+    appManager.removeGameSave();
     navigate("/");
   }
 
@@ -37,7 +26,7 @@ const AuthContext = ({ children }: { children: ReactElement }) => {
     }
   }, [userName]);
 
-  const isAuth = userName ? true : false;
+  const isAuth = Boolean(userName);
 
   return (
     <Context.Provider value={{ userName, login: setUserName, logOut, isAuth }}>

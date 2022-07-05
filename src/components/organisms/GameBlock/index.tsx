@@ -1,27 +1,23 @@
 import React, { useState, useRef } from "react";
 
-import GameSaveManager from "../../../core/gameSaveManager";
-
 import Button from "../../atoms/Button";
 import Input from "../../atoms/Input";
 import Score from "../../atoms/Score";
 import WordCard from "./WordCard";
 import CentralContainer from "../../atoms/CentralContainer";
 
+import { useAppManager } from "../../contexts/AppManagerContext";
+
 import classes from "./style.css";
 
 const GameBlock = () => {
   const [inputValue, setInputValue] = useState("");
 
-  const gameSaveManagerRef = useRef<GameSaveManager>(null);
-  if (!gameSaveManagerRef.current) {
-    gameSaveManagerRef.current = new GameSaveManager();
-  }
-  const gameSaveManager = gameSaveManagerRef.current;
+  const appManager = useAppManager();
 
   const gameRef = useRef(null);
   if (!gameRef.current) {
-    gameRef.current = gameSaveManager.load();
+    gameRef.current = appManager.loadGame();
   }
   const game = gameRef.current;
 
@@ -42,7 +38,7 @@ const GameBlock = () => {
   function submitAnswer(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const isCorrect = game.answer(currentWord, inputValue);
-    gameSaveManager.save(game);
+    appManager.saveGame(game);
     if (isCorrect) {
       setCurrentWord(game.getRandomWord());
       setInputValue("");
@@ -58,7 +54,7 @@ const GameBlock = () => {
   function handleSkip() {
     game.skip(currentWord);
     incorrectAnswerHandle();
-    gameSaveManager.save(game);
+    appManager.saveGame(game);
   }
 
   return (
