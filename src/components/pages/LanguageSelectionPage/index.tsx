@@ -9,43 +9,45 @@ import Input from "../../atoms/Input";
 import CentralContainer from "../../atoms/CentralContainer";
 
 import { useAuthContext } from "../../contexts/AuthContext";
+import { useAppManager } from "../../contexts/AppManagerContext";
 
 import UserDictionaryParser from "../../../core/UserDictionaryParser";
 
 import classes from "./style.css";
-import ButtonLink from "../../atoms/ButtonLink";
 
 const LanguageSelectionPage = () => {
   const authContextValue = useAuthContext();
+  const appManager = useAppManager();
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [isFileValid, setIsFileValid] = React.useState<boolean>(null);
 
   const navigate = useNavigate();
 
-  // const handleOurDictionaryButton = (e: React.MouseEvent<HTMLElement>) => {
-  //   e.preventDefault();
-  //   navigate("/game");
-  // };
-
-  const handlePersonalWordsButton = () => {
+  function handlePersonalWordsClick() {
     setIsModalOpen(true);
-  };
+  }
 
-  const handleUploadFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  async function handleUploadFile(e: React.ChangeEvent<HTMLInputElement>) {
     try {
       const parser = new UserDictionaryParser(e.target.files[0]);
       const dictionary = await parser.getDictionary();
+      appManager.setDictionary(dictionary);
       dictionary.saveToBD();
       setIsFileValid(true);
     } catch (err) {
       console.log(err);
       setIsFileValid(false);
     }
-  };
+  }
 
-  const startGameWithPersonalWords = () => {
+  function startGameWithPersonalWords() {
     navigate("/game");
-  };
+  }
+
+  function startGameWithDefaultWords() {
+    appManager.setDictionary();
+    navigate("/game");
+  }
 
   if (!authContextValue.isAuth) {
     return <Navigate to="/" />;
@@ -88,10 +90,12 @@ const LanguageSelectionPage = () => {
               из нашего словаря.
             </h4>
             <div className={classes.ButtonsWrapper}>
-              <Button btntype="success" onClick={handlePersonalWordsButton}>
+              <Button btntype="success" onClick={handlePersonalWordsClick}>
                 Cвои слова
               </Button>
-              <ButtonLink href="/game">Английские</ButtonLink>
+              <Button btntype="success" onClick={startGameWithDefaultWords}>
+                Английские
+              </Button>
             </div>
           </div>
         </CentralContainer>

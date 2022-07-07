@@ -7,19 +7,22 @@ import GamePage from "./components/pages/GamePage";
 import DictionaryPage from "./components/pages/DictionaryPage";
 import AboutPage from "./components/pages/AboutPage";
 import LanguageSelectionPage from "./components/pages/LanguageSelectionPage";
+import AppManagerContext from "./components/contexts/AppManagerContext";
 
 const App = () => {
   return (
     <ThemeContext>
-      <AuthContext>
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/game" element={<GamePage />} />
-          <Route path="/dictionary" element={<DictionaryPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/languages" element={<LanguageSelectionPage />} />
-        </Routes>
-      </AuthContext>
+      <AppManagerContext>
+        <AuthContext>
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/game" element={<GamePage />} />
+            <Route path="/dictionary" element={<DictionaryPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/languages" element={<LanguageSelectionPage />} />
+          </Routes>
+        </AuthContext>
+      </AppManagerContext>
     </ThemeContext>
   );
 };

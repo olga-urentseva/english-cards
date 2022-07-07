@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useRef } from "react";
+import React, { useMemo, useState } from "react";
 import { Navigate } from "react-router-dom";
 
 import Container from "../../atoms/Container";
@@ -8,22 +8,15 @@ import SwitchButton from "../../atoms/SwitchButton";
 import Input from "../../atoms/Input";
 import DictionaryItem from "../../atoms/DictionaryItem";
 import { useAuthContext } from "../../contexts/AuthContext";
+import { useAppManager } from "../../contexts/AppManagerContext";
 
 import classes from "./style.css";
-import Dictionary from "../../../core/dictionary";
-import GameState from "../../../core/GameState";
 import Word from "../../../core/word";
 
 const DictionaryPage = () => {
-  const dictionaryRef = useRef<Dictionary>(null);
-
-  if (!dictionaryRef.current) {
-    dictionaryRef.current = new Dictionary();
-  }
-
-  const dictionary = dictionaryRef.current;
-
   const authContextValue = useAuthContext();
+
+  const appManager = useAppManager();
 
   const [inputValue, setInputValue] = useState("");
   const [isAllWordsDictionary, setIsAllWordsDictionary] = useState(true);
@@ -35,13 +28,8 @@ const DictionaryPage = () => {
 
   const searchWord = (inputValue: string, isAllWords: boolean) => {
     const searchebleWords = isAllWords
-      ? dictionary.getAllWords()
-      : dictionary.getUnknownWords(
-          GameState.fromString(
-            window.localStorage.getItem("gameState"),
-            dictionary
-          )
-        );
+      ? appManager.dictionary.getAllWords()
+      : appManager.dictionary.getUnknownWords(appManager.gameState);
     return searchebleWords.filter(
       (word: Word) =>
         word.originalWord.includes(inputValue.toLocaleLowerCase()) ||
@@ -54,14 +42,9 @@ const DictionaryPage = () => {
   const currentWords = useMemo(() => {
     if (inputValue === "") {
       if (isAllWordsDictionary) {
-        return dictionary.getAllWords();
+        return appManager.dictionary.getAllWords();
       }
-      return dictionary.getUnknownWords(
-        GameState.fromString(
-          window.localStorage.getItem("gameState"),
-          dictionary
-        )
-      );
+      return appManager.dictionary.getUnknownWords(appManager.gameState);
     }
     return searchWord(inputValue, isAllWordsDictionary);
   }, [inputValue, isAllWordsDictionary]);

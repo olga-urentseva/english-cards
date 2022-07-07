@@ -51,15 +51,4 @@ describe("Dictionary", () => {
       expect(dictionary.getUnknownWords(gameState)).toEqual([expectedValue]);
     });
   });
-
-  // describe(".searchWord", () => {
-  //   it("search words", () => {
-  //     const dictionary = new Dictionary(localStorage, mockedStoredWords);
-  //     const expectedWord = new Word(
-  //       mockedStoredWords[0][0],
-  //       mockedStoredWords[0][1]
-  //     );
-  //     expect(dictionary.searchWord("те", true)).toEqual([expectedWord]);
-  //   });
-  // });
 });

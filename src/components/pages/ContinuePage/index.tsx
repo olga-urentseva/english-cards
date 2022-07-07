@@ -23,7 +23,9 @@ const ContinuePage = () => {
               заново!
             </span>
             <div className={classes.ButtonsWrapper}>
-              <ButtonLink href="/game">Продолжить</ButtonLink>
+              <ButtonLink className={classes.ContinuePageButton} href="/game">
+                Продолжить
+              </ButtonLink>
               <Button
                 className={classes.ContinuePageButton}
                 btntype="default"

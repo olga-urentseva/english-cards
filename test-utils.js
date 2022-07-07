@@ -1,9 +1,12 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { Context as AuthContext } from "./src/components/contexts/AuthContext";
-import { Context as ThemeContext } from "./src/components/contexts/ThemeContext";
-import theme from "./src/constants/themes/dark";
 import { MemoryRouter } from "react-router";
+
+import { Context as ThemeContext } from "./src/components/contexts/ThemeContext";
+import AppManagerContext from "./src/components/contexts/AppManagerContext";
+import { Context as AuthContext } from "./src/components/contexts/AuthContext";
+
+import theme from "./src/constants/themes/dark";
 
 const noop = () => {};
 
@@ -13,11 +16,18 @@ const AllProviders = ({ children }) => {
       <ThemeContext.Provider
         value={{ theme, themeName: "dark", setTheme: noop }}
       >
-        <AuthContext.Provider
-          value={{ userName: "test", isAuth: true, login: noop, logOut: noop }}
-        >
-          {children}
-        </AuthContext.Provider>
+        <AppManagerContext>
+          <AuthContext.Provider
+            value={{
+              userName: "test",
+              isAuth: true,
+              login: noop,
+              logOut: noop,
+            }}
+          >
+            {children}
+          </AuthContext.Provider>
+        </AppManagerContext>
       </ThemeContext.Provider>
     </MemoryRouter>
   );
