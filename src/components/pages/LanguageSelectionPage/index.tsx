@@ -75,6 +75,7 @@ const LanguageSelectionPage = () => {
                   id="file"
                   labelText="Мы распознаём только JSON в формате [['word', ['слово', 'словечко' ]]]"
                   onChange={handleUploadFile}
+                  className={classes.FormInput}
                 />
 
                 <Button type="submit" btntype="success" disabled={!isFileValid}>
