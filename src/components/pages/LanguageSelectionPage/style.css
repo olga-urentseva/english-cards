@@ -13,3 +13,7 @@
 .ErrorMessage {
   color: var(--color-accent--error);
 }
+
+.FormInput {
+  width: 100%;
+}
