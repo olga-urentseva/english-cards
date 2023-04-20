@@ -6,6 +6,7 @@ Stack:
 - TypeScript
 - CSS modules
 - JEST, React Testing Library for unit-testing
+- deployed to Netlify
 
 Approaches:
 - Object Oriented Programming (core of the application is just a vanilla TS code with OOP approach)
